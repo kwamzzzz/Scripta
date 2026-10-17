@@ -1,0 +1,299 @@
+/* Starting a corporate document: what Scripta needs, and what it will build. */
+.cs-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 0;
+  overflow: hidden;
+}
+.cs-page {
+  min-width: 0;
+  overflow: auto;
+  padding: 24px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cs-head h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.cs-head p {
+  margin: 5px 0 0;
+  color: var(--scripta-text-2);
+  font-size: 12.5px;
+  line-height: 1.55;
+  max-width: 620px;
+}
+.cs-back {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin-bottom: 8px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.cs-back:hover {
+  color: var(--scripta-ink);
+}
+
+/* ---------------------------------------------------------- type picker */
+.cs-kinds {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  max-width: 860px;
+}
+.cs-kind {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  padding: 16px;
+  font: inherit;
+  cursor: pointer;
+  box-shadow:  none;
+}
+.cs-kind:hover {
+  border-color: #c2c2c2;
+  background: var(--scripta-surface);
+}
+.cs-kind:focus-visible {
+  outline: 2px solid #586674;
+  outline-offset: 1px;
+}
+.cs-kind-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--scripta-surface-2);
+  color: var(--scripta-text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-kind-name {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.cs-kind-summary {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- steps */
+.cs-step {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 720px;
+  box-shadow:  none;
+}
+.cs-step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+.cs-step-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.cs-step-head p {
+  margin: 3px 0 0;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.cs-step-num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--scripta-surface-2);
+  color: var(--scripta-text-2);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cs-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  margin-bottom: 3px;
+}
+.cs-field label span {
+  color: var(--scripta-risk);
+}
+.cs-help {
+  margin: 0 0 5px;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.cs-field input,
+.cs-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  resize: vertical;
+}
+.cs-field input:focus,
+.cs-field textarea:focus {
+  outline: none;
+  border-color: var(--scripta-border);
+}
+.cs-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.cs-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.cs-choice:hover {
+  border-color: #b5b5b5;
+}
+.cs-choice.is-on {
+  border-color: var(--scripta-brand);
+  box-shadow: inset 0 0 0 1px #232323;
+}
+.cs-choice-help {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.cs-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 720px;
+}
+.cs-missing {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+.cs-showall {
+  align-self: flex-start;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.cs-error {
+  border: 1px solid #e7c9c9;
+  background: #fdf4f4;
+  color: #a33a3a;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  max-width: 720px;
+}
+
+/* -------------------------------------------------------------- preview */
+.cs-preview {
+  border-left: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  overflow: auto;
+  padding: 24px 20px;
+}
+.cs-preview h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.cs-preview-note {
+  margin: 8px 0 14px;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+.cs-outline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: section;
+}
+.cs-outline li {
+  border-left: 2px solid var(--scripta-rule);
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cs-outline-group {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.cs-outline-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.cs-outline-guide {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .cs-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-preview {
+    border-left: 0;
+    border-top: 1px solid var(--scripta-rule);
+  }
+}

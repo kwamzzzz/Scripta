@@ -1,0 +1,198 @@
+/* Read aloud on document screens: a faint speaker per container, a small player while reading. */
+
+.ra-btn {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #8a867e;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.12s,
+    background 0.12s,
+    color 0.12s;
+}
+.ra-btn svg {
+  width: 14px;
+  height: 14px;
+}
+/* Only the innermost container under the pointer shows its speaker, not the ones around it. */
+[data-read-id]:hover:not(:has([data-read-id]:hover)) > header .ra-btn,
+.ra-btn:focus-visible,
+.ra-btn.is-on {
+  opacity: 1;
+}
+.ra-btn:hover {
+  background: #ebe8e2;
+  color: #243660;
+}
+.ra-btn.is-on {
+  color: #243660;
+  background: #e9ecf4;
+}
+/* No pointer to hover with: keep them just visible. */
+@media (hover: none) {
+  .ra-btn {
+    opacity: 0.45;
+  }
+}
+
+.ra-reading {
+  box-shadow:
+    0 0 0 2px #c9d1e6,
+    0 0 0 6px #eef1f8 !important;
+  transition: box-shadow 0.2s;
+}
+
+.ra-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  z-index: 60;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  max-width: min(640px, calc(100vw - 32px));
+  padding: 6px 8px;
+  border: 1px solid #e6e3dd;
+  border-radius: 999px;
+  background: #fdfcfa;
+  box-shadow:
+    0 1px 2px rgb(35 34 31 / 6%),
+    0 8px 24px rgb(35 34 31 / 12%);
+  font-size: 12.5px;
+  color: #2b2925;
+}
+.ra-bar-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.ra-bar-btn svg {
+  width: 15px;
+  height: 15px;
+}
+.ra-bar-btn:hover:not(:disabled) {
+  background: #efece6;
+}
+.ra-bar-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.ra-bar-btn.is-main {
+  background: #243660;
+  color: #fff;
+}
+.ra-bar-btn.is-main:hover {
+  background: #1c2b4e;
+}
+.ra-bar-btn.is-main svg {
+  fill: currentColor;
+  stroke-width: 0;
+}
+.ra-bar-status {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ra-bar-status b {
+  font-weight: 600;
+}
+.ra-bar-status i {
+  font-style: normal;
+  color: #8a867e;
+  font-variant-numeric: tabular-nums;
+}
+.ra-bar-rate {
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid #e6e3dd;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  cursor: pointer;
+}
+.ra-bar-note {
+  flex-basis: 100%;
+  padding: 0 10px 2px;
+  font-size: 11.5px;
+  color: #6f6b64;
+  white-space: normal;
+}
+
+.ra-bar-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.ra-bar-rate svg {
+  width: 12px;
+  height: 12px;
+}
+/* Above the player it opens from (the popover's own layer sits below the player's). */
+.ra-pop.ra-pop {
+  z-index: 70;
+}
+.ra-pop {
+  display: grid;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 256px;
+  padding: 12px;
+}
+.ra-field {
+  display: grid;
+  /* The column is the box's width, never the longest voice name's. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  font-size: 12px;
+  color: #6f6b64;
+}
+.ra-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  text-overflow: ellipsis;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid #d6d2ca;
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  color: #2b2925;
+}
+.ra-field select:focus-visible,
+.ra-bar-rate:focus-visible,
+.ra-bar-btn:focus-visible,
+.ra-btn:focus-visible {
+  outline: 2px solid #243660;
+  outline-offset: 1px;
+}
+.ra-field select:focus:not(:focus-visible) {
+  outline: none;
+  border-color: #243660;
+}

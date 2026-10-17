@@ -1,0 +1,401 @@
+/* A client's marketing, drawn from the same pieces as its organisation. */
+
+.mk-private {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-private strong {
+  font:
+    500 10.5px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+/* ------------------------------------------------------------------ board */
+
+.mk-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.mk-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 160px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.mk-col > header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 4px 4px;
+  font:
+    500 10.5px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 11px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  font: inherit;
+  text-align: left;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.mk-card:hover {
+  border-color: #b9ccc9;
+  box-shadow:  none;
+}
+
+.mk-card:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.mk-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.mk-card-meta {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------- schedule */
+
+.mk-month-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mk-month-head strong {
+  min-width: 150px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.mk-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-left: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.mk-grid-dow,
+.mk-day {
+  border-right: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.mk-grid-dow {
+  padding: 5px 6px;
+  font:
+    500 10.5px var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+  background: var(--scripta-surface);
+}
+
+.mk-day {
+  min-height: 86px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mk-day.is-out {
+  background: var(--scripta-surface);
+}
+
+.mk-day-n {
+  font-size: 11px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-day-post {
+  display: block;
+  width: 100%;
+  padding: 2px 5px;
+  border: 0;
+  border-left: 3px solid #9aa6a2;
+  border-radius: 3px;
+  background: #f0f3f2;
+  font: inherit;
+  font-size: 11.5px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+
+.mk-day-post.is-scheduled {
+  border-left-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-selected);
+}
+
+.mk-day-post.is-published {
+  border-left-color: #3f8b64;
+  background: #eef6f0;
+}
+
+.mk-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+
+/* ------------------------------------------------------------------- post */
+
+.mk-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.mk-steps li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-steps li.is-done {
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: #f4f6f5;
+}
+
+.mk-steps li.is-on {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-selected, var(--scripta-selected));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}
+
+.mk-next {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.mk-next p {
+  margin: 0;
+}
+
+.mk-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mk-schedule {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.mk-warn {
+  color: var(--scripta-warn);
+}
+
+.mk-preview {
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 6px;
+  background: repeating-conic-gradient(#f3f4f2 0% 25%, var(--scripta-surface) 0% 50%) 50% / 16px 16px;
+}
+
+.mk-version {
+  text-align: left;
+  font-weight: 600;
+}
+
+.mk-version-text {
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font-size: 12px;
+}
+
+.mk-version-text p,
+.mk-pre {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+}
+
+.mk-stage-chips {
+  margin-top: 8px;
+}
+
+/* ------------------------------------------------------------- brand kit */
+
+.mk-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.mk-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12.5px;
+}
+
+.mk-swatch > span {
+  height: 56px;
+  border-radius: 6px;
+  border: 1px solid rgb(0 0 0 / 8%);
+  margin-bottom: 4px;
+}
+
+.mk-swatch code {
+  font:
+    500 11px var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-palette-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mk-palette-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mk-palette-row input[type="color"] {
+  width: 38px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+}
+
+.mk-hex {
+  width: 96px;
+  font-family: var(--scripta-font-mono);
+}
+
+/* ----------------------------------------------------------------- assets */
+
+.mk-assets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.mk-asset {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--scripta-surface);
+}
+
+.mk-asset.is-lapsed {
+  opacity: 0.7;
+}
+
+.mk-asset-view {
+  display: grid;
+  place-items: center;
+  height: 130px;
+  padding: 8px;
+  border: 0;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: repeating-conic-gradient(#f3f4f2 0% 25%, var(--scripta-surface) 0% 50%) 50% / 16px 16px;
+  cursor: pointer;
+}
+
+.mk-asset .mk-preview {
+  max-height: 110px;
+  border: 0;
+  background: none;
+}
+
+.mk-asset-file {
+  font:
+    600 13px var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mk-asset figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 10px 10px;
+  font-size: 12.5px;
+}
+
+.mk-asset-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .mk-board {
+    grid-template-columns: repeat(5, minmax(200px, 80vw));
+  }
+
+  .mk-day {
+    min-height: 56px;
+  }
+}

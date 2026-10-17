@@ -1,0 +1,368 @@
+.contract-drafting {
+  height: 100%;
+  font-family: var(--scripta-font-ui);
+}
+.contract-drafting-content {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+.contract-drafting-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin: 0 0 32px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--scripta-rule);
+  list-style: none;
+}
+.contract-drafting-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.contract-drafting-step[aria-current="step"] {
+  color: var(--scripta-ink);
+  font-weight: 600;
+}
+.contract-drafting-step-number {
+  display: inline-flex;
+  width: 20px;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+.contract-drafting-step[aria-current="step"] .contract-drafting-step-number,
+.contract-drafting-step.is-complete .contract-drafting-step-number {
+  color: var(--scripta-teal);
+}
+.contract-drafting-context {
+  margin: 0 0 8px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.contract-drafting-heading {
+  align-items: flex-end;
+  gap: 20px;
+}
+.contract-drafting-heading > div:first-child {
+  min-width: 0;
+}
+.contract-drafting-note,
+.contract-drafting-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 24px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.contract-drafting-note > svg,
+.contract-drafting-notice > svg {
+  flex: none;
+  margin-top: 3px;
+}
+.contract-drafting-notice {
+  padding: 12px 0;
+  border-block: 1px solid var(--scripta-rule);
+}
+.contract-drafting-notice.is-error {
+  color: var(--scripta-error);
+}
+.contract-drafting-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.contract-drafting-section {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.55fr) minmax(0, 2fr);
+  gap: 32px;
+}
+.contract-drafting-section .scripta-section-title {
+  margin-bottom: 8px;
+}
+.contract-drafting-section-copy {
+  margin: 0;
+  max-width: 32ch;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.contract-drafting-fields {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+}
+.contract-drafting-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.contract-drafting .scripta-form-field {
+  align-content: start;
+}
+.contract-drafting .scripta-form-field input,
+.contract-drafting .scripta-form-field select,
+.contract-drafting .scripta-form-field textarea {
+  box-sizing: border-box;
+}
+.contract-drafting .scripta-form-field input:disabled,
+.contract-drafting .scripta-form-field select:disabled,
+.contract-drafting .scripta-form-field textarea:disabled {
+  color: var(--scripta-muted);
+  cursor: wait;
+}
+.contract-drafting-actions {
+  justify-content: flex-end;
+}
+.contract-drafting-action-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.contract-drafting .px-btn {
+  min-height: 40px;
+  white-space: normal !important;
+}
+.contract-drafting .px-btn-primary {
+  width: 200px;
+  max-width: 100%;
+}
+.contract-drafting .px-btn:focus-visible,
+.contract-drafting-icon-button:focus-visible,
+.contract-drafting input:focus-visible,
+.contract-drafting textarea:focus-visible,
+.contract-drafting select:focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 3px;
+}
+.contract-drafting-plan-header,
+.contract-drafting-plan-row {
+  display: grid;
+  grid-template-columns: 36px minmax(180px, 0.8fr) minmax(0, 1.2fr) 120px;
+  align-items: start;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.contract-drafting-plan-header {
+  padding: 12px 0;
+  border-top: 1px solid var(--scripta-rule);
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+.contract-drafting-clause-number {
+  padding-top: 10px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.contract-drafting-purpose {
+  margin: 8px 0 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.contract-drafting-clause-actions {
+  display: flex;
+  gap: 0;
+  justify-content: flex-end;
+}
+.contract-drafting-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper);
+  color: var(--scripta-muted);
+  cursor: pointer;
+  transition:
+    color var(--scripta-transition),
+    border-color var(--scripta-transition);
+}
+.contract-drafting-icon-button:hover:not(:disabled) {
+  color: var(--scripta-ink);
+  border-color: var(--scripta-input-edge);
+}
+.contract-drafting-icon-button:active:not(:disabled) {
+  background: var(--scripta-teal-tint);
+}
+.contract-drafting-icon-button.is-danger {
+  color: var(--scripta-error);
+}
+.contract-drafting-icon-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.contract-drafting-row-label {
+  display: none;
+}
+.contract-drafting-add {
+  display: grid;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.contract-drafting-add-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(150px, 0.7fr);
+  gap: 20px;
+}
+.contract-drafting-insert {
+  padding: 16px 0;
+}
+.contract-drafting-outcome {
+  padding: 24px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+.contract-drafting-outcome-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.contract-drafting-outcome-heading h2 {
+  min-width: 0;
+  margin: 0;
+  color: var(--scripta-ink);
+  font: 600 15px/1.5 var(--scripta-font-ui);
+  overflow-wrap: anywhere;
+}
+.contract-drafting-outcome-heading .contract-drafting-clause-number {
+  flex: none;
+  padding: 0;
+}
+.contract-drafting-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  margin-left: auto;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+.contract-drafting-status[data-state="ready"] {
+  color: var(--scripta-success);
+}
+.contract-drafting-status[data-state="failed"],
+.contract-drafting-failure {
+  color: var(--scripta-error);
+}
+.contract-drafting-status[data-state="drafting"] {
+  color: var(--scripta-teal);
+}
+.contract-drafting-outcome .scripta-form-field textarea {
+  font: 400 16px/1.75 var(--scripta-font-display);
+  padding: 16px;
+}
+.contract-drafting-outcome-copy {
+  margin: 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.contract-drafting-failure {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+@container scripta-page (max-width: 850px) {
+  .contract-drafting-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .contract-drafting-section-copy {
+    max-width: 70ch;
+  }
+  .contract-drafting-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .contract-drafting-plan-header {
+    display: none;
+  }
+  .contract-drafting-plan-row {
+    grid-template-columns: 28px minmax(0, 1fr) 120px;
+  }
+  .contract-drafting-plan-header + .contract-drafting-plan-row {
+    border-top: 1px solid var(--scripta-rule);
+  }
+  .contract-drafting-plan-row .contract-drafting-clause-number {
+    padding-top: 34px;
+  }
+  .contract-drafting-purpose {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    margin: 0;
+  }
+  .contract-drafting-row-label {
+    display: block;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--scripta-ink);
+  }
+  .contract-drafting-purpose .contract-drafting-row-label {
+    margin-bottom: 4px;
+  }
+  .contract-drafting-clause-actions {
+    padding-top: 26px;
+  }
+  .contract-drafting-add-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .contract-drafting-add-purpose {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+@container scripta-page (max-width: 540px) {
+  .contract-drafting-steps {
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+  .contract-drafting-field-row,
+  .contract-drafting-add-fields {
+    grid-template-columns: 1fr;
+  }
+  .contract-drafting-plan-row {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .contract-drafting-clause-actions {
+    grid-column: 2;
+    padding-top: 0;
+    justify-content: flex-start;
+  }
+  .contract-drafting-outcome-heading {
+    flex-wrap: wrap;
+  }
+  .contract-drafting-status {
+    margin-left: 0;
+  }
+  .contract-drafting .scripta-page-actions {
+    width: 100%;
+  }
+  .contract-drafting .scripta-page-actions .px-btn {
+    flex: 1 1 auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contract-drafting-icon-button {
+    transition: none;
+  }
+}

@@ -1,0 +1,114 @@
+.admin-page {
+  max-width: 1180px;
+  width: 100%;
+}
+.admin-sections {
+  display: grid;
+  gap: 32px;
+}
+.admin-section {
+  border: 0;
+  border-top: 1px solid var(--scripta-rule);
+  padding: 24px 0 0;
+  background: var(--scripta-paper);
+  min-width: 0;
+}
+.admin-section-heading {
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.admin-section > div {
+  padding-inline: 0 !important;
+}
+.admin-section > div > div {
+  min-width: 0;
+}
+.admin-section p {
+  font-size: 13px;
+  line-height: 1.65;
+}
+.admin-section input {
+  min-height: 40px;
+}
+.admin-error {
+  color: var(--scripta-error);
+}
+.admin-feature-row {
+  padding-block: 16px !important;
+  flex-wrap: wrap;
+}
+.admin-feature-row > span:first-child {
+  flex: 1;
+  min-width: min(100%, 280px);
+  font-weight: 500;
+}
+.admin-feature-row > span:first-child > span {
+  font-weight: 400;
+  font-size: 12px !important;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.admin-feature-controls {
+  flex-wrap: wrap;
+}
+.admin-state-button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--scripta-border);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper);
+  color: var(--scripta-muted);
+  font: 500 12px/1.4 var(--scripta-font-ui);
+  cursor: pointer;
+}
+.admin-state-button.is-active {
+  color: var(--scripta-ink);
+  border-color: var(--scripta-teal);
+  background: var(--scripta-teal-tint);
+}
+.scripta-shell .admin-state-button.is-active:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.admin-state-button:hover:not(:disabled) {
+  border-color: var(--scripta-teal);
+}
+.admin-page .scripta-form-field input {
+  padding: 9px 12px !important;
+  border-color: var(--scripta-input-edge) !important;
+}
+@container scripta-page (max-width: 560px) {
+  .admin-section > div > div {
+    overflow-wrap: anywhere;
+  }
+  .admin-feature-controls {
+    gap: 6px !important;
+  }
+  .admin-feature-controls > span:first-child {
+    width: 100%;
+  }
+}
+
+.feedback-page {
+  max-width: 1120px;
+}
+.feedback-total {
+  flex: none;
+  padding-top: 8px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+}
+.feedback-list {
+  border-top: 1px solid var(--scripta-rule);
+}
+.feedback-row {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  overflow-wrap: anywhere;
+}
+.feedback-row > div:last-child {
+  margin-top: 20px !important;
+}

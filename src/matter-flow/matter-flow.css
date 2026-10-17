@@ -1,0 +1,1855 @@
+/* Flow (wireframe column 6). Scoped to .mf-* so nothing here leaks into the shell. */
+
+.mf-screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: var(--scripta-ink);
+}
+
+.mf-body {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+}
+
+/* ---------------------------------------------------------------- chips */
+.mf-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 11px;
+  padding: 2px 9px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  white-space: nowrap;
+  flex: none;
+}
+
+.mf-segmented {
+  display: inline-flex;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 11.5px;
+  background: var(--scripta-surface);
+  flex: none;
+}
+.mf-segment {
+  border: 0;
+  border-left: 1px solid var(--scripta-rule);
+  padding: 4px 10px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.mf-segment:first-child {
+  border-left: 0;
+}
+.mf-segment.is-active {
+  background: var(--scripta-brand);
+  color: #fff;
+}
+.mf-segment:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: -2px;
+}
+
+.mf-tick {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+}
+.mf-tick:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+}
+.mf-tick-half {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: currentColor;
+  color: var(--scripta-border);
+}
+
+.mf-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-brand);
+  font: inherit;
+  font-size: 11.5px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: right;
+}
+.mf-link:hover {
+  text-decoration: underline;
+}
+
+.mf-card {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------ phase bar */
+.mf-phasebar {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  flex: none;
+}
+.mf-phasebar-arrow {
+  flex: none;
+  width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--scripta-warn);
+  background: var(--scripta-warn-bg);
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+.mf-phasebar-arrow:disabled {
+  color: #d9b48f;
+  cursor: default;
+}
+.mf-phase {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.mf-phase:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/*
+ * The connector is drawn by the nodes, not behind them. Each node carries the
+ * segment on either side, stopping short of the circle and resuming past it,
+ * so a phase reads as a junction in the timeline rather than a marker laid on
+ * top of a continuous rule: ──── ○ ──── ○ ────
+ */
+.mf-phase-node {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+}
+.mf-phase-node::before,
+.mf-phase-node::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--scripta-surface-2);
+}
+/* 16px from centre clears the circle and the selected node's ring, so the
+   clearance is the same whichever phase is being looked at. */
+.mf-phase-node::before {
+  left: 0;
+  right: calc(50% + 16px);
+}
+.mf-phase-node::after {
+  left: calc(50% + 16px);
+  right: 0;
+}
+/* The line begins at the first node and ends at the last: no loose ends. */
+.mf-phase:first-child .mf-phase-node::before,
+.mf-phase:last-child .mf-phase-node::after {
+  content: none;
+}
+
+/*
+ * Two things are said at this node and they must not be confused.
+ *
+ * STATUS is the marker itself — where the phase stands in the matter:
+ * complete (filled, ticked), active (ringed, dotted), upcoming (plain).
+ * SELECTION is the ring around it — which phase the reader is looking at,
+ * and nothing else. A complete phase that is selected keeps its filled
+ * marker and gains the ring; neither state borrows the other's colour.
+ */
+.mf-phase-marker {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--scripta-surface);
+  border: 2px solid var(--scripta-border);
+  color: #fff;
+  transition:
+    box-shadow 120ms ease,
+    border-color 120ms ease;
+}
+.mf-phase-marker.is-done {
+  background: var(--scripta-warn);
+  border-color: var(--scripta-warn);
+}
+.mf-phase-marker.is-active {
+  border-color: var(--scripta-warn);
+}
+.mf-phase-marker.is-active::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--scripta-warn);
+}
+.mf-phase-marker.is-new {
+  border: 1.5px dashed #b5b5b5;
+  color: var(--scripta-muted);
+}
+
+/*
+ * Selection: an ink ring flush to the marker, never orange, so it cannot be
+ * read as status. It stays inside the clearance the connector already leaves,
+ * so selecting a phase never moves or interrupts the line.
+ */
+.mf-phase.is-selected .mf-phase-marker {
+  box-shadow: 0 0 0 2px #232323;
+}
+.mf-phase:hover:not(.is-selected) .mf-phase-marker {
+  border-color: var(--scripta-border);
+}
+
+.mf-phase-name {
+  font-size: 11.5px;
+  color: var(--scripta-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.mf-phase.is-selected .mf-phase-name {
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+
+/* ---------------------------------------------------------- checklist */
+/* Grows into spare room but never shrinks below its rows: the discussion under
+   it and the filing line above it would otherwise squeeze the list to a sliver
+   on a short screen, while .mf-body is the thing meant to scroll. */
+.mf-list {
+  flex: 1 0 auto;
+  min-height: 0;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.mf-list-head {
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--scripta-rule);
+  flex-wrap: wrap;
+}
+.mf-list-body {
+  flex: 1;
+  min-height: 0;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  overflow: auto;
+}
+/*
+ * One row shape for every deliverable, document or action: tick, icon, the
+ * item itself, then owner, date, state and actions in fixed columns on the
+ * right. Only the contents differ by kind — never the structure.
+ */
+.mf-row {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  padding: 11px 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mf-row-main {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mf-row-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  line-height: 1.35;
+}
+.mf-row-desc {
+  color: var(--scripta-text-2);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.mf-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+  padding-top: 2px;
+}
+.mf-row-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.mf-row-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.mf-row-owner,
+.mf-row-when {
+  white-space: nowrap;
+}
+.mf-row-owner {
+  min-width: 30px;
+  text-align: right;
+}
+.mf-row-when {
+  min-width: 58px;
+  text-align: right;
+}
+.mf-row-state {
+  flex: none;
+  width: 112px;
+  display: flex;
+  justify-content: flex-end;
+}
+/* The actions keep a reserved width, so a row with one more link to offer does
+   not push owner, date and state out of line with the row above it. */
+.mf-row-actions {
+  flex: none;
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.mf-row.is-highlight {
+  border-color: var(--scripta-warn);
+  box-shadow: 0 0 0 3px rgba(232, 113, 10, 0.15);
+}
+.mf-row-icon {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--scripta-surface-2);
+  color: var(--scripta-text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------- repository */
+.mf-repo {
+  flex: 1;
+  min-height: 0;
+}
+.mf-repo-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+  padding-right: 4px;
+}
+/* Four to a row at the width the phase usually has, and fewer as the detail
+   panel is dragged wider. It counts columns from the space the grid actually
+   has rather than from the window, because since the panel became resizable
+   those are no longer the same question. */
+/* The line between the current version and the ones it replaced. Spans the
+   whole grid, so the tiles after it read as history rather than as more of the
+   same. */
+.mf-superseded-rule {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 -2px;
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.mf-superseded-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--scripta-surface-2);
+}
+/* Two named states, one pressed: the pair reads as a choice rather than as a
+   tick you either leave alone or guess at. */
+.mf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(212px, 100%), 1fr));
+  gap: 14px;
+  /* Tiles are as tall as what they show — a slide is not a page — so they sit
+     at the top of the row rather than stretching to the tallest of them. */
+  align-items: start;
+}
+.mf-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.mf-tile-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.mf-tile-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+.mf-tile-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mf-tile-meta {
+  color: var(--scripta-muted);
+  display: block;
+  font-size: 11px;
+  margin: -2px 0 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mf-tile-main:focus-visible .mf-page {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+}
+/* Selection reads as a lift off the page, not a ring drawn around it: a hard
+   outline at the card's edge makes the card look cut off by the screen. */
+.mf-tile.is-selected .mf-page {
+  border-color: var(--scripta-brand);
+  box-shadow:
+     0 0 0 3px rgba(36, 54, 96, 0.15), var(--scripta-shadow-pop);
+}
+.mf-tile-main:hover .mf-page {
+  border-color: var(--scripta-border);
+  box-shadow:  none;
+}
+.mf-page,
+.mf-tile-main:hover .mf-page {
+  transition:
+    box-shadow 140ms ease,
+    border-color 140ms ease;
+}
+/* The way into the document, kept quiet until the tile is under the pointer. */
+.mf-tile-open {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%) translateY(3px);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(24, 27, 31, 0.86);
+  color: #fff;
+  font: inherit;
+  font-size: 11.5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+  box-shadow:  none;
+}
+.mf-tile:hover .mf-tile-open,
+.mf-tile-open:focus-visible {
+  opacity: 1;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+.mf-page {
+  aspect-ratio: 1 / 1.3;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 12px;
+}
+.mf-page img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.mf-page-line {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--scripta-surface-2);
+}
+.mf-page-title {
+  height: 5px;
+  width: 55%;
+  background: var(--scripta-brand);
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+.mf-kind {
+  display: inline-block;
+  font:
+    600 8.5px var(--scripta-font-mono);
+  letter-spacing: 0.06em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+.mf-drop {
+  aspect-ratio: 1 / 1.3;
+  border: 1px dashed #d2d2d2;
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--scripta-muted);
+  font-size: 11px;
+  text-align: center;
+  padding: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.mf-drop.is-over {
+  border-color: var(--scripta-brand);
+  background: #eef4fd;
+  color: var(--scripta-brand);
+}
+.mf-drop:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+}
+/* The panel fills whatever width the divider has been dragged to; the pane
+   around it carries the bleed that used to be the panel's own negative
+   margins, so it still runs to the edges of the window. */
+.mf-detail {
+  flex: 1;
+  border-left: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* The split runs to the edges of the workbench and the primary column keeps
+   the inset it always had, so the panel and the divider are full height
+   without a negative margin that the split root would clip. */
+.mf-repo {
+  margin: -18px -22px;
+}
+.mf-repo > .rsp-primary {
+  padding: 18px 0 18px 22px;
+}
+.mf-filter-chip {
+  border: 1px solid var(--scripta-border);
+  border-radius: 11px;
+  padding: 3px 10px;
+  font-size: 11.5px;
+  background: var(--scripta-surface);
+  color: var(--scripta-text-2);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mf-filter-chip.is-on {
+  border-color: var(--scripta-brand);
+  color: var(--scripta-ink);
+}
+.mf-search {
+  border: 1px solid var(--scripta-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: var(--scripta-ink);
+  font-size: 12px;
+  width: 220px;
+  font-family: inherit;
+  background: var(--scripta-surface);
+}
+.mf-search::placeholder {
+  color: var(--scripta-muted);
+}
+
+/* ----------------------------------------------------------- timeline */
+.mf-timeline {
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  overflow: auto;
+}
+.mf-tl-label {
+  border-right: 1px solid var(--scripta-rule);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  left: 0;
+  background: var(--scripta-surface);
+  z-index: 3;
+}
+.mf-tl-row {
+  border-bottom: 1px solid var(--scripta-rule);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+.mf-tl-bar {
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 10.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: inherit;
+  min-width: 72px;
+}
+.mf-tl-bar:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------- dialogs */
+.mf-dialog {
+  width: 500px;
+  max-width: calc(100vw - 40px);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-modal);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--scripta-ink);
+}
+.mf-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--scripta-text-2);
+}
+.mf-field input,
+.mf-field select,
+.mf-field textarea {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+}
+.mf-field textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ------------------------------------------------------------- index */
+.mf-index {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mf-index-table {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  overflow: hidden;
+}
+.mf-index-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.6fr) 1fr 1.2fr 110px 110px 130px 110px;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}
+.mf-index-row:last-child {
+  border-bottom: 0;
+}
+.mf-index-row.is-head {
+  background: var(--scripta-surface-2);
+  padding: 9px 14px;
+}
+.mf-index-name {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.mf-index-name:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------- email draft and threads */
+/* A compose window with the fields that matter and nothing that sends. */
+.mf-compose {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.mf-compose-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  background: var(--scripta-surface-2);
+  border-bottom: 1px solid var(--scripta-rule);
+  color: var(--scripta-text-2);
+  font-size: 12.5px;
+}
+.mf-compose-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 13px;
+}
+.mf-compose-row > span {
+  flex: none;
+  width: 62px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+.mf-compose-row input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: 10px 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  background: transparent;
+}
+.mf-compose-row input:focus {
+  outline: none;
+}
+.mf-compose-row:focus-within {
+  background: var(--scripta-surface);
+}
+.mf-compose-body {
+  min-height: 220px;
+  border: 0;
+  resize: vertical;
+  padding: 14px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+  background: transparent;
+}
+.mf-compose-body:focus {
+  outline: none;
+  background: var(--scripta-surface);
+}
+
+.mf-thread {
+  border: 1px solid var(--scripta-rule);
+  border-left: 3px solid var(--scripta-border);
+  border-radius: 0 9px 9px 0;
+  background: var(--scripta-surface);
+  padding: 11px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mf-thread-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+}
+/* A reply is shown as it was written: its line breaks are part of the record. */
+.mf-thread-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+.mf-thread-files {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.mf-thread-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 5px;
+  background: var(--scripta-surface);
+  padding: 3px 8px;
+  font-size: 11.5px;
+  color: var(--scripta-text-2);
+}
+.mf-thread-file button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--scripta-ink);
+  cursor: pointer;
+}
+.mf-thread-file button:hover {
+  text-decoration: underline;
+}
+.mf-thread-empty {
+  border: 1px dashed var(--scripta-border);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  padding: 18px;
+  color: var(--scripta-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+  max-width: 640px;
+}
+
+/* A deliverable put on the task list says so, then gets out of the way. */
+.mf-task-note {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  background: var(--scripta-brand);
+  color: #fff;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  box-shadow:  none;
+}
+.mf-task-note button {
+  border: 0;
+  background: none;
+  color: #bdbdbd;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 0 2px;
+}
+.mf-task-note button:hover {
+  color: #fff;
+}
+
+/* The phases heading is editable in place: a heading on the orange block until
+   it is clicked, never a form field sitting in the bar. */
+.mf-phases-title {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: -3px -5px;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: 600 12px/1.4 inherit;
+  white-space: nowrap;
+}
+
+.mf-phases-title:hover {
+  border-color: rgb(255 255 255 / 45%);
+}
+
+.mf-phases-title:focus {
+  outline: none;
+  border-color: #fff;
+  background: rgb(255 255 255 / 16%);
+}
+
+.mf-phases-title::selection {
+  background: rgb(255 255 255 / 35%);
+}
+
+/* Work that is not being kept. Loud on purpose: the cost of missing this is a
+   whole matter's flow typed into nothing. */
+.mf-save-error {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 16px 0;
+  padding: 9px 12px;
+  border: 1px solid #e6c4bf;
+  border-radius: 7px;
+  background: #fbf0ee;
+  color: #7d2f26;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.mf-save-error strong {
+  font-weight: 600;
+}
+
+/* ------------------------------------------------- the execution room */
+
+/*
+ * Flow is the room where work is moving, and it should feel different from the
+ * file room without shouting. The difference is made with surface and rhythm
+ * rather than colour: lanes are sunken channels, cards sit on white above them,
+ * and the one accent in the whole board is the progress bar. Overdue earns a
+ * red rule and nothing else.
+ */
+
+.mf-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 0 0 2px;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-variant-numeric: tabular-nums;
+}
+
+.mf-summary .is-overdue {
+  font-weight: 600;
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.mf-summary-next {
+  margin-left: auto;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+/* ------------------------------------------------------------- lanes */
+
+.mf-board .scripta-library-board {
+  gap: 14px;
+  align-items: start;
+  padding-bottom: 8px;
+}
+
+/* A lane is a channel the cards sit in: a faint sunken ground and a hairline,
+   so a card clearly belongs to a state without the state being coloured in. */
+.mf-board .scripta-library-board-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px;
+  background: var(--scripta-brand);
+  min-height: 120px;
+}
+
+.mf-board .scripta-library-board-column > header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 -10px;
+  padding: 11px 12px 9px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px 10px 0 0;
+  background: var(--scripta-paper, var(--scripta-surface));
+}
+
+.mf-board .scripta-library-board-column > header h2 {
+  margin: 0;
+  font: 600 11px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  letter-spacing: 0;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.mf-board .scripta-library-board-column > header span {
+  margin-left: auto;
+  font: 500 11px/1.4 var(--scripta-font-mono, var(--scripta-font-mono));
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-variant-numeric: tabular-nums;
+}
+
+/* Overdue is marked at the lane, once, rather than on every card inside it. */
+.mf-board .scripta-library-board-column[aria-label="Overdue"] > header {
+  border-bottom-color: #e6c4bf;
+}
+
+.mf-board .scripta-library-board-column[aria-label="Overdue"] > header h2 {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.mf-board .scripta-library-board-column[aria-label="Complete"] {
+  background: transparent;
+}
+
+/* ------------------------------------------------------------- cards */
+
+.mf-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 15px 13px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  min-width: 0;
+  transition:
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.mf-card:hover {
+  border-color: var(--scripta-border, var(--scripta-border));
+  box-shadow:  none;
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-card {
+    transition: none;
+  }
+  .mf-card:hover {
+    transform: none;
+  }
+}
+
+/* Slipping is said once, on the edge nearest the eye. */
+.mf-card.is-late {
+  border-left: 3px solid var(--scripta-error, var(--scripta-risk));
+  padding-left: 13px;
+}
+
+.mf-card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mf-card-hit:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+}
+
+.mf-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.mf-card h3 {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font: 600 13.5px/1.35 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+/* Above the hit area, or the menu cannot be reached. */
+.mf-card-menu {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  margin: -4px -6px 0 0;
+}
+
+.mf-card-client {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  overflow-wrap: anywhere;
+}
+
+/* Where it is and how far, read as one block. */
+.mf-card-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.mf-card-phase {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mf-card-phase span {
+  flex: 1;
+  min-width: 0;
+  font: 500 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mf-card-phase em {
+  flex: none;
+  font: 400 10.5px/1.4 var(--scripta-font-mono, var(--scripta-font-mono));
+  font-style: normal;
+  color: var(--scripta-muted, var(--scripta-muted));
+  white-space: nowrap;
+}
+
+/* The one accent on the board. */
+.mf-card-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--scripta-rule, var(--scripta-surface-2));
+  overflow: hidden;
+}
+
+.mf-card-bar i {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 2px;
+  background: var(--scripta-teal, var(--scripta-brand));
+  transition: width 220ms ease;
+}
+
+.mf-card.is-late .mf-card-bar i {
+  background: var(--scripta-error, var(--scripta-risk));
+}
+
+/* The next obligation gets a field of its own — it is the thing you came for. */
+.mf-card-next {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--scripta-selected, var(--scripta-selected));
+  min-width: 0;
+}
+
+.mf-card-next.is-quiet {
+  background: transparent;
+  border: 1px dashed var(--scripta-rule, var(--scripta-rule));
+}
+
+.mf-card-label {
+  font: 500 9.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-card-next strong {
+  font: 500 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+.mf-card-next.is-quiet strong {
+  font-weight: 400;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-card-next em {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-card-next em.is-late {
+  color: var(--scripta-error, var(--scripta-risk));
+  font-weight: 500;
+}
+
+.mf-card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 11px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-card-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The seam collaboration will grow into: a name now, a face later. */
+.mf-card-owner {
+  margin-left: auto;
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 55%;
+}
+
+/* ------------------------------------------------- awaiting execution */
+
+.mf-card.is-empty {
+  background: var(--scripta-paper, var(--scripta-surface));
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.mf-card.is-empty:hover {
+  border-style: solid;
+}
+
+.mf-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 4px;
+}
+
+.mf-empty-state strong {
+  font: 500 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.mf-empty-state p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-empty-cta {
+  margin-top: 5px;
+  font: 500 12px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+
+/* ------------------------------------------------------ choose a matter */
+
+.mf-choose {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(480px, calc(100vw - 40px));
+  padding: 20px 22px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.mf-choose h2 {
+  margin: 0;
+  font: 600 15px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.mf-choose p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-choose-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+
+.mf-choose-list button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  cursor: pointer;
+  font: inherit;
+}
+
+.mf-choose-list button:hover {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+}
+
+.mf-choose-list strong {
+  font: 500 13px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.mf-choose-list span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mf-choose-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Where the flow is filed: one line above the phase bar. */
+.mf-filing {
+  flex: none;
+  padding: 7px 20px;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  font-size: 12px;
+}
+
+/* A deliverable with versions takes a dropped file anywhere on it. */
+.mf-drop-zone {
+  border-radius: 8px;
+  outline: 2px dashed transparent;
+  outline-offset: 4px;
+  transition:
+    outline-color 120ms ease,
+    background-color 120ms ease;
+}
+
+.mf-drop-zone.is-over {
+  outline-color: var(--scripta-brand);
+  background-color: #eef4fd;
+}
+
+/* The panel's own preview: the page, and the way to open it properly. */
+.mf-detail-page {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.mf-detail-page:disabled {
+  cursor: default;
+}
+.mf-detail-page:hover:not(:disabled) .mf-page {
+  border-color: var(--scripta-border);
+  box-shadow:  none;
+}
+.mf-detail-open {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%) translateY(3px);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  background: rgba(24, 27, 31, 0.86);
+  color: #fff;
+  font-size: 11.5px;
+  padding: 5px 12px;
+  opacity: 0;
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+  box-shadow:  none;
+}
+.mf-detail-page:hover:not(:disabled) .mf-detail-open,
+.mf-detail-page:focus-visible .mf-detail-open {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+/* ------------------------------------------------------- document details */
+
+.mf-detail-head {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+}
+.mf-detail-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.mf-detail-sub {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  margin-top: 1px;
+}
+.mf-detail-close {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--scripta-muted);
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+.mf-detail-close:hover {
+  color: var(--scripta-ink);
+}
+.mf-detail-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/*
+ * The version rail.
+ *
+ * Chips rather than a select: with two or three versions the whole set is
+ * readable at once, and which one is being looked at is a matter of seeing it
+ * rather than opening something. It wraps instead of scrolling, because a
+ * deliverable with ten versions is a list, not a carousel.
+ */
+.mf-vrail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+/* The strip is a tablist for a screen reader and nothing at all for the
+   layout, so the chips wrap in the rail beside the attach button. */
+.mf-vrail-tabs {
+  display: contents;
+}
+.mf-vchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font:
+    500 12px/1.2 Inter,
+    sans-serif;
+  cursor: pointer;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+.mf-vchip:hover {
+  border-color: #a9a9a9;
+}
+.mf-vchip:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 1px;
+}
+.mf-vchip-state {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.mf-vchip.is-green .mf-vchip-state {
+  color: var(--scripta-ok);
+}
+.mf-vchip.is-amber .mf-vchip-state {
+  color: var(--scripta-warn);
+}
+/* Selected reads as a raised card, not merely a darker chip: it is the one
+   the rest of the panel is describing. */
+.mf-vchip.is-on {
+  border-color: var(--scripta-brand);
+  box-shadow: 0 1px 0 #232323;
+}
+.mf-vchip-add {
+  border-style: dashed;
+  color: var(--scripta-muted);
+}
+.mf-vchip-add:hover {
+  color: var(--scripta-ink);
+}
+
+.mf-detail-facts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+
+.mf-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mf-detail-actions-row {
+  display: flex;
+  gap: 8px;
+}
+.mf-detail-actions-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/*
+ * Final.
+ *
+ * A tick box said what the state was and nothing about what changing it does.
+ * The button carries the act and the line under it carries the consequence,
+ * which is the part a lawyer needs before superseding last week's version.
+ */
+.mf-final {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 11px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+.mf-final.is-on {
+  border-color: #cfddd2;
+  background: var(--scripta-ok-bg);
+}
+.mf-final > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 5px 10px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font:
+    600 12px/1.2 Inter,
+    sans-serif;
+  cursor: pointer;
+}
+.mf-final.is-on > button {
+  border-color: #cfddd2;
+  color: var(--scripta-ok);
+}
+.mf-final > button:hover {
+  border-color: #a9a9a9;
+}
+.mf-final > span {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+.mf-final.is-on > span {
+  color: var(--scripta-ok);
+}
+
+/* The record. Newest first, and every row selects. */
+.mf-history {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--scripta-rule);
+  padding-top: 12px;
+}
+.mf-history ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.mf-hrow {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+.mf-hrow:hover {
+  background: var(--scripta-surface-2);
+}
+.mf-hrow.is-on {
+  background: var(--scripta-surface);
+  box-shadow: inset 0 0 0 1px #d4d4d4;
+}
+.mf-hrow > button:first-child {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 7px 8px;
+  border: 0;
+  background: none;
+  font:
+    400 12px/1.3 Inter,
+    sans-serif;
+  color: var(--scripta-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.mf-hdot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid #a9a9a9;
+  align-self: center;
+}
+.mf-hrow.is-on .mf-hdot {
+  background: var(--scripta-brand);
+  border-color: var(--scripta-brand);
+}
+.mf-hlabel {
+  font-weight: 600;
+}
+.mf-hwhen {
+  flex: 1;
+  min-width: 0;
+  color: var(--scripta-muted);
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mf-hstate {
+  font-size: 9.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  white-space: nowrap;
+}
+.mf-hstate.is-green {
+  color: var(--scripta-ok);
+}
+.mf-hstate.is-amber {
+  color: var(--scripta-warn);
+}
+.mf-hdl {
+  flex: none;
+  display: inline-flex;
+  padding: 6px 8px;
+  border: 0;
+  background: none;
+  color: var(--scripta-muted);
+  cursor: pointer;
+}
+.mf-hdl:hover:not(:disabled) {
+  color: var(--scripta-ink);
+}
+.mf-hdl:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.mf-detail-thread {
+  border-top: 1px solid var(--scripta-rule);
+  padding-top: 12px;
+}
+
+/*
+ * The filter row.
+ *
+ * The states are a set of chips rather than one chip that cycled through them:
+ * six presses to see six options is a quiz, not a control. The chosen one is
+ * filled rather than merely outlined, because at a glance the question is
+ * "what am I looking at" and an outline answers it too quietly. Filled only
+ * inside this set — the same class elsewhere in Flow marks a chosen kind in a
+ * dialog, where the quieter treatment is right.
+ */
+.mf-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mf-filter-set {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.mf-filter-set .mf-filter-chip.is-on {
+  background: var(--scripta-brand);
+  border-color: var(--scripta-brand);
+  color: #fff;
+}
+.mf-filter-rule {
+  width: 1px;
+  height: 16px;
+  background: var(--scripta-border);
+}
+/* The tick is the state: present when on, holding its place when off so the
+   chip does not change width as it is pressed. */
+.mf-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.mf-filter-toggle > svg {
+  opacity: 0;
+}
+.mf-filter-toggle.is-on {
+  border-color: var(--scripta-brand);
+  color: var(--scripta-ink);
+}
+.mf-filter-toggle.is-on > svg {
+  opacity: 1;
+}
+
+/* What this version is: one closed list, set once, rarely changed. */
+.mf-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.mf-tag > select {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font:
+    500 12px/1.2 Inter,
+    sans-serif;
+  cursor: pointer;
+}
+.mf-tag > select:focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 1px;
+}

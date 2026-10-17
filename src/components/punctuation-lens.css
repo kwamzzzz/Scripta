@@ -1,0 +1,145 @@
+/* The punctuation lens: marks in green, a red dot where one is missing, amber where one may be. */
+:root {
+  --pl-mark: #0b7a32;
+  --pl-mark-bg: #9fe3b3;
+  --pl-missing: #c62f22;
+  --pl-missing-bg: #fbdcd8;
+  --pl-check: #b87400;
+  --pl-check-bg: #fbecc9;
+}
+
+.pl-mark {
+  color: var(--pl-mark);
+  background: var(--pl-mark-bg);
+  border-radius: 2px;
+  font-weight: 700;
+  padding: 0 1px;
+  margin: 0 -1px;
+}
+.pl-mark.is-missing,
+.pl-mark.is-check {
+  margin: 0 2px;
+  padding: 0 3px;
+}
+.pl-mark.is-missing {
+  color: #fff;
+  background: var(--pl-missing);
+}
+.pl-mark.is-check {
+  color: #fff;
+  background: var(--pl-check);
+}
+
+.pl-gap {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin: 0 2px;
+  border-radius: 50%;
+  vertical-align: baseline;
+  cursor: help;
+}
+.pl-gap.is-missing {
+  background: var(--pl-missing);
+  box-shadow: 0 0 0 3px var(--pl-missing-bg);
+}
+.pl-gap.is-check {
+  background: var(--pl-check);
+  box-shadow: 0 0 0 3px var(--pl-check-bg);
+}
+.pl-gap.is-flash {
+  animation: pl-flash 1.2s ease-out 2;
+}
+@keyframes pl-flash {
+  0% {
+    transform: scale(2.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pl-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pl-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+}
+.pl-key i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.pl-key.is-mark i {
+  background: var(--pl-mark);
+}
+.pl-key.is-missing i {
+  background: var(--pl-missing);
+}
+.pl-key.is-check i {
+  background: var(--pl-check);
+}
+button.pl-key {
+  cursor: pointer;
+}
+button.pl-key:not(:disabled):hover {
+  border-color: currentColor;
+}
+button.pl-key.is-missing:not(:disabled) {
+  color: var(--pl-missing);
+  background: var(--pl-missing-bg);
+  font-weight: 600;
+}
+button.pl-key.is-check:not(:disabled) {
+  color: var(--pl-check);
+  background: var(--pl-check-bg);
+}
+button.pl-key:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* The switch, where a screen has no toolbar button style of its own. */
+.pl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #d6d2ca;
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pl-toggle svg {
+  width: 15px;
+  height: 15px;
+}
+.pl-toggle.is-active,
+.pl-on.pl-on {
+  border-color: var(--pl-mark);
+  color: var(--pl-mark);
+  background: var(--pl-mark-bg);
+}
+
+/* A full toolbar wraps while the counts show, rather than hiding them off its end. */
+.ce-toolbar:has(.pl-summary) {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}

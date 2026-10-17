@@ -1,0 +1,1071 @@
+/* Charts: the organogram, the group structure and the studio canvas. The
+   chart sits on a faint dotted ground so a box reads as placed, not floating. */
+
+.oc-canvas {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 8px;
+  background-color: #fcfcfb;
+  background-image: radial-gradient(#e2e5e0 1px, transparent 1px);
+  background-size: 16px 16px;
+  overflow: hidden;
+}
+
+.oc-canvas-empty {
+  align-items: stretch;
+  justify-content: center;
+  padding: 24px;
+  background-image: none;
+}
+
+.oc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.oc-scroll svg {
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.oc-scroll.is-panning,
+.oc-scroll svg.is-dragging,
+.oc-scroll svg.is-dragging .oc-node.is-interactive {
+  cursor: grabbing;
+}
+
+.oc-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 11.5px;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-toolbar button {
+  min-width: 26px;
+  height: 24px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--scripta-ink, #123247);
+  font: inherit;
+  cursor: pointer;
+}
+
+.oc-toolbar button:hover {
+  background: #f0f3f2;
+}
+
+.oc-toolbar span {
+  min-width: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.oc-node.is-interactive {
+  cursor: pointer;
+}
+
+.oc-node.is-interactive:focus {
+  outline: none;
+}
+
+.oc-node.is-interactive:focus-visible rect {
+  stroke: var(--scripta-teal, #247a78);
+  stroke-width: 2.5;
+}
+
+.oc-node.is-interactive:hover rect {
+  filter: drop-shadow(0 1px 3px rgba(36, 54, 96, 0.12));
+}
+
+.oc-node.is-muted {
+  opacity: 0.38;
+}
+
+.oc-title {
+  font:
+    600 12px Inter,
+    system-ui,
+    sans-serif;
+  text-anchor: middle;
+}
+
+.oc-sub {
+  font:
+    400 10.5px Inter,
+    system-ui,
+    sans-serif;
+  text-anchor: middle;
+  fill: #4d585c;
+}
+
+.oc-sub.is-vacant {
+  fill: #85601d;
+}
+
+.oc-badge {
+  font:
+    500 8.5px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-anchor: end;
+  fill: #85601d;
+}
+
+.oc-badge.is-added {
+  text-anchor: start;
+  fill: #247a78;
+}
+
+.oc-edge-label {
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  fill: #4d585c;
+}
+
+.oc-edge.is-removed polyline {
+  stroke-width: 1.4;
+}
+
+.oc-edge.is-removed .oc-edge-label {
+  text-decoration: line-through;
+}
+
+.oc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--scripta-rule, #dee0d9);
+  background: #fff;
+  font-size: 11.5px;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oc-swatch i {
+  display: inline-block;
+  width: 18px;
+  height: 11px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------- the pages */
+
+.oc-head-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.oc-asat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-asat input {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--scripta-border, #cccfc9);
+  border-radius: 6px;
+  font: inherit;
+  color: var(--scripta-ink, #123247);
+}
+
+.oc-menu {
+  position: relative;
+}
+
+.oc-menu-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 20;
+  min-width: 190px;
+  padding: 4px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(36, 54, 96, 0.12);
+}
+
+.oc-menu-list > button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, #123247);
+  text-align: left;
+  cursor: pointer;
+}
+
+.oc-menu-list > button:hover,
+.oc-menu-list > button:focus-visible {
+  background: var(--scripta-selected, #eef4f4);
+  outline: none;
+}
+
+.oc-menu-list small {
+  color: var(--scripta-muted, #626c70);
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+
+.oc-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.oc-change {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px dashed #b8bfbb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12.5px;
+}
+
+.oc-change.is-done,
+.oc-change.is-dropped {
+  border-style: solid;
+  background: #fafbfa;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-change strong {
+  font-size: 13px;
+  color: var(--scripta-ink, #123247);
+}
+
+.oc-change p {
+  margin: 0;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-change-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.oc-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 6px;
+  background: #fafbfa;
+  font:
+    11.5px "IBM Plex Mono",
+    monospace;
+  color: #3e4a4f;
+}
+
+.oc-history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.oc-history li {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.oc-history small {
+  color: var(--scripta-muted, #626c70);
+}
+
+/* ------------------------------------------------------------------ studio */
+
+.oc-studio {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+@container ogpage (max-width: 860px) {
+  .oc-studio {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.oc-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.oc-source {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, #123247);
+  text-align: left;
+  cursor: pointer;
+}
+
+.oc-source:hover:not(:disabled) {
+  border-color: var(--scripta-teal, #247a78);
+}
+
+.oc-source:disabled {
+  cursor: default;
+  color: var(--scripta-muted, #626c70);
+  background: #fafbfa;
+}
+
+.oc-source code {
+  flex: none;
+  width: 42px;
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+  border: 1px dashed var(--scripta-border, #cccfc9);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+  text-align: center;
+  color: var(--scripta-muted, #626c70);
+  cursor: pointer;
+}
+
+.oc-drop.is-over {
+  border-color: var(--scripta-teal, #247a78);
+  background: var(--scripta-teal-tint, #eaf2ef);
+}
+
+.oc-drop strong {
+  font-size: 13px;
+  color: var(--scripta-ink, #123247);
+}
+
+.oc-summary {
+  display: grid;
+  gap: 4px;
+  font-size: 12.5px;
+}
+
+.oc-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.oc-summary .is-warn {
+  color: #85601d;
+}
+
+.oc-review select {
+  max-width: 220px;
+  padding: 4px 6px;
+  border: 1px solid var(--scripta-border, #cccfc9);
+  border-radius: 5px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.oc-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.oc-export {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12.5px;
+}
+
+.oc-export.is-lead {
+  border-color: #cfe0dd;
+  background: #f4f9f8;
+}
+
+.oc-export header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.oc-export p {
+  margin: 0;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-export .px-btn {
+  justify-content: center;
+}
+
+/* Chart style ▾ */
+.oc-style {
+  width: min(460px, 92vw);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.oc-style-row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.oc-style-label {
+  padding-top: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-style-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.oc-style-hint {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oc-style-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid var(--scripta-rule, #dee0d9);
+  font-size: 11.5px;
+  color: var(--scripta-muted, #626c70);
+}
+
+/* --------------------------------------------------------------- editing */
+
+.oc-canvas.is-editing {
+  border-color: #b9d3cf;
+  box-shadow: inset 0 0 0 1px #e3efec;
+}
+
+.oc-canvas.is-editing .oc-scroll {
+  cursor: default;
+}
+
+.oc-canvas.is-editing .oc-scroll:focus {
+  outline: none;
+}
+
+.oc-line {
+  font-family: Inter, system-ui, sans-serif;
+  text-anchor: middle;
+}
+
+.oc-line.is-caps {
+  letter-spacing: 0.06em;
+}
+
+.oc-tag {
+  font:
+    700 8px Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  fill: #fff;
+}
+
+.oc-container-label {
+  font:
+    700 9px Inter,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0.06em;
+  fill: #fff;
+}
+
+.oc-container.is-interactive {
+  cursor: move;
+}
+
+.oc-edge-hit {
+  cursor: pointer;
+}
+
+.oc-note-text {
+  font:
+    400 11px Inter,
+    system-ui,
+    sans-serif;
+  fill: #3e4a4f;
+}
+
+.oc-note.is-interactive {
+  cursor: move;
+}
+
+.oc-legend-title {
+  font:
+    700 9px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 0.08em;
+  fill: #626c70;
+}
+
+.oc-legend-label {
+  font:
+    400 10.5px Inter,
+    system-ui,
+    sans-serif;
+  fill: #123247;
+}
+
+.oc-handle {
+  fill: #fff;
+  stroke: #247a78;
+  stroke-width: 1.5;
+  cursor: crosshair;
+}
+
+.oc-handle:hover {
+  fill: #247a78;
+}
+
+.oc-quick {
+  cursor: pointer;
+}
+
+.oc-quick circle {
+  fill: #247a78;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.oc-quick path {
+  stroke: #fff;
+  stroke-width: 1.6;
+  fill: none;
+}
+
+.oc-quick:hover circle {
+  fill: #1b5f5d;
+}
+
+.oc-connect-preview {
+  stroke: #247a78;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.oc-marquee {
+  fill: rgba(36, 54, 96, 0.08);
+  stroke: #247a78;
+  stroke-dasharray: 3 2;
+  pointer-events: none;
+}
+
+.oc-blank-hint {
+  position: absolute;
+  inset: 50% 0 auto;
+  text-align: center;
+  font-size: 13px;
+  color: var(--scripta-muted, #626c70);
+  pointer-events: none;
+}
+
+.oc-popover {
+  position: absolute;
+  z-index: 10;
+}
+
+/* The edit toolbar above the chart. */
+.oe-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 6px 8px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.oe-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.oe-tools > button,
+.oe-tools > .oc-menu > button {
+  height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--scripta-border, #cccfc9);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  color: var(--scripta-ink, #123247);
+  cursor: pointer;
+}
+
+.oe-tools > button:hover:not(:disabled),
+.oe-tools > .oc-menu > button:hover {
+  border-color: var(--scripta-teal, #247a78);
+}
+
+.oe-tools > button:disabled {
+  color: #a5acaf;
+  cursor: default;
+}
+
+.oe-tools-label {
+  color: var(--scripta-muted, #626c70);
+  margin-right: 2px;
+}
+
+.oe-seg button {
+  padding: 4px 9px;
+  font-size: 12px;
+}
+
+.oe-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--scripta-ink, #123247);
+}
+
+.oe-save {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oe-save.is-error {
+  color: var(--scripta-error, #b4483a);
+}
+
+.oe-save button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--scripta-teal, #247a78);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* The Format panel. */
+.oe-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12.5px;
+}
+
+.oe-panel-head h3 {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--scripta-ink, #123247);
+}
+
+.oe-eyebrow {
+  font:
+    500 10px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.oe-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule, #dee0d9);
+}
+
+.oe-section h4 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--scripta-ink, #123247);
+}
+
+.oe-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.oe-swatch {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(36, 54, 96, 0.18);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.oe-swatch.is-on {
+  outline: 2px solid var(--scripta-teal, #247a78);
+  outline-offset: 1px;
+}
+
+.oe-swatch.is-default {
+  background: #fff;
+  font-size: 12px;
+  color: #8e999c;
+}
+
+.oe-swatch.is-custom {
+  overflow: hidden;
+  background: conic-gradient(#c8373b, #d2601a, #eac435, #3f8b64, #3a9ab0, #2b5c84, #5e4f8c, #c8373b);
+}
+
+.oe-swatch.is-custom input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.oe-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.oe-field > span:first-child {
+  color: var(--scripta-muted, #626c70);
+  font-weight: 500;
+}
+
+.oe-field input,
+.oe-field textarea,
+.oe-field select,
+.oe-select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid var(--scripta-input-edge, #c9ccc6);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, #123247);
+  background: #fff;
+}
+
+.oe-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oe-input em {
+  font-style: normal;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oe-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--scripta-muted, #626c70);
+}
+
+.oe-error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--scripta-error, #b4483a);
+}
+
+.oe-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule, #dee0d9);
+}
+
+.oe-howto {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.5;
+  color: var(--scripta-ink, #123247);
+}
+
+.oe-legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.oe-legend-list li {
+  display: grid;
+  grid-template-columns: auto 24px minmax(0, 1fr);
+  align-items: end;
+  gap: 8px;
+}
+
+.oe-legend-list .oe-field > span:first-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.oe-legend-swatch {
+  width: 22px;
+  height: 12px;
+  margin-bottom: 9px;
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.oe-legend-swatch.is-line {
+  height: 0;
+  border: 0;
+  border-top: 2px solid;
+  border-radius: 0;
+  margin-bottom: 14px;
+}
+
+/* The popover a gesture opens. */
+.oe-pop {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--scripta-rule, #dee0d9);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(36, 54, 96, 0.18);
+  font-size: 12.5px;
+  color: var(--scripta-ink, #123247);
+}
+
+.oe-pop-title {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.oe-pop-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.oc-guide {
+  stroke: #e0457b;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.oe-arrange {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.oe-arrange button {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--scripta-border, #cccfc9);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-ink, #123247);
+  cursor: pointer;
+}
+
+.oe-arrange button:hover:not(:disabled) {
+  border-color: var(--scripta-teal, #247a78);
+}
+
+.oe-arrange button:disabled {
+  color: #a5acaf;
+  cursor: default;
+}
+
+.oe-arrange .is-wide {
+  grid-column: span 3;
+}
+
+/* ------------------------------------------------------------ full screen */
+
+/* A chart page in full screen: its header, edit toolbar, chart and panel fill
+   the window above everything else in the app. Dialogs and menus still open
+   over it (they sit in the browser's top layer or above z-index 40). */
+.og-page.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  height: 100vh;
+  background: var(--scripta-paper, #fff);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.og-page.is-fullscreen .og-page-main {
+  height: 100vh;
+}
+
+.og-page.is-fullscreen .og-page-body {
+  flex: 1;
+  min-height: 0;
+  max-width: none;
+  padding-bottom: 16px;
+}
+
+.og-page.is-fullscreen .oc-canvas {
+  flex: 1;
+  min-height: 0;
+}
+
+.og-page.is-fullscreen .og-aside {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* A chart enlarged on its own (the studio's previews). */
+.oc-canvas.is-fullscreen {
+  position: fixed;
+  inset: 12px;
+  z-index: 40;
+  height: auto;
+  box-shadow: 0 20px 60px rgba(36, 54, 96, 0.25);
+}
+
+/* Container queries make an element the frame for fixed positioning inside
+   it, which would keep full screen inside the organisation area. While a chart
+   is full screen, the containers around it step aside. */
+.og-area:has(.og-page.is-fullscreen),
+.og-area:has(.oc-canvas.is-fullscreen),
+.og-page:has(.oc-canvas.is-fullscreen) {
+  container-type: normal;
+}
+
+.oc-resize {
+  fill: #fff;
+  stroke: #247a78;
+  stroke-width: 1.5;
+}
+
+.oc-resize.is-nw,
+.oc-resize.is-se {
+  cursor: nwse-resize;
+}
+
+.oc-resize.is-ne,
+.oc-resize.is-sw {
+  cursor: nesw-resize;
+}
+
+.oc-resize:hover {
+  fill: #247a78;
+}
+
+.oe-size {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}

@@ -1,0 +1,327 @@
+.scripta-intake-content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.scripta-intake .scripta-page-heading {
+  margin-bottom: 24px;
+}
+
+.scripta-intake-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.scripta-intake-steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--scripta-rule);
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.scripta-intake-steps li[aria-current="step"] {
+  border-bottom: 2px solid var(--scripta-teal);
+  color: var(--scripta-ink);
+  font-weight: 600;
+}
+
+.scripta-intake-step-number {
+  color: var(--scripta-teal);
+  font-variant-numeric: tabular-nums;
+}
+
+.scripta-intake-section-heading {
+  margin-bottom: 24px;
+}
+.scripta-intake-section-heading .scripta-section-title {
+  margin-bottom: 8px;
+}
+
+.scripta-intake-note {
+  margin: 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.scripta-intake-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.scripta-intake-section {
+  min-width: 0;
+  margin: 0;
+  padding: 24px 0;
+  border: 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.scripta-intake-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.scripta-intake .scripta-form-field {
+  align-content: start;
+}
+
+.scripta-intake-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.scripta-intake-footer .scripta-intake-note {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.scripta-intake-upload {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 24px;
+  border: 1px dashed var(--scripta-input-edge);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper);
+  transition: border-color var(--scripta-transition);
+}
+
+.scripta-intake-upload.is-dragging {
+  border-color: var(--scripta-teal);
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 3px;
+}
+
+.scripta-intake-upload strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.scripta-intake-files {
+  margin-top: 32px;
+}
+
+.scripta-intake-file {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.5fr) minmax(0, 1fr) minmax(72px, 0.5fr)
+    minmax(142px, 0.7fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.scripta-intake-file:first-of-type {
+  border-top: 1px solid var(--scripta-rule);
+}
+.scripta-intake-file small {
+  overflow-wrap: anywhere;
+}
+.scripta-intake-file-remove {
+  padding-top: 26px;
+}
+.scripta-intake-file-remove .wf-button {
+  min-height: 40px;
+}
+.scripta-intake-file-guidance {
+  margin-top: 16px;
+}
+
+.scripta-intake-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0 0 24px;
+}
+
+.scripta-intake-summary div {
+  min-width: 0;
+}
+.scripta-intake-summary dt {
+  margin-bottom: 8px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+.scripta-intake-summary dd {
+  margin: 0;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.scripta-intake-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--scripta-ink);
+  font-size: 13px;
+  line-height: 1.65;
+  cursor: pointer;
+}
+
+.scripta-intake-checkbox input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 3px 0 0;
+  accent-color: var(--scripta-teal);
+}
+
+.scripta-intake-checkbox small {
+  display: block;
+  margin-top: 4px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+
+.scripta-intake-error {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--scripta-error);
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.scripta-intake-processing {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scripta-intake-processing li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.scripta-intake-processing-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.scripta-intake-processing-name small {
+  display: block;
+  margin-top: 4px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+.scripta-intake-file-status {
+  color: var(--scripta-muted);
+  white-space: nowrap;
+}
+.scripta-intake-file-status.is-done {
+  color: var(--scripta-success);
+}
+.scripta-intake-file-status.is-failed,
+.scripta-intake-processing-error {
+  color: var(--scripta-error);
+}
+.scripta-intake-processing-error {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.scripta-intake-result {
+  margin-top: 24px;
+}
+.scripta-intake-speakers {
+  margin-top: 32px;
+}
+
+.scripta-intake-speaker {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.scripta-intake-speaker h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.scripta-intake-speaker blockquote {
+  margin: 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+@container scripta-page (max-width: 840px) {
+  .scripta-intake-file {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+  .scripta-intake-file-remove {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+  .scripta-intake-speaker {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+  .scripta-intake-speaker-source {
+    grid-column: 1 / -1;
+  }
+}
+
+@container scripta-page (max-width: 560px) {
+  .scripta-intake-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+    margin-bottom: 24px;
+  }
+  .scripta-intake-grid,
+  .scripta-intake-file,
+  .scripta-intake-speaker {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .scripta-intake-footer .scripta-intake-note {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+  .scripta-intake-upload {
+    padding: 20px;
+  }
+  .scripta-intake .scripta-form-field input,
+  .scripta-intake .scripta-form-field select {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scripta-intake-upload {
+    transition: none;
+  }
+}

@@ -1,0 +1,483 @@
+/* The admin portal: a control room of tabs. Fluid, so a large screen gets
+   more cards per row rather than wider ones. */
+
+.adm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 1680px;
+  font: 400 13px/1.55 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.adm-muted {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.adm-lede {
+  margin: 0;
+  max-width: 760px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.adm-error {
+  margin: 0;
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.adm h2 {
+  margin: 0;
+  font: 600 12px/1.4 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.adm-panel {
+  padding: 16px 18px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------- overview */
+
+.adm-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.adm-stat {
+  padding: 14px 16px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+button.adm-stat {
+  cursor: pointer;
+}
+
+button.adm-stat:hover {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+}
+
+.adm-stat strong {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.adm-stat span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+.adm-stat.is-alert strong {
+  color: #9a6a0e;
+}
+
+.adm-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------- features */
+
+.adm-toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.adm-toolbar input[type="search"],
+.adm-toolbar select,
+.adm-field input,
+.adm-field select,
+.adm-field textarea {
+  min-width: 0;
+  padding: 6px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font: inherit;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.adm-toolbar input[type="search"] {
+  flex: 0 1 280px;
+}
+
+.adm-summary-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.adm-chip {
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  background: var(--scripta-surface);
+}
+
+.adm-chip.is-on {
+  color: var(--scripta-brand);
+  border-color: #c6dcd9;
+}
+
+.adm-chip.is-dim {
+  color: #7a5a12;
+  border-color: #e5d8b4;
+}
+
+.adm-chip.is-hidden {
+  color: #9a3d2f;
+  border-color: #e6cfc9;
+}
+
+.adm-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 10px;
+}
+
+.adm-feature {
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.adm-feature.is-dim {
+  border-color: #e5d8b4;
+  background: #fffdf6;
+}
+
+.adm-feature.is-hidden {
+  border-color: #e6cfc9;
+  background: #fffafa;
+}
+
+.adm-feature-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.adm-feature-head strong {
+  display: block;
+  font-size: 13.5px;
+}
+
+.adm-seg {
+  display: inline-flex;
+  flex: none;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.adm-seg button {
+  padding: 5px 10px;
+  border: 0;
+  border-left: 1px solid var(--scripta-border, var(--scripta-border));
+  background: var(--scripta-surface);
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 500 12px/1.4 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.adm-seg button:first-child {
+  border-left: 0;
+}
+
+.adm-seg button[aria-pressed="true"] {
+  color: #fff;
+  background: var(--scripta-brand);
+}
+
+.adm-seg button[aria-pressed="true"].is-dim {
+  background: #9a6a0e;
+}
+
+.adm-seg button[aria-pressed="true"].is-hidden {
+  background: #9a3d2f;
+}
+
+.adm-seg button:disabled {
+  cursor: default;
+}
+
+.adm-caution {
+  margin: 0;
+  font-size: 12px;
+  color: #7a5a12;
+}
+
+.adm-more {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--scripta-rule, var(--scripta-rule));
+}
+
+.adm-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  cursor: pointer;
+  text-align: left;
+}
+
+.adm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.adm-field > span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.adm-people-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.adm-people-pick label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.adm-people-pick label.is-on {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-selected);
+}
+
+/* ------------------------------------------------------------------ tables */
+
+.adm-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.adm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.adm-table th {
+  position: sticky;
+  top: 0;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: #fafaf8;
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  white-space: nowrap;
+}
+
+.adm-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #efefeb;
+  vertical-align: top;
+}
+
+.adm-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.adm-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.adm-badge {
+  display: inline-block;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1.7;
+  background: #eef3f6;
+  color: var(--scripta-ink);
+  white-space: nowrap;
+}
+
+.adm-badge.is-admin {
+  background: var(--scripta-brand);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------ bars */
+
+.adm-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.adm-bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 34%) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  font-size: 12.5px;
+}
+
+.adm-bar-row > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adm-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #eef0ec;
+  overflow: hidden;
+}
+
+.adm-bar i {
+  display: block;
+  height: 100%;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+
+.adm-spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 90px;
+  padding-top: 6px;
+}
+
+.adm-spark i {
+  flex: 1;
+  min-width: 3px;
+  border-radius: 2px 2px 0 0;
+  background: var(--scripta-teal, var(--scripta-brand));
+  opacity: 0.85;
+}
+
+/* ------------------------------------------------------------ feedback */
+
+.adm-feedback-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.adm-feedback-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.adm-feedback-item p {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 13.5px;
+}
+
+/* ------------------------------------------------------------ announcements */
+
+.adm-notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.adm-notice.is-info {
+  background: #eef3f6;
+}
+
+.adm-notice.is-warning {
+  background: #fbf5e6;
+}
+
+.adm-notice.is-success {
+  background: var(--scripta-selected);
+}
+
+.adm-notice > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.adm-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.adm-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.adm-switch-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* The chosen state is shown, not greyed: it is disabled only because
+   choosing it again would do nothing. */
+.scripta-shell .adm-seg button[aria-pressed="true"]:disabled,
+.adm-seg button[aria-pressed="true"]:disabled {
+  opacity: 1;
+}

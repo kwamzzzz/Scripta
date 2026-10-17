@@ -1,0 +1,92 @@
+/* People, shown small.
+   Restrained on purpose: initials earn their place on a board that is scanned,
+   and nowhere else. This is not a social product. */
+
+.px-avatar {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  background: var(--scripta-selected, var(--scripta-selected));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+/* The signed-in person. The one face worth telling apart at a glance. */
+.px-avatar.is-self {
+  background: var(--scripta-brand);
+  border-color: var(--scripta-brand);
+  color: #fff;
+}
+
+.px-person {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.px-person-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.px-person-picker {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 6px 26px 6px 9px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface, var(--scripta-surface));
+  color: var(--scripta-ink, var(--scripta-ink));
+  min-width: 0;
+  max-width: 100%;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--scripta-muted, var(--scripta-border)) 50%),
+    linear-gradient(135deg, var(--scripta-muted, var(--scripta-border)) 50%, transparent 50%);
+  background-position:
+    right 11px center,
+    right 7px center;
+  background-size:
+    4px 4px,
+    4px 4px;
+  background-repeat: no-repeat;
+}
+
+.px-person-picker:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.px-person-picker:disabled {
+  color: var(--scripta-muted, var(--scripta-muted));
+  background-image: none;
+  padding-right: 9px;
+}
+
+/* Owner states. The legacy note is deliberately not styled like a person: it
+   is a string somebody typed, and the row should not pretend otherwise. */
+.px-owner-none,
+.px-owner-unknown {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.px-owner-legacy {
+  font-family: var(--scripta-font-mono), ui-monospace, monospace;
+  font-size: 0.92em;
+  letter-spacing: 0.02em;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.px-assignee {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}

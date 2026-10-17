@@ -1,0 +1,662 @@
+/* A client's organisation. The area list sits beside the page the way the
+   Column 7 design draws it; everything else is ruled panels on white, in the
+   Scripta identity (navy ink, teal for selection and focus). */
+
+.og-area {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  color: var(--scripta-ink, var(--scripta-ink));
+  container: ogarea / inline-size;
+}
+
+.og-nav {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-surface);
+}
+
+.og-nav-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font:
+    500 10.5px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  overflow-wrap: anywhere;
+}
+
+.og-nav-list {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.og-nav-list button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.og-nav-list button:hover {
+  background: #f0f3f2;
+}
+
+.og-nav-list button[aria-current="page"] {
+  border-color: var(--scripta-selected);
+  background: var(--scripta-selected, var(--scripta-selected));
+  font-weight: 600;
+}
+
+.og-nav-list button:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.og-nav-count {
+  font:
+    500 11px var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-nav-count.is-alert {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.og-nav-foot {
+  padding: 10px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.og-nav-foot .px-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------------- the page */
+
+.og-page {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  container: ogpage / inline-size;
+}
+
+.og-page.has-aside {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+@container ogarea (max-width: 1080px) {
+  .og-page.has-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.og-page-main {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.og-page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+  padding: 16px 24px 14px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.og-page-title {
+  min-width: 0;
+  flex: 1 1 280px;
+}
+
+.og-page-title h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.og-page-title p {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-page-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.og-page-body {
+  padding: 16px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 1180px;
+}
+
+.og-page-body.is-wide {
+  max-width: none;
+}
+
+.og-aside {
+  min-height: 0;
+  overflow: auto;
+  border-left: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: #fcfcfb;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.og-aside-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.og-aside-head p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* ------------------------------------------------------------------ panels */
+
+.og-panel {
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  min-width: 0;
+}
+
+.og-panel.is-warning {
+  border-color: #ecd9b0;
+  background: #fdf8ee;
+}
+
+.og-panel.is-danger {
+  border-color: #e6cfc9;
+  background: #fbf3f1;
+}
+
+.og-panel.is-note {
+  border-color: var(--scripta-selected);
+  background: #f4f9f8;
+}
+
+.og-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.og-panel.is-warning .og-panel-head,
+.og-panel.is-danger .og-panel-head,
+.og-panel.is-note .og-panel-head {
+  border-bottom-color: transparent;
+  padding-bottom: 0;
+}
+
+.og-panel-head h3 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.og-panel-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-panel-hint {
+  margin: 8px 14px 0;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-panel-body {
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
+.og-eyebrow {
+  font:
+    500 10px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.og-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@container ogpage (max-width: 760px) {
+  .og-grid-2,
+  .og-grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------- segmented */
+
+.og-seg {
+  display: inline-flex;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.og-seg button {
+  padding: 5px 11px;
+  border: 0;
+  background: var(--scripta-surface);
+  color: #4d585c;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.og-seg button + button {
+  border-left: 1px solid #e4e6e1;
+}
+
+.og-seg button.is-on {
+  background: var(--scripta-brand);
+  color: #fff;
+}
+
+.og-seg button:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: -2px;
+}
+
+/* ------------------------------------------------------------------- facts */
+
+.og-facts {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.og-facts > div {
+  display: grid;
+  grid-template-columns: minmax(96px, 38%) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.og-facts dt {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ----------------------------------------------------------------- tables */
+
+.og-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.og-table th {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-surface);
+  font:
+    500 10px var(--scripta-font-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  text-align: left;
+  white-space: nowrap;
+}
+
+.og-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--scripta-rule);
+  vertical-align: top;
+}
+
+.og-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.og-table tbody tr.is-selectable {
+  cursor: pointer;
+}
+
+.og-table tbody tr.is-selectable:hover td {
+  background: var(--scripta-selected);
+}
+
+.og-table tbody tr.is-selected td {
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.og-mono {
+  font:
+    12px var(--scripta-font-mono);
+}
+
+.og-muted {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-strong {
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------- list rows */
+
+.og-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.og-rows > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.og-rows > li:first-child {
+  border-top: 0;
+}
+
+.og-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.og-row-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.og-row-meta {
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-row-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.og-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: #b7bdb9;
+}
+
+.og-dot.is-danger {
+  background: var(--scripta-error, var(--scripta-risk));
+}
+
+.og-dot.is-warning {
+  background: #c9822b;
+}
+
+.og-dot.is-good {
+  background: #3f8b64;
+}
+
+/* ------------------------------------------------------------------ chips */
+
+.og-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 999px;
+  background: var(--scripta-surface);
+  font-size: 11.5px;
+  color: var(--scripta-ink);
+  white-space: nowrap;
+}
+
+button.og-chip {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+button.og-chip:hover {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.og-chip.is-source {
+  border-color: var(--scripta-selected);
+  background: #f4f9f8;
+  color: #1d5e5c;
+}
+
+.og-chip.is-unverified {
+  border-style: dashed;
+  border-color: #d9b56b;
+  color: var(--scripta-warn);
+  background: #fdf8ee;
+}
+
+.og-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ---------------------------------------------------------------- empties */
+
+.og-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 18px;
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.og-empty p {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  max-width: 62ch;
+}
+
+.og-empty-action {
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------- dialogs */
+
+.og-dialog {
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+}
+
+.og-dialog-actions {
+  align-items: center;
+}
+
+.og-dialog-extra {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.og-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.og-hint {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-textarea {
+  width: 100%;
+  resize: vertical;
+  font: inherit;
+}
+
+.og-change {
+  margin: 0;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.og-change legend {
+  padding: 0 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.og-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+/* --------------------------------------------------------------- progress */
+
+.og-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: #e8ebe8;
+  overflow: hidden;
+}
+
+.og-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+
+.og-bar.is-warning > i {
+  background: #c9822b;
+}
+
+.og-bar.is-danger > i {
+  background: var(--scripta-error, var(--scripta-risk));
+}
+
+@media (max-width: 760px) {
+  .og-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .og-nav {
+    border-right: 0;
+    border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  }
+
+  .og-nav-list {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .og-nav-list button {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .og-page-head,
+  .og-page-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* A record named inside a row reads as text that happens to open something. */
+.og-rows .org-link {
+  align-self: flex-start;
+  padding: 0;
+  text-align: left;
+  font-size: 13px;
+}
+
+/* A dropdown's "Other…" text box, with anything it still needs under it. */
+.og-other {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

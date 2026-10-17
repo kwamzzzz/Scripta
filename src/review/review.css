@@ -1,0 +1,985 @@
+/* Contract review. Cards on the app's own neutral ground, one rule weight for
+   structure, no boxes inside boxes. Every colour comes from the app tokens. */
+
+.rv {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px 40px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  /* A flex item is as wide as its widest content unless it is told otherwise,
+     so a page zoomed to 300% pushed this whole column past the window and
+     carried the controls off the screen with it. */
+  min-width: 0;
+}
+/* A column that scrolls must not also shrink its children, or a card's last
+   row is squeezed out of the card instead of extending the scroll. */
+.rv > * {
+  flex: none;
+}
+
+.rv-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .rv-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rv-card {
+  border: 1px solid var(--px-card-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+.rv-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px 0;
+}
+.rv-card-head h2 {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  letter-spacing: 0.01em;
+}
+.rv-card-hint {
+  margin: 4px 14px 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--scripta-muted);
+}
+.rv-card-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* A card with nothing in it yet says so in one quiet line. */
+.rv-quiet {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+}
+
+/* The mandate once set: read as a brief, edited on request. */
+.rv-mandate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+.rv-mandate p {
+  margin: 0;
+}
+.rv-mandate blockquote {
+  margin: 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--scripta-rule);
+  color: var(--scripta-ink);
+  white-space: pre-wrap;
+}
+.rv-mandate-first {
+  color: var(--scripta-muted);
+}
+
+.rv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- terms -- */
+
+.rv-terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px 18px;
+}
+.rv-term {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.rv-term-value,
+.rv-term-link {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-ink);
+  overflow-wrap: anywhere;
+}
+.rv-term-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: var(--scripta-brand);
+  cursor: pointer;
+}
+.rv-term-link:hover {
+  text-decoration: underline;
+}
+.rv-term-empty {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted);
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------------- stats -- */
+
+.rv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rv-stat {
+  flex: 1 1 96px;
+  min-width: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 11px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  text-align: left;
+}
+.rv-stat.is-action {
+  cursor: pointer;
+  font: inherit;
+}
+.rv-stat.is-action:hover {
+  border-color: #b4d6fa;
+  background: #f4f9ff;
+}
+
+/* --------------------------------------------------------------- fields -- */
+
+.rv-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.rv-field > span {
+  font:
+    500 9.5px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.rv-field > small {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--scripta-muted);
+}
+.rv-input {
+  width: 100%;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  padding: 7px 9px;
+  font: inherit;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  resize: none;
+}
+.rv-input:focus {
+  outline: none;
+  border-color: var(--scripta-brand);
+  box-shadow: 0 0 0 2px #ebf3fc;
+}
+.rv-growing {
+  overflow: hidden;
+  min-height: 34px;
+}
+select.rv-input {
+  cursor: pointer;
+  /* A select with no visible affordance is a select nobody finds. */
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--scripta-border) 50%),
+    linear-gradient(135deg, var(--scripta-border) 50%, transparent 50%);
+  background-position:
+    calc(100% - 15px) calc(50% + 1px),
+    calc(100% - 10px) calc(50% + 1px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 28px;
+}
+
+.rv-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rv-grid2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .rv-grid2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------- issues -- */
+
+.rv-issue {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.rv-issue:first-child {
+  border-top: 0;
+}
+.rv-issue.is-decided {
+  background: #fbfbfa;
+}
+.rv-issue-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rv-issue-ref {
+  font:
+    500 10px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  color: var(--scripta-muted);
+  flex: none;
+}
+.rv-issue-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--scripta-ink);
+  margin: 0;
+}
+.rv-issue-body {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+.rv-issue-rec {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+  padding-left: 10px;
+  border-left: 2px solid #b4d6fa;
+}
+.rv-issue-clause {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 11.5px;
+  color: var(--scripta-brand);
+  cursor: pointer;
+  text-align: left;
+}
+.rv-issue-clause:hover {
+  text-decoration: underline;
+}
+.rv-issue-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rv-issue-decision {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+  background: #f7f6f5;
+  border-radius: 6px;
+  padding: 7px 9px;
+}
+
+/* --------------------------------------------------------------- filters -- */
+
+.rv-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rv-pill {
+  border: 1px solid var(--scripta-border);
+  background: var(--scripta-surface);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 11.5px;
+  color: var(--scripta-text-2);
+  cursor: pointer;
+  font-family: inherit;
+}
+.rv-pill:hover {
+  border-color: var(--scripta-brand);
+  color: var(--scripta-brand);
+}
+.rv-pill.is-on {
+  background: var(--scripta-brand);
+  border-color: var(--scripta-brand);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------- empties -- */
+
+.rv-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: flex-start;
+  padding: 18px 2px;
+}
+.rv-empty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.rv-empty-note {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--scripta-muted);
+  max-width: 62ch;
+}
+.rv-empty-action {
+  margin-top: 3px;
+}
+
+/* --------------------------------------------------- the clause brief -- */
+
+/* What the Scripta panel shows about the clause under the cursor. Narrow
+   column, so everything stacks and nothing is cut off. */
+.rv-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.rv-brief-head {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 16px 11px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.rv-brief-clause {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--scripta-ink);
+}
+.rv-brief-section {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--scripta-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rv-brief-section p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--scripta-ink);
+}
+.rv-brief-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rv-brief-auth-row {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+}
+.rv-brief-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.rv-brief-issue {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f2f0ef;
+}
+
+/* ------------------------------------------------------------- preflight -- */
+
+.rv-pre {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+.rv-pre:first-child {
+  border-top: 0;
+}
+.rv-pre-mark {
+  flex: none;
+  margin-top: 2px;
+}
+.rv-pre-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  line-height: 1.45;
+}
+.rv-pre-detail {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+}
+
+/* ---------------------------------------------------------- amendments -- */
+
+.rv-amend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.rv-amend:first-child {
+  border-top: 0;
+}
+.rv-amend-text {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 6px;
+  padding: 10px 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.rv-diff ins {
+  background: var(--scripta-ok-bg);
+  color: #0b5c26;
+  text-decoration: none;
+}
+.rv-diff del {
+  background: var(--scripta-risk-bg);
+  color: #a5201d;
+}
+
+/* What a re-read kept. Green because it is good news — the work survived —
+   and quiet because it is a receipt, not an alert. */
+.rv-carried {
+  background: #eff6ef;
+  border: 1px solid #b8d8b8;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #1f5121;
+}
+
+/* A busy row, so a long AI run never looks like a frozen screen. */
+.rv-busy {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--scripta-muted);
+}
+.rv-spin {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--scripta-border);
+  border-top-color: var(--scripta-brand);
+  border-radius: 50%;
+  animation: rv-spin 0.8s linear infinite;
+  flex: none;
+}
+@keyframes rv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-spin {
+    animation-duration: 2.4s;
+  }
+}
+
+/* Who is answerable for a clause. Sits under the head as one quiet row rather
+   than as a card: it is a field, not a section. */
+.rv-brief-reviewer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rv-brief-reviewer label {
+  font:
+    500 9.5px/1 var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  flex: none;
+}
+.rv-brief-reviewer .px-person-picker {
+  font-size: 11.5px;
+  padding: 5px 24px 5px 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Preparing a review from documents already on the matter. */
+.rv-prepare {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-text-2);
+}
+.rv-prepare p {
+  margin: 0;
+}
+.rv-prepare label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.rv-prepare-error {
+  color: var(--scripta-risk);
+}
+
+/* Scripta's pinpointed edits, before they go into the contract. */
+.rv-edits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #d6e2f5;
+  border-radius: 8px;
+  background: #f7faff;
+}
+.rv-edits-note,
+.rv-edits-done {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+.rv-edits-problem {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #a5201d;
+}
+.rv-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 0;
+  border-top: 1px solid #e3e9f3;
+}
+.rv-edit.has-problem {
+  opacity: 0.75;
+}
+.rv-edit-head {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.rv-edit-title {
+  color: #605e5c;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rv-edit-why {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #605e5c;
+}
+.rv-edit-change {
+  align-self: flex-start;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--scripta-brand);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Final: the document fills what is left of the window.
+   The pre-flight used to push it below the fold, so the pages — the thing a
+   reviewer opens this tab to look at — had to be scrolled to, and on a laptop
+   they had whatever was left. The checks keep their own scroll when they are
+   open, and fold to a line when they are not. */
+.rv.is-final {
+  /* Fits the window where it can, and scrolls where it cannot: on a short or
+     narrow screen the controls wrap and there is no room to fit, and a tab
+     that refuses to scroll then squeezes the pages to a sliver and traps the
+     reader there. */
+  /* Down, never across. A page zoomed wider than the card used to widen the
+     whole tab, so the window scrolled sideways and the zoom controls went off
+     the right-hand edge with it — zoomed in, and no way back out. */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 18px;
+}
+/*
+ * The cover page and the document as two panes, side by side.
+ *
+ * Modelled on a browser's split view: each pane the full height of the tab,
+ * each scrolling on its own, neither able to push the other off the screen.
+ *
+ * Three earlier attempts at this failed for one reason. `.rv` is the scroller
+ * — a bounded flex column with `overflow-y: auto` — so a row placed inside it
+ * had no definite height to divide, and stretching a child either clipped the
+ * sheet or collapsed it to nothing. A split view cannot be built inside a
+ * scrolling column; the column has to stop scrolling and hand its height to
+ * the row, which is what the query below does. Wrapping the cards also broke
+ * the `> .rv-doc` child selectors above and took the document card's own
+ * layout with them, which is why they are no longer direct-child selectors.
+ *
+ * Only where there is room for it: below this width the panes would be too
+ * narrow to read, and below this height each would be a letterbox. There the
+ * cards stack and the tab scrolls, exactly as before.
+ */
+.rv-final-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  /*
+   * The wrapper has to pass the column's height through, or it changes what
+   * `flex: 1` on the document card means. As a direct child of `.rv` that card
+   * took the bounded space left in a scrolling column; inside a wrapper with
+   * no height of its own it grew to its content instead — 36,865 pixels of
+   * stacked pages in the tab, in the stacked layout that this was not even
+   * meant to touch.
+   */
+  flex: 1;
+  min-height: 0;
+}
+
+@media (min-width: 1400px) and (min-height: 680px) {
+  .rv.is-final {
+    /* The column stops scrolling so the row can have its height. */
+    overflow: hidden;
+  }
+  .rv-final-pair {
+    flex: 1;
+    min-height: 0;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .rv.is-final .rv-final-pair > .rv-card {
+    min-height: 0;
+  }
+  .rv.is-final .rv-final-pair > :first-child {
+    flex: 0 0 clamp(380px, 34%, 560px);
+    /* Its own scrollbar: a sheet taller than the pane scrolls here, and the
+       document beside it does not move. */
+    overflow: auto;
+  }
+  /*
+   * Four classes deep on purpose. `.rv.is-final .rv-doc` above sets a generous
+   * min-height so the document is never squeezed while the tab scrolls, and it
+   * outranked a two-class override — so the pane kept a 618px floor inside a
+   * 291px row and hung out of the bottom of the screen. Here the row's height
+   * is the limit.
+   */
+  .rv.is-final .rv-final-pair > .rv-doc {
+    flex: 1 1 0;
+    min-height: 0;
+  }
+  /*
+   * The pre-flight gives up the half-screen it does not need, once the panes
+   * below it are the point. It still scrolls, and it can be hidden outright.
+   *
+   * `.rv-card` is named again only to outrank the 46vh rule further down the
+   * file: same specificity, later in the source, and it would win on order.
+   */
+  .rv.is-final > .rv-card.rv-checks {
+    max-height: 26vh;
+  }
+}
+
+.rv.is-final > .rv-checks {
+  max-height: 46vh;
+  overflow: auto;
+}
+.rv.is-final .rv-doc {
+  flex: 1;
+  /* A page zoomed past the width of the card must not widen the card: the
+     controls went off the side with it, and the reader could not zoom back
+     out. The pages scroll inside their own stage instead. */
+  min-width: 0;
+  overflow: hidden;
+  /* Generous: a page of a contract, at a size a lawyer would read it at.
+     Below this the tab scrolls rather than squeezing the document. */
+  min-height: min(880px, 74vh);
+  display: flex;
+  flex-direction: column;
+}
+.rv.is-final .rv-doc > .rv-card-body {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------- history -- */
+/* The record of the mark-up. Read like a diary: one block per sitting, the
+   steps under it in the order they happened, each with the words themselves
+   rather than a count of them. */
+.rv-hist {
+  display: grid;
+  gap: 16px;
+}
+.rv-hist-quiet {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--scripta-muted);
+}
+.rv-hist-sitting {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+.rv-hist-sitting > header {
+  padding: 8px 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface-2);
+  font-size: 12.5px;
+  color: var(--scripta-text-2);
+}
+.rv-hist-sitting > header b {
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.rv-hist-count {
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.rv-hist-step {
+  padding: 10px 12px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.rv-hist-step:first-of-type {
+  border-top: 0;
+}
+.rv-hist-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--scripta-ink);
+}
+.rv-hist-head b {
+  font-weight: 600;
+}
+.rv-hist-time {
+  min-width: 42px;
+  font-variant-numeric: tabular-nums;
+  color: var(--scripta-muted);
+}
+.rv-hist-kind {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--scripta-surface-2);
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-text-2);
+}
+.rv-hist-kind.is-baseline {
+  background: #eef2fb;
+  color: #33507f;
+}
+.rv-hist-kind.is-restored {
+  background: #fdf1e3;
+  color: #7a5320;
+}
+.rv-hist-kind.is-gone {
+  background: transparent;
+  border: 1px solid var(--scripta-rule);
+  color: var(--scripta-muted);
+}
+/* The wording itself: what went in, what came out. The same colours the
+   redline uses, because it is the same fact. */
+.rv-hist-wording {
+  margin: 7px 0 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  border: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--scripta-ink);
+}
+.rv-hist-wording ins {
+  background: var(--scripta-ok-bg);
+  color: #0b5c26;
+  text-decoration: none;
+}
+.rv-hist-wording del {
+  background: var(--scripta-risk-bg);
+  color: #a5201d;
+}
+.rv-hist-wording mark {
+  background: #fff3a3;
+}
+.rv-hist-settled,
+.rv-hist-proposed,
+.rv-hist-marked,
+.rv-hist-label,
+.rv-hist-note {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-text-2);
+}
+.rv-hist-label {
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.rv-hist-note {
+  color: var(--scripta-muted);
+}
+.rv-hist-settled .is-accepted {
+  font-weight: 600;
+  color: #0b5c26;
+}
+.rv-hist-settled .is-rejected {
+  font-weight: 600;
+  color: #a5201d;
+}
+.rv-hist-marked mark {
+  background: #fff3a3;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+/* The version a clause's record starts from: its words, plainly. Green would
+   say the lawyer wrote wording they had only read. */
+.rv-hist-wording.is-first {
+  color: var(--scripta-text-2);
+}
+.rv-hist-since {
+  display: block;
+  margin-top: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+
+/* ---------------------------------------------------------- time record -- */
+.rv-time-total {
+  font-size: 12px;
+  color: var(--scripta-muted);
+}
+.rv-time-total b {
+  font-size: 13px;
+  color: var(--scripta-ink);
+  font-variant-numeric: tabular-nums;
+}
+.rv-time-empty {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+}
+.rv-time-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+.rv-time-list li {
+  padding: 9px 0;
+  display: grid;
+  grid-template-columns: 52px 42px 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  border-top: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}
+.rv-time-list li:first-child {
+  border-top: 0;
+}
+.rv-time-list li.is-written-off .rv-time-hours,
+.rv-time-list li.is-written-off .rv-time-what {
+  color: var(--scripta-muted);
+}
+.rv-time-day {
+  color: var(--scripta-muted);
+  font-variant-numeric: tabular-nums;
+}
+.rv-time-hours {
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.rv-time-what {
+  min-width: 0;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+}
+.rv-time-what small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}

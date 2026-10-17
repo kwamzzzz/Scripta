@@ -1,0 +1,32 @@
+/* The delete confirmation: one shape, wherever it is asked. */
+.scripta-confirm {
+  width: 480px;
+  max-width: calc(100vw - 40px);
+  border: 1px solid var(--scripta-rule);
+  border-radius: var(--scripta-radius-xl);
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-modal);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--scripta-ink);
+}
+.scripta-confirm-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.scripta-confirm-body {
+  margin: 0;
+  color: var(--scripta-text-2);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.scripta-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}

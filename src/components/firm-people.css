@@ -1,0 +1,101 @@
+/* People and invitations in Settings. Borrows the settings list wholesale and
+   adds only what an invitation needs that a member does not: a second line of
+   detail, and somewhere for the actions to sit. */
+
+.firm-people {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.firm-people-note {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--scripta-muted);
+  max-width: 62ch;
+}
+
+.firm-people-invite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.firm-people-invite label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.firm-people-invite label:first-child {
+  flex: 1 1 240px;
+}
+
+.firm-people-invite label > span {
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+
+.firm-people-invite input,
+.firm-people-invite select {
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 10px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface, var(--scripta-surface));
+  color: var(--scripta-ink);
+  min-width: 0;
+}
+
+.firm-people-invite input:focus-visible,
+.firm-people-invite select:focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 1px;
+}
+
+.firm-people-hint {
+  margin: 9px 0 0;
+  font-size: 12.5px;
+  color: var(--scripta-muted);
+}
+
+/* An invitation carries more than a member does, so its row stacks rather than
+   sitting on one baseline. */
+.firm-people-invites li {
+  align-items: center;
+}
+
+.firm-people-invites li > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.firm-people-invites small {
+  text-transform: none;
+}
+
+.firm-people-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.firm-people-row-actions em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--scripta-teal);
+}
+
+@container scripta-page (max-width: 640px) {
+  .firm-people-invite label:first-child {
+    flex-basis: 100%;
+  }
+}

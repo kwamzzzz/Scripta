@@ -1,0 +1,2132 @@
+/* Contract editor 1c — dimensions and visual system from Wireframes (4). */
+.ce-editor {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+}
+.ce-editor-row {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+}
+.ce-toc {
+  width: 264px;
+  flex: none;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+}
+.ce-toc > header {
+  min-height: 40px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.ce-toc > header span,
+.ce-node-meta,
+.ce-inline-instructions span,
+.ce-instruction-scope,
+.ce-instruction-composer footer span {
+  font:
+    500 10px/1.35 var(--scripta-font-mono);
+  color: var(--scripta-muted);
+  letter-spacing: 0.06em;
+}
+.ce-toc > header button {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  color: var(--scripta-muted);
+  background: transparent;
+  font-size: 11px;
+  cursor: pointer;
+}
+.ce-toc > nav {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+}
+.ce-toc-row {
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.ce-toc-row.is-parent {
+  padding-block: 7px;
+  color: var(--scripta-ink);
+}
+.ce-toc-row.depth-0.is-parent {
+  margin-top: 1px;
+}
+.ce-toc-row.depth-2 i {
+  min-width: 30px;
+}
+.ce-toc-row:hover,
+.ce-toc-row.is-selected {
+  background: var(--scripta-selected, var(--scripta-selected));
+  color: var(--scripta-ink);
+}
+.ce-toc-row.depth-1 {
+  padding-left: 10px;
+}
+.ce-toc-row.depth-2 {
+  padding-left: 24px;
+}
+.ce-toc-line {
+  width: 1px;
+  flex: none;
+  align-self: stretch;
+  margin: 0 5px 0 3px;
+  background: var(--scripta-surface-2);
+}
+.ce-toc-caret {
+  width: 8px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--scripta-text-2);
+  font-size: 10px;
+  line-height: 1.45;
+}
+.ce-toc-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-top: 1px;
+  color: var(--scripta-muted);
+  stroke-width: 2;
+}
+.ce-toc-icon.is-folder {
+  width: 15px;
+  height: 15px;
+  color: var(--scripta-ink);
+  fill: var(--scripta-surface-2);
+}
+.ce-toc-row i {
+  /* The number keeps its width; the title beside it wraps instead of the
+     two drawing over each other. */
+  flex: none;
+  min-width: 22px;
+  margin-top: 3px;
+  color: var(--scripta-muted);
+  font:
+    500 10px/1 var(--scripta-font-mono);
+  font-style: normal;
+  white-space: nowrap;
+}
+.ce-toc-row b {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-wrap: anywhere;
+}
+.ce-classify-now {
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 7px 10px;
+  border: 1px solid #a8c7fa;
+  border-radius: 6px;
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+  font-size: 12px;
+  cursor: pointer;
+}
+.ce-document-column {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.ce-toolbar-space {
+  flex: 1;
+  min-width: 8px;
+}
+.ce-redraft > .gemini-mark {
+  width: 16px;
+  height: 16px;
+}
+.ce-redraft {
+  padding-inline: 11px;
+  border-color: #d8d9f4;
+  color: #464775;
+  background: var(--scripta-surface);
+  box-shadow:
+     none;
+  font-weight: 500;
+}
+.ce-redraft:hover {
+  border-color: #b5b7df;
+  background: #e8e8fb;
+  box-shadow:
+     none;
+}
+.ce-redraft b {
+  min-width: 17px;
+  height: 17px;
+  padding-inline: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: #fff;
+  background: #6264a7;
+  font-size: 10px;
+}
+.ce-document {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+.ce-node {
+  width: 100%;
+  max-width: 870px;
+  margin-inline: auto;
+  flex: none;
+  border: 1px solid var(--scripta-border);
+  border-radius: 9px;
+  overflow: visible;
+  background: var(--scripta-surface-2);
+  scroll-margin-block: 32px;
+}
+.ce-node.depth-1,
+.ce-node.depth-2 {
+  border-color: var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+.ce-node-header {
+  min-height: 44px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.ce-node.depth-0 > .ce-node-header + .ce-node-content {
+  border-top: 1px solid var(--scripta-rule);
+}
+.ce-node.depth-1 > .ce-node-header + .ce-node-content,
+.ce-node.depth-2 > .ce-node-header + .ce-node-content {
+  border-top: 1px solid var(--scripta-rule);
+}
+.ce-node-chevron {
+  width: 14px;
+  height: 18px;
+  padding: 0;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  color: var(--scripta-text-2);
+  background: transparent;
+}
+.ce-node-chevron svg {
+  width: 14px;
+  height: 14px;
+}
+.ce-node-number {
+  flex: none;
+  color: var(--scripta-text-2);
+  font:
+    500 11px/1.4 var(--scripta-font-mono);
+}
+.ce-node-header > strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--scripta-ink);
+  font-size: 14px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ce-node.depth-0 > .ce-node-header > strong {
+  font-size: 15.5px;
+  font-weight: 600;
+}
+.ce-node-meta {
+  font-size: 9px;
+  white-space: nowrap;
+}
+.ce-node-space {
+  flex: 1;
+}
+.ce-section-label {
+  padding: 2px 9px;
+  flex: none;
+  border: 1px solid var(--scripta-border);
+  border-radius: 11px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+/* How this section's parts print. Same pill as the labels beside it, because
+   it is one more fact about the section — not a control demanding attention. */
+.ce-parts-numbering {
+  padding: 2px 9px;
+  flex: none;
+  border: 1px solid var(--scripta-border);
+  border-radius: 11px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font: inherit;
+  font-size: 10.5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ce-parts-numbering:hover {
+  border-color: var(--scripta-border);
+  color: var(--scripta-ink);
+}
+.ce-parts-numbering.is-plain {
+  border-color: #c8d8d2;
+  background: var(--scripta-selected);
+  color: #1d4b48;
+}
+
+.ce-tag {
+  padding: 2px 9px;
+  flex: none;
+  border-radius: 11px;
+  font-size: 10.5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ce-tag.is-law {
+  border: 1px solid #e6cfc9;
+  color: var(--scripta-risk);
+  background: var(--scripta-risk-bg);
+}
+.ce-tag.is-practice {
+  border: 1px solid #f5dda3;
+  color: var(--scripta-warn);
+  background: var(--scripta-warn-bg);
+}
+.ce-tag.is-risk {
+  border: 1px solid #e6cfc9;
+  color: var(--scripta-risk);
+  background: var(--scripta-risk-bg);
+}
+.ce-tag.is-ok {
+  border: 1px solid #cfddd2;
+  color: var(--scripta-ok);
+  background: var(--scripta-ok-bg);
+}
+.ce-tag.is-context {
+  border: 1px solid #d3c4f0;
+  color: #5b3fa8;
+  background: #f1ecfb;
+}
+.ce-review-popover small {
+  display: block;
+  margin: -6px 0 12px;
+  color: var(--scripta-muted);
+  font-size: 11px;
+}
+.ce-review-meaning {
+  margin: 10px 0 0 !important;
+  color: var(--scripta-text-2);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ce-tag.is-unset {
+  border: 1px dashed var(--scripta-border);
+  color: var(--scripta-muted);
+  background: var(--scripta-surface);
+}
+.ce-instruction-button {
+  min-width: 31px;
+  height: 26px;
+  padding: 4px 8px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 7px;
+  color: var(--scripta-muted);
+  background: #f3f3f3;
+  cursor: pointer;
+}
+.ce-instruction-button svg {
+  width: 14px;
+  height: 12px;
+  padding: 1px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  stroke-width: 2;
+}
+.ce-instruction-button.has-instructions {
+  border-color: #c6dafc;
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+}
+.ce-instruction-button b {
+  font-size: 11px;
+  font-weight: 500;
+}
+/*
+ * The clause's words sit in a sheet of their own, not loose on the card.
+ *
+ * The card is furniture — the number, the chips, the Edit button — and the
+ * wording is the thing being read. Set directly on the grey, the two ran
+ * together and the text looked like part of the chrome. This is the same
+ * inset, box and radius the editor uses, so opening a clause to edit it no
+ * longer moves the words: they are already where the editor will put them.
+ */
+.ce-node-body {
+  margin: 12px;
+  padding: 9px 11px;
+  background: var(--scripta-surface);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 7px;
+  color: var(--scripta-ink);
+  font:
+    400 13px/1.7 "Century Schoolbook",
+    "New Century Schoolbook",
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+.ce-node-body p {
+  margin: 0 0 10px;
+}
+.ce-node-body p:last-child {
+  margin-bottom: 0;
+}
+.ce-node-body b {
+  font-weight: 700;
+}
+.ce-list-row {
+  display: flex;
+  gap: 10px;
+  padding-left: 4px;
+}
+.ce-list-row > span {
+  min-width: 22px;
+  color: var(--scripta-muted);
+  font:
+    500 11px/1.9 var(--scripta-font-mono);
+}
+.ce-delete {
+  color: var(--scripta-risk);
+  background: var(--scripta-risk-bg);
+  text-decoration: line-through;
+}
+.ce-insert {
+  color: var(--scripta-ok);
+  background: var(--scripta-ok-bg);
+  text-decoration: underline;
+}
+.ce-node-children {
+  padding: 11px 13px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ce-node.depth-1 .ce-node-children {
+  padding: 10px 12px 12px;
+}
+.ce-inline-instructions {
+  padding: 0 12px 12px;
+  display: grid;
+  gap: 7px;
+}
+.ce-inline-instructions > div {
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 7px;
+  background: var(--scripta-surface);
+}
+.ce-inline-instructions span {
+  flex: none;
+  color: #3a3a3a;
+  font-size: 9px;
+}
+.ce-inline-instructions p {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--scripta-ink);
+  font-size: 12px;
+}
+.ce-inline-instructions button {
+  flex: none;
+  padding: 0;
+  border: 0;
+  color: var(--scripta-muted);
+  background: transparent;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ce-section-note {
+  padding: 9px 11px;
+  border: 1px dashed var(--scripta-border);
+  border-radius: 7px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.ce-instruction-popover {
+  width: 285px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-pop);
+  color: var(--scripta-ink);
+}
+.ce-instruction-composer > header {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+}
+.ce-instruction-composer > header strong {
+  font-size: 16px;
+  font-weight: 400;
+}
+.ce-instruction-composer > header button {
+  margin-left: auto;
+  padding: 0 2px;
+  border: 0;
+  color: var(--scripta-text-2);
+  background: transparent;
+  font-size: 15px;
+  cursor: pointer;
+}
+.ce-held-instructions {
+  padding: 0 12px;
+  display: grid;
+  gap: 11px;
+}
+.ce-held-instruction {
+  padding: 10px 11px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 7px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface-2);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.ce-held-instruction span {
+  flex: 1;
+  min-width: 0;
+}
+.ce-held-instruction button {
+  padding: 0;
+  border: 0;
+  color: var(--scripta-muted);
+  background: transparent;
+  display: flex;
+  cursor: pointer;
+}
+.ce-held-instruction button svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.8;
+}
+.ce-instruction-composer textarea {
+  width: calc(100% - 24px);
+  min-height: 56px;
+  margin: 11px 12px 0;
+  padding: 11px 12px;
+  resize: vertical;
+  border: 1px solid var(--scripta-border);
+  border-radius: 8px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font:
+    12.5px/1.5 Inter,
+    sans-serif;
+}
+.ce-instruction-composer textarea::placeholder {
+  color: var(--scripta-muted);
+}
+.ce-instruction-composer > footer {
+  padding: 11px 12px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ce-instruction-composer > footer span {
+  letter-spacing: 0.04em;
+  color: var(--scripta-muted);
+}
+.ce-instruction-composer > footer button {
+  margin-left: auto;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  background: var(--scripta-brand);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.ce-instruction-composer > footer button:disabled {
+  background: #a1a1a1;
+  cursor: default;
+}
+.ce-play {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent #fff;
+}
+.ce-instruction-scope {
+  padding: 9px 14px;
+  border-top: 1px solid var(--scripta-rule);
+  color: var(--scripta-text-2);
+  font:
+    400 11px/1.45 Inter,
+    sans-serif;
+  letter-spacing: 0;
+}
+.ce-review-popover {
+  width: 340px;
+  padding: 16px;
+  border: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font:
+    13px/1.5 Inter,
+    sans-serif;
+}
+.ce-review-popover strong {
+  font-weight: 500;
+}
+.ce-review-popover p {
+  margin-block: 10px 14px;
+}
+.ce-review-popover label {
+  display: grid;
+  gap: 6px;
+  color: var(--scripta-text-2);
+  font-size: 12px;
+}
+.ce-review-popover select {
+  padding: 7px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+}
+.ce-empty {
+  max-width: 620px;
+  margin: 80px auto;
+  color: var(--scripta-muted);
+  text-align: center;
+}
+.ce-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(35, 35, 35, 0.28);
+}
+.ce-modal {
+  position: fixed;
+  z-index: 61;
+  top: 50%;
+  left: 50%;
+  max-height: calc(100dvh - 52px);
+  overflow: auto;
+  transform: translate(-50%, -50%);
+  color: var(--scripta-ink);
+  font:
+    13px/1.5 Inter,
+    sans-serif;
+  outline: none;
+}
+.ce-modal button {
+  cursor: pointer;
+}
+.ce-modal input[type="checkbox"] {
+  appearance: auto;
+  accent-color: var(--scripta-brand);
+}
+.wf-body:has([data-frame="1c"]) .wf-assistant-head {
+  min-height: 63px;
+}
+.wf-body:has([data-frame="1c"]) .wf-assistant-empty {
+  justify-content: flex-start;
+  padding: 14px;
+}
+@media (max-width: 1250px) {
+  .ce-toc {
+    width: 220px;
+  }
+  .wf-body:has([data-frame="1c"]) .wf-assistant {
+    width: 270px;
+  }
+  /* The toolbar actions SHRINK here; they do not disappear.
+     They used to be hidden outright, which took the Changes pane — the
+     principal review surface for outstanding proposals — off the screen at any
+     ordinary window width. A lawyer on a 1280px laptop could not reach it at
+     all, and nothing said so: the button was in the DOM, so a scripted click
+     still worked, which is exactly why this survived a browser check.
+     Found in the independent clause-workflow acceptance review. */
+  .ce-toolbar-label {
+    display: none;
+  }
+  .ce-toolbar-action {
+    padding: 0 7px;
+    gap: 5px;
+  }
+  .ce-node-meta {
+    display: none;
+  }
+}
+@media (max-width: 980px) {
+  .ce-toc {
+    width: 190px;
+  }
+  .ce-section-label {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .ce-toc {
+    display: none;
+  }
+  .ce-document {
+    padding-inline: 10px;
+  }
+  .ce-node-header {
+    gap: 7px;
+  }
+  .ce-tag {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Private Instructions panel — instruction text lives here, never on the document */
+.ce-instructions-panel {
+  width: 340px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-left: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+}
+.ce-instructions-panel > header {
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.ce-instructions-panel > header strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+.ce-instructions-panel > header span {
+  display: block;
+  margin-top: 2px;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+.ce-instructions-panel > header button {
+  width: 26px;
+  height: 26px;
+  margin-left: auto;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--scripta-border);
+  border-radius: 5px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  cursor: pointer;
+}
+.ce-instructions-panel > header button svg {
+  width: 14px;
+  height: 14px;
+}
+.ce-instructions-list {
+  flex: 1;
+  min-height: 0;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+}
+.ce-instructions-empty {
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px dashed var(--scripta-border);
+  border-radius: 7px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.ce-instructions-list > section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.ce-instructions-clause {
+  padding: 0 2px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.ce-instructions-clause i {
+  color: var(--scripta-muted);
+  font:
+    500 10px/1.5 var(--scripta-font-mono);
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+.ce-instructions-clause b {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--scripta-ink);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ce-instructions-clause:hover b {
+  color: var(--scripta-brand);
+}
+.ce-instruction-row {
+  padding: 9px 11px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 7px;
+  background: var(--scripta-surface);
+}
+.ce-instruction-row > span {
+  flex: none;
+  margin-top: 3px;
+  color: var(--scripta-muted);
+  font:
+    500 9px/1.3 var(--scripta-font-mono);
+  letter-spacing: 0.06em;
+}
+.ce-instruction-text {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--scripta-ink);
+  background: transparent;
+  text-align: left;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  cursor: text;
+}
+.ce-instruction-row > button:last-child {
+  flex: none;
+  padding: 0;
+  display: flex;
+  border: 0;
+  color: var(--scripta-muted);
+  background: transparent;
+  cursor: pointer;
+}
+.ce-instruction-row > button:last-child svg {
+  width: 13px;
+  height: 13px;
+}
+.ce-instruction-edit {
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #a8c7fa;
+  border-radius: 7px;
+  background: var(--scripta-surface);
+}
+.ce-instruction-edit textarea {
+  min-height: 64px;
+  padding: 9px 10px;
+  resize: vertical;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font:
+    12.5px/1.5 Inter,
+    sans-serif;
+}
+.ce-instruction-edit > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ce-instruction-edit > div span {
+  flex: 1;
+  color: var(--scripta-muted);
+  font:
+    500 9px/1.3 var(--scripta-font-mono);
+  letter-spacing: 0.06em;
+}
+.ce-instruction-edit > div button {
+  padding: 5px 11px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ce-instruction-edit > div button.is-primary {
+  border-color: var(--scripta-brand);
+  color: #fff;
+  background: var(--scripta-brand);
+}
+.ce-instructions-panel > footer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.ce-instructions-panel > footer .ce-redraft {
+  width: 100%;
+  justify-content: center;
+}
+.ce-instructions-panel > footer .ce-redraft:disabled {
+  border-color: var(--scripta-border);
+  background: #a1a1a1;
+  cursor: default;
+}
+.ce-editor-problem {
+  margin: 0;
+  padding: 8px 14px;
+  flex: none;
+  border-bottom: 1px solid #f3c9c6;
+  color: #a50e0e;
+  background: var(--scripta-risk-bg);
+  font-size: 12px;
+}
+.ce-edit-button {
+  height: 26px;
+  padding: 0 9px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #c6dafc;
+  border-radius: 7px;
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+  font-size: 11px;
+  cursor: pointer;
+}
+.ce-edit-button svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2;
+}
+/* Insert a clause after this one. Quieter than Edit: it sits beside it on the
+   selected clause, and the one you reach for most should be the louder. */
+.ce-insert-button {
+  height: 26px;
+  padding: 0 9px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 11px;
+  cursor: pointer;
+}
+.ce-insert-button:hover {
+  border-color: #c6dafc;
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+}
+.ce-insert-button svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2;
+}
+.ce-insert-popover {
+  width: 320px;
+  padding: 0 0 2px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-pop);
+  color: var(--scripta-ink);
+}
+.ce-insert-popover > header {
+  padding: 12px 14px 8px;
+}
+.ce-insert-popover > header strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+.ce-insert-popover label {
+  padding: 7px 14px 0;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.ce-insert-popover label i {
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.ce-insert-popover input,
+.ce-insert-popover textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0 0;
+  padding: 8px 10px;
+  display: block;
+  border: 1px solid var(--scripta-border);
+  border-radius: 8px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  text-transform: none;
+  letter-spacing: 0;
+  font:
+    12.5px/1.5 Inter,
+    sans-serif;
+}
+.ce-insert-popover textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+.ce-insert-why {
+  margin: 6px 14px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted);
+}
+.ce-insert-popover > footer {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--scripta-muted);
+}
+.ce-insert-popover > footer button {
+  margin-left: auto;
+  padding: 7px 15px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  background: var(--scripta-brand);
+  font-size: 12.5px;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.ce-insert-popover > footer button:disabled {
+  background: #a1a1a1;
+  cursor: default;
+}
+
+.ce-node-edit {
+  padding: 12px;
+}
+.ce-edit-area {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  display: block;
+  border: 1px solid var(--scripta-brand);
+  border-radius: 7px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font:
+    400 13px/1.7 "Century Schoolbook",
+    "New Century Schoolbook",
+    Georgia,
+    "Times New Roman",
+    serif;
+  resize: vertical;
+  outline: none;
+}
+.ce-edit-bar {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ce-edit-save,
+.ce-edit-cancel {
+  height: 27px;
+  padding: 0 11px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 12px;
+  cursor: pointer;
+}
+.ce-edit-save {
+  border-color: var(--scripta-brand);
+  color: #fff;
+  background: var(--scripta-brand);
+}
+.ce-edit-save:disabled,
+.ce-edit-cancel:disabled {
+  border-color: var(--scripta-border);
+  color: #fff;
+  background: #b4b4b4;
+  cursor: default;
+}
+.ce-edit-cancel:disabled {
+  color: var(--scripta-muted);
+  background: var(--scripta-surface-2);
+}
+.ce-edit-state {
+  color: var(--scripta-muted);
+  font-size: 11px;
+}
+.ce-edit-state.is-dirty {
+  color: #a56200;
+  font-weight: 500;
+}
+.ce-edit-hint {
+  margin-left: auto;
+  color: var(--scripta-muted);
+  font-size: 11px;
+}
+
+/* Toolbar tools that hold a panel open */
+
+/* Outcome of an accept, a reject or an undo — one line, dismissible */
+.ce-editor-notice {
+  margin: 0;
+  padding: 8px 14px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #cfe3d3;
+  color: #14603a;
+  background: var(--scripta-ok-bg);
+  font-size: 12px;
+}
+.ce-editor-notice button {
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid #b6d8c1;
+  border-radius: 5px;
+  color: #14603a;
+  background: var(--scripta-surface);
+  font-size: 11px;
+  cursor: pointer;
+}
+.ce-editor-notice .ce-notice-dismiss {
+  margin-left: auto;
+  width: 22px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* "See changes": what the narrowed document is showing */
+.ce-changes-banner {
+  margin: 0 0 12px;
+  padding: 8px 11px;
+  border: 1px solid #dfe3e8;
+  border-radius: 7px;
+  color: #5c5c5c;
+  background: #f6f7f9;
+  font-size: 11.5px;
+}
+.ce-toc-change {
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: #a56200;
+}
+
+/* The review marker: what the navigator could never say before, which is which
+   clauses carry a problem rather than only which ones carry a change. */
+.ce-toc-sev {
+  width: 7px;
+  height: 7px;
+  margin-left: 5px;
+  flex: none;
+  border-radius: 50%;
+}
+.ce-toc-sev.is-critical {
+  background: #8c1d18;
+  box-shadow: 0 0 0 2px rgba(140, 29, 24, 0.16);
+}
+.ce-toc-sev.is-high {
+  background: var(--scripta-risk);
+}
+.ce-toc-sev.is-medium {
+  background: #c98a00;
+}
+.ce-toc-sev.is-low {
+  background: transparent;
+  border: 1.5px solid #c9a227;
+}
+.ce-toc-sev.is-clear {
+  background: transparent;
+  border: 1.5px solid #7aab8b;
+}
+
+/* The proposal outstanding on a clause, decided where the clause is */
+.ce-suggestion {
+  margin: 0 12px 12px;
+  padding: 10px 12px;
+  border: 1px solid #d9d2f0;
+  border-radius: 8px;
+  background: #f7f5fd;
+}
+.ce-suggestion > header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.ce-suggestion > header strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3c2f6b;
+}
+.ce-suggestion > header span {
+  color: var(--scripta-muted);
+  font:
+    500 9.5px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0.6px;
+}
+.ce-suggestion > p {
+  margin: 8px 0 0;
+  color: var(--scripta-ink);
+  font:
+    400 12.5px/1.7 "Century Schoolbook",
+    "New Century Schoolbook",
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+.ce-suggestion-bar {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ce-suggestion-accept,
+.ce-suggestion-reject {
+  height: 27px;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: var(--scripta-surface);
+  font-size: 12px;
+  cursor: pointer;
+}
+.ce-suggestion-accept {
+  border-color: var(--scripta-brand);
+  color: #fff;
+  background: var(--scripta-brand);
+}
+.ce-suggestion-reject {
+  border-color: #f0c6c3;
+  color: #a50e0e;
+  background: var(--scripta-surface);
+}
+.ce-suggestion-accept:disabled,
+.ce-suggestion-reject:disabled {
+  border-color: var(--scripta-border);
+  color: var(--scripta-muted);
+  background: var(--scripta-surface-2);
+  cursor: default;
+}
+.ce-suggestion-accept svg,
+.ce-suggestion-reject svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.2;
+}
+.ce-suggestion-note {
+  flex: 1;
+  min-width: 180px;
+  color: var(--scripta-muted);
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+/* Notes panel — the Instructions panel's shell, a different list inside */
+.ce-notes-panel > footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ce-notes-panel > footer textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 64px;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.55;
+  resize: vertical;
+}
+.ce-note-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ce-note-actions span {
+  color: var(--scripta-muted);
+  font:
+    500 9.5px/1.4 var(--scripta-font-mono);
+  letter-spacing: 0.6px;
+}
+.ce-note-actions button {
+  height: 27px;
+  margin-left: auto;
+  padding: 0 11px;
+  border: 1px solid var(--scripta-brand);
+  border-radius: 6px;
+  color: #fff;
+  background: var(--scripta-brand);
+  font-size: 12px;
+  cursor: pointer;
+}
+.ce-note-actions button:disabled {
+  border-color: var(--scripta-border);
+  color: var(--scripta-muted);
+  background: var(--scripta-surface-2);
+  cursor: default;
+}
+.ce-note-row {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.ce-note-row p {
+  margin: 0;
+  color: var(--scripta-ink);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.ce-note-row > div {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ce-note-row > div span {
+  color: var(--scripta-muted);
+  font-size: 10.5px;
+}
+.ce-note-row > div button {
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 5px;
+  color: var(--scripta-muted);
+  background: var(--scripta-surface);
+  cursor: pointer;
+}
+.ce-note-row > div button svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------------------------------------------------------------- */
+/* The clause editor's own surface, and the formatting it can hold   */
+/* ---------------------------------------------------------------- */
+
+/* The editor is a contenteditable, so it sizes to its content rather than to a
+   rows attribute. It keeps the same frame the plain box had. */
+.ce-edit-area {
+  min-height: 92px;
+  max-height: 60vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+.ce-edit-area p {
+  margin: 0 0 10px;
+}
+.ce-edit-area p:last-child {
+  margin-bottom: 0;
+}
+.ce-edit-area h3,
+.ce-edit-area h4,
+.ce-edit-area h5 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ce-edit-area ol,
+.ce-edit-area ul,
+.ce-node-body ol,
+.ce-node-body ul {
+  margin: 0 0 10px;
+  padding-left: 26px;
+}
+.ce-edit-area ol,
+.ce-node-body ol {
+  list-style: lower-alpha;
+}
+.ce-edit-area li p,
+.ce-node-body li p {
+  margin: 0 0 4px;
+}
+.ce-edit-area a,
+.ce-node-body a {
+  color: var(--scripta-brand);
+  text-decoration: underline;
+}
+/* ProseMirror's placeholder for an empty document. */
+.ce-edit-area:focus {
+  outline: none;
+}
+
+/* Tables read as a contract schedule: ruled, tight, never full-bleed. */
+.ce-edit-area table,
+.ce-doc-table {
+  border-collapse: collapse;
+  margin: 0 0 10px;
+  width: 100%;
+  table-layout: fixed;
+}
+.ce-edit-area th,
+.ce-edit-area td,
+.ce-doc-table th,
+.ce-doc-table td {
+  border: 1px solid var(--scripta-border);
+  padding: 5px 8px;
+  vertical-align: top;
+  text-align: left;
+}
+.ce-edit-area th,
+.ce-doc-table th {
+  background: var(--scripta-surface-2);
+  font-weight: 600;
+}
+.ce-edit-area th p,
+.ce-edit-area td p,
+.ce-doc-table th p,
+.ce-doc-table td p {
+  margin: 0;
+}
+/* The cell the caret is in, while a table is being edited. */
+.ce-edit-area .selectedCell {
+  background: var(--scripta-selected);
+}
+
+/* The link bar drops below the toolbar when Link is pressed. */
+.ce-link-bar {
+  flex-basis: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 2px 2px;
+}
+.ce-link-bar input {
+  flex: 1;
+  padding: 5px 9px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+.ce-link-bar input:focus {
+  border-color: var(--scripta-brand);
+}
+.ce-link-bar button {
+  padding: 5px 11px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* The front of the contract — cover page and preamble — typeset in the
+   editor as the export sets it, so what is read here is what leaves in the
+   Word and PDF copies. It sits in the same node container as every clause,
+   but its body is the page itself rather than a grey card: Arial, justified,
+   the parties hanging from their numbers, the type in bold. */
+.ce-front {
+  background: var(--scripta-surface);
+}
+.ce-front-body {
+  border-top: 1px solid var(--scripta-rule);
+}
+/*
+ * The whole sheet at a glance, and the width used rather than left blank.
+ *
+ * The page is drawn to A4 proportions, so filling the column made it as tall
+ * as the column was wide — on a wide monitor a metre of paper you had to
+ * scroll to read, when the one thing it is for is judging where a title sits
+ * against a letterhead. That judgement needs the whole page in view at once.
+ *
+ * So the page is sized by HEIGHT and its width follows from the aspect ratio.
+ * That leaves room beside it on a big screen, which the body then uses for the
+ * controls instead of stacking them underneath.
+ */
+.ce-front-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 20px;
+  align-items: start;
+}
+
+@container mfile (min-width: 1100px) {
+  .ce-front-body {
+    grid-template-columns: auto minmax(240px, 1fr);
+  }
+  .ce-front-body > .ce-front-sheet {
+    grid-row: 1 / span 3;
+  }
+}
+
+.ce-front-sheet {
+  /* Centred, now that it is narrower than its container: sized by height it
+     no longer fills the card, and a fixed left margin left it hugging one
+     edge with a hand's width of nothing beside it. */
+  margin: 16px auto 10px;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-paper, var(--scripta-surface));
+  box-shadow:  var(--scripta-shadow-pop);
+}
+.ce-front-page {
+  position: relative;
+  padding: 30px 48px 26px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font:
+    400 13.5px/1.55 Arial,
+    Helvetica,
+    sans-serif;
+}
+.ce-front-page-cover {
+  /* The printed page's proportions, so a position here is a position there. */
+  aspect-ratio: 11910 / 16845;
+  /* Sized by height so the whole sheet is on screen; the width follows. */
+  height: min(74vh, 760px);
+  width: auto;
+  max-width: 100%;
+  min-height: 0;
+  padding: 0;
+  background-color: var(--scripta-paper, var(--scripta-surface));
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  overflow: hidden;
+  touch-action: none;
+}
+.ce-front-page.has-paper:not(.ce-front-page-cover) {
+  /* Page two on the firm's paper: a whole sheet, the continuation mark
+     behind the preamble, so the header and footer fall where they print. */
+  aspect-ratio: 11910 / 16845;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+}
+.ce-front-page-cover.is-placing {
+  cursor: default;
+}
+/* The title sits on page one where it will print: an absolute slot at the
+   page's side margins, its top the chosen share of the way down the text
+   area. While the cover is being edited the slot is the handle. */
+.ce-front-cover-slot {
+  position: absolute;
+  left: 12.1%;
+  right: 12.1%;
+}
+.ce-front-cover-slot.is-draggable {
+  cursor: grab;
+  user-select: none;
+}
+.ce-front-cover-slot.is-draggable:active {
+  cursor: grabbing;
+}
+.ce-front-cover-slot.is-draggable .ce-front-part {
+  outline: 1px dashed var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 6px;
+  background: color-mix(in srgb, var(--scripta-surface) 82%, transparent);
+}
+.ce-front-cover-slot .ce-front-part {
+  margin: 0;
+  padding: 3px 0;
+}
+.ce-front-cover-slot .ce-front-tools {
+  top: -30px;
+}
+.ce-front-cover-mark {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 10px);
+  transform: translateY(-50%);
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 600 10.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ce-front-guides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ce-front-guides > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed color-mix(in srgb, var(--scripta-teal, var(--scripta-brand)) 55%, transparent);
+}
+.ce-front-guides > span > i {
+  position: absolute;
+  top: 3px;
+  right: 8px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font:
+    500 9px/1 var(--scripta-font-mono);
+  font-style: normal;
+  letter-spacing: 0;
+}
+.ce-front-sheet > .ce-front-form {
+  margin: 0 16px 16px;
+}
+
+/* Placing the title: presets, a slider for precision, and the paper it is
+   placed against. */
+.ce-front-place {
+  display: grid;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+.ce-front-place-label {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11px;
+  font-weight: 500;
+}
+.ce-front-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ce-front-presets button {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 999px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: var(--scripta-surface);
+  font: 500 11.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: pointer;
+}
+.ce-front-presets button.is-on {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  color: #fff;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+.ce-front-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+}
+.ce-front-slider input {
+  flex: 1;
+  min-width: 120px;
+  max-width: 260px;
+  accent-color: var(--scripta-teal, var(--scripta-brand));
+}
+/* On the card, under the page: a bordered strip so it reads as a control for
+   the document rather than as a caption. Inside the edit form it keeps the
+   plainer look, since the form is already a panel. */
+.ce-front-page + .ce-front-paper,
+.ce-front-sheet + .ce-front-paper,
+.ce-front-body > .ce-front-paper {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  font-size: 12px;
+}
+.ce-front-paper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+}
+.ce-front-paper b {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}
+.ce-front-upload {
+  height: 26px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: var(--scripta-surface);
+  font: 500 11.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: pointer;
+}
+.ce-front-upload.is-busy {
+  opacity: 0.6;
+  cursor: progress;
+}
+.ce-front-upload svg {
+  width: 12px;
+  height: 12px;
+}
+.ce-front-upload-error {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+/* What the table of contents will list, said beneath the front of the
+   contract, with the offer to head the sub-clauses it cannot list yet. */
+.ce-toc-note {
+  width: 100%;
+  max-width: 870px;
+  margin-inline: auto;
+  padding: 14px 16px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  font-family: var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+.ce-toc-note-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.ce-toc-note-icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex: none;
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+.ce-toc-note-copy {
+  flex: 1;
+  min-width: 0;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 13px;
+}
+.ce-toc-note-copy strong {
+  font-weight: 600;
+}
+.ce-toc-note-where {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+.ce-toc-note-copy p {
+  margin: 4px 0 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.ce-toc-note .ce-front-edit {
+  flex: none;
+  height: 28px;
+}
+.ce-toc-note-done {
+  margin: 10px 0 0;
+  color: var(--scripta-success, #1f7a4d);
+  font-size: 12.5px;
+}
+.ce-toc-note .ce-front-error {
+  margin: 10px 0 0;
+}
+.ce-toc-proposals {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+.ce-toc-proposals-lead {
+  margin: 0 0 10px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+.ce-toc-proposals ul {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.ce-toc-proposals li {
+  display: grid;
+  grid-template-columns: 16px 40px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+}
+.ce-toc-proposals li.is-dropped .ce-toc-proposal {
+  opacity: 0.45;
+}
+.ce-toc-proposals input[type="checkbox"] {
+  margin: 8px 0 0;
+  accent-color: var(--scripta-teal, var(--scripta-brand));
+}
+.ce-toc-num {
+  padding-top: 7px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font:
+    500 12px/1.4 var(--scripta-font-mono);
+}
+.ce-toc-proposal {
+  min-width: 0;
+}
+.ce-toc-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 9px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: var(--scripta-radius, 6px);
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: var(--scripta-surface);
+  font: 500 13px/1.4 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+.ce-toc-title:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+}
+.ce-toc-proposal small {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ce-front-folio {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font:
+    500 9.5px/1 var(--scripta-font-mono);
+  letter-spacing: 0;
+}
+.ce-front-break {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font:
+    500 9.5px/1 var(--scripta-font-mono);
+  letter-spacing: 0;
+}
+.ce-front-break::before,
+.ce-front-break::after {
+  content: "";
+  flex: 1;
+  border-top: 1px dashed var(--scripta-rule, var(--scripta-rule));
+}
+.ce-front-continues {
+  margin: 18px 0 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font:
+    500 9.5px/1 var(--scripta-font-mono);
+  letter-spacing: 0;
+}
+
+/* A part: one or more lines the lawyer can select, and where it carries
+   meaning, edit in place. Selection is a teal edge, not a card. */
+.ce-front-part {
+  position: relative;
+  margin: 0 -14px;
+  padding: 3px 14px;
+  border-radius: 6px;
+  transition: background 120ms ease;
+}
+.ce-front-part:hover,
+.ce-front-part.is-selected {
+  background: color-mix(in srgb, var(--scripta-teal, var(--scripta-brand)) 6%, var(--scripta-surface));
+}
+.ce-front-part.is-selected {
+  box-shadow: inset 2px 0 0 var(--scripta-teal, #1f6f6b);
+}
+.ce-front-part.is-fixed:hover {
+  background: transparent;
+}
+.ce-front-part.is-fixed.is-selected {
+  background: var(--scripta-surface);
+  box-shadow: inset 2px 0 0 var(--scripta-rule, #e3e6ea);
+}
+.ce-front-part.is-editing {
+  background: transparent;
+  box-shadow: inset 2px 0 0 var(--scripta-teal, #1f6f6b);
+}
+.ce-front-blank {
+  height: 1.55em;
+}
+.ce-front-line {
+  margin: 0;
+  text-align: justify;
+}
+.ce-front-line.is-left {
+  text-align: left;
+}
+.ce-front-line.is-centred {
+  text-align: center;
+}
+.ce-front-line.is-strong,
+.ce-front-line b {
+  font-weight: 700;
+}
+.ce-front-line.is-cover {
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+.ce-front-line.is-framed {
+  padding: 9px 0;
+  border-top: 1px solid var(--scripta-brand);
+  border-bottom: 1px solid var(--scripta-brand);
+}
+.ce-front-line.is-blank {
+  min-height: 1.55em;
+}
+.ce-front-line.is-hanging {
+  display: grid;
+  grid-template-columns: 2.95em minmax(0, 1fr);
+}
+.ce-front-line sup {
+  font-size: 0.65em;
+  line-height: 0;
+  vertical-align: 0.4em;
+}
+.ce-front-gap {
+  padding: 0 3px;
+  border-radius: 3px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  background: color-mix(in srgb, var(--scripta-teal, var(--scripta-brand)) 12%, var(--scripta-surface));
+  font-weight: 500;
+}
+
+/* The tools a selected part offers, in the interface face rather than the page's. */
+.ce-front-tools {
+  position: absolute;
+  top: -12px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  font-family: var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+.ce-front-edit {
+  height: 24px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--scripta-teal, var(--scripta-brand));
+  border-radius: 6px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-surface);
+  font: 500 11.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: pointer;
+}
+.ce-front-edit:hover {
+  color: #fff;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+.ce-front-edit svg {
+  width: 12px;
+  height: 12px;
+}
+.ce-front-fixed {
+  height: 22px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 999px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  background: var(--scripta-surface);
+  font: 500 10.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: help;
+}
+
+/* The form a part opens beneath itself. */
+.ce-front-form {
+  margin: 10px 0 6px;
+  padding: 12px 14px 12px;
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font-family: var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  text-align: left;
+}
+.ce-front-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.ce-front-field {
+  display: block;
+  min-width: 0;
+}
+.ce-front-field-wide {
+  grid-column: 1 / -1;
+}
+.ce-front-field > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11px;
+  font-weight: 500;
+}
+.ce-front-field input,
+.ce-front-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 9px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: var(--scripta-radius, 6px);
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: var(--scripta-surface);
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  resize: vertical;
+}
+.ce-front-field input:focus-visible,
+.ce-front-field textarea:focus-visible,
+.ce-front-save:focus-visible,
+.ce-front-cancel:focus-visible,
+.ce-front-edit:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+}
+.ce-front-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ce-front-save,
+.ce-front-cancel {
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid var(--scripta-brand);
+  border-radius: var(--scripta-radius, 6px);
+  color: #fff;
+  background: var(--scripta-brand);
+  font: 500 12.5px/1 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  cursor: pointer;
+}
+.ce-front-cancel {
+  border-color: transparent;
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: transparent;
+}
+.ce-front-cancel:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+.ce-front-save:disabled,
+.ce-front-cancel:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.ce-front-hint {
+  margin-left: auto;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11px;
+}
+.ce-front-note {
+  margin: 0 16px 14px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 400 11.5px/1.5 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+.ce-front-error {
+  margin: 12px 16px 0;
+  padding: 9px 12px;
+  border: 1px solid #e6cfc9;
+  border-radius: 6px;
+  color: var(--scripta-error, var(--scripta-risk));
+  background: var(--scripta-risk-bg);
+  font: 400 12.5px/1.5 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ce-front-part {
+    transition: none;
+  }
+}

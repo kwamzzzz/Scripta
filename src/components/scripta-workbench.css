@@ -1,0 +1,209 @@
+/* Shared patterns adopted as the remaining workspaces are reviewed. */
+.scripta-page {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 32px;
+  color: var(--scripta-ink);
+  background: var(--scripta-paper);
+  container: scripta-page / inline-size;
+}
+.scripta-page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.scripta-page-title {
+  margin: 0;
+  color: var(--scripta-ink);
+  font: 400 28px/1.25 var(--scripta-font-display);
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+.scripta-page-description {
+  max-width: 70ch;
+  margin: 8px 0 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.scripta-page-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.scripta-section {
+  padding: 24px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+.scripta-section-title {
+  margin: 0 0 16px;
+  font: 600 15px/1.5 var(--scripta-font-ui);
+  color: var(--scripta-ink);
+}
+.scripta-form-field {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.scripta-form-field small {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.scripta-shell .scripta-input,
+.scripta-form-field input:not([type="checkbox"]):not([type="radio"]),
+.scripta-form-field select,
+.scripta-form-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: var(--scripta-radius);
+  color: var(--scripta-ink);
+  background: var(--scripta-paper);
+  font: 400 14px/1.5 var(--scripta-font-ui);
+  box-shadow: none;
+}
+.scripta-form-field textarea {
+  resize: vertical;
+}
+.scripta-form-field input::placeholder,
+.scripta-form-field textarea::placeholder {
+  color: var(--scripta-placeholder);
+}
+.scripta-form-field input:focus,
+.scripta-form-field select:focus,
+.scripta-form-field textarea:focus {
+  border-color: var(--scripta-teal);
+}
+.scripta-shell .px-btn,
+.scripta-shell .wf-button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: var(--scripta-radius);
+  color: var(--scripta-ink);
+  background: var(--scripta-paper) !important;
+  border: 1px solid var(--scripta-border);
+  font: 500 13px/1.4 var(--scripta-font-ui);
+  box-shadow: none !important;
+  transform: none;
+}
+.scripta-shell .px-btn:hover:not(:disabled),
+.scripta-shell .wf-button:hover:not(:disabled) {
+  border-color: var(--scripta-teal) !important;
+  color: var(--scripta-ink);
+  box-shadow: none !important;
+  transform: none;
+}
+.scripta-shell .px-btn-primary,
+.scripta-shell .wf-button-solid {
+  color: var(--scripta-paper) !important;
+  background: var(--scripta-brand) !important;
+  border-color: var(--scripta-brand) !important;
+  box-shadow: none !important;
+}
+.scripta-shell .px-btn-primary:hover:not(:disabled),
+.scripta-shell .wf-button-solid:hover:not(:disabled) {
+  background: var(--scripta-brand-hover) !important;
+  border-color: var(--scripta-ink-hover) !important;
+}
+.scripta-shell .px-btn-quiet,
+.scripta-shell .wf-button-quiet {
+  border-color: transparent;
+  background: transparent !important;
+}
+.scripta-shell .px-btn-danger {
+  color: var(--scripta-error) !important;
+}
+.scripta-shell .wf-button-accent {
+  color: var(--scripta-teal) !important;
+  border-color: var(--scripta-input-edge) !important;
+}
+.scripta-shell .wf-button-green {
+  color: var(--scripta-success) !important;
+}
+.scripta-shell .px-btn:disabled,
+.scripta-shell .wf-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.scripta-shell .px-panel {
+  border-color: var(--scripta-rule);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper) !important;
+  box-shadow: none !important;
+}
+.scripta-shell .px-panel:hover {
+  box-shadow: none !important;
+  transform: none;
+}
+.scripta-shell .px-panel-header {
+  background: var(--scripta-paper) !important;
+  color: var(--scripta-ink);
+  border-bottom-color: var(--scripta-rule);
+  box-shadow: none;
+}
+.scripta-shell .px-link {
+  color: var(--scripta-teal) !important;
+}
+.scripta-shell .px-empty-state {
+  min-width: 0;
+  padding: 48px 24px;
+}
+.scripta-shell .px-empty-state-content {
+  max-width: 480px;
+}
+.scripta-shell .px-empty-state-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--scripta-ink);
+}
+.scripta-shell .px-empty-state-actions {
+  flex-wrap: wrap;
+}
+.scripta-shell .px-skeleton {
+  background: #eef1f2 !important;
+  box-shadow: none;
+}
+.scripta-shell .wf-tabrow {
+  gap: 20px !important;
+}
+.scripta-shell .wf-tab,
+.scripta-shell .wf-tabrow .px-tab {
+  color: var(--scripta-muted);
+  background: var(--scripta-paper);
+  box-shadow: none;
+}
+.scripta-shell .wf-tab.is-active {
+  color: var(--scripta-ink) !important;
+  border-bottom-color: transparent;
+  box-shadow: inset 0 -2px 0 var(--scripta-teal) !important;
+}
+@container scripta-page (max-width: 560px) {
+  .scripta-page-heading {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .scripta-page-title {
+    font-size: 26px;
+  }
+}
+@media (max-width: 760px) {
+  .scripta-page {
+    padding: 24px 20px;
+  }
+  .scripta-form-field input:not([type="checkbox"]):not([type="radio"]),
+  .scripta-form-field select,
+  .scripta-form-field textarea {
+    font-size: 16px;
+  }
+}

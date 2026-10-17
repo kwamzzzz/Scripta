@@ -1,0 +1,138 @@
+/* Keeping a piece of drafting that worked. */
+.sp-dialog {
+  width: 520px;
+  max-width: calc(100vw - 40px);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-modal);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+}
+.sp-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.sp-head strong {
+  font-size: 15px;
+}
+.sp-head span {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+.sp-intro {
+  margin: 0;
+  color: var(--scripta-text-2);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.sp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 0;
+}
+.sp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.sp-field input,
+.sp-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--scripta-ink);
+  resize: vertical;
+}
+.sp-field input:focus,
+.sp-field textarea:focus {
+  outline: none;
+  border-color: var(--scripta-border);
+}
+.sp-help {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--scripta-muted);
+  line-height: 1.5;
+}
+.sp-statuses {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.sp-status {
+  border: 1px solid var(--scripta-border);
+  border-radius: 999px;
+  background: var(--scripta-surface);
+  padding: 4px 11px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.sp-status.is-on {
+  border-color: var(--scripta-brand);
+  box-shadow: inset 0 0 0 1px #232323;
+  font-weight: 600;
+}
+.sp-known {
+  border-left: 2px solid var(--scripta-rule);
+  padding-left: 9px;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+.sp-similar {
+  border: 1px solid #f0e2c2;
+  background: #fdfaf2;
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-size: 12px;
+  color: #5a4a22;
+}
+.sp-similar strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.sp-similar ul {
+  margin: 0 0 5px;
+  padding-left: 16px;
+  line-height: 1.6;
+}
+.sp-similar ul span {
+  color: #8a7a52;
+}
+.sp-similar > span {
+  font-size: 11.5px;
+  color: #6f5c2e;
+}
+.sp-error {
+  border: 1px solid #e7c9c9;
+  background: #fdf4f4;
+  color: #a33a3a;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 12.5px;
+}
+.sp-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}

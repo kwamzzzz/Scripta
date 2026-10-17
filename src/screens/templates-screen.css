@@ -1,0 +1,304 @@
+.templates-library-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--scripta-paper);
+  container: templates-library / inline-size;
+}
+
+.template-create {
+  flex: none;
+  max-height: 65%;
+  overflow: auto;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.template-create h2 {
+  margin: 0 0 20px;
+  color: var(--scripta-ink);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.template-create fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.template-create-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  gap: 20px;
+  max-width: 880px;
+  margin-bottom: 20px;
+}
+
+.templates-muted,
+
+
+.templates-notice {
+  margin: 16px 0 0;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.templates-notice.is-error {
+  color: var(--scripta-error);
+}
+
+.templates-notice p {
+  margin: 0 0 12px;
+}
+
+.templates-library-notice {
+  flex: none;
+  margin: 0;
+  padding: 12px 32px;
+}
+
+.template-summary {
+  padding: 24px;
+  color: var(--scripta-ink);
+}
+
+.template-summary h2 {
+  margin: 0 28px 12px 0;
+  font: 400 21px/1.4 var(--scripta-font-display);
+  overflow-wrap: anywhere;
+}
+
+.template-summary p {
+  margin: 0 0 24px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.template-summary dl {
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.template-summary dl > div {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 16px;
+  padding: 6px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.template-summary dt {
+  color: var(--scripta-muted);
+}
+
+.template-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.template-detail-content {
+  max-width: 960px;
+}
+
+.template-detail-heading {
+  min-width: 0;
+}
+
+.template-detail-heading > div:first-child {
+  min-width: 0;
+}
+
+.template-save-note {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0 0 24px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.template-save-note p {
+  margin: 0;
+}
+
+.template-metadata {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.template-field-wide {
+  grid-column: 1 / -1;
+}
+
+.template-facts-title,
+.template-sections-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.template-count {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.template-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.template-facts li {
+  max-width: 100%;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.template-section-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.template-section {
+  display: grid;
+  gap: 20px;
+  padding: 24px 0;
+}
+
+.template-section + .template-section {
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.template-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.template-section-header h3 {
+  margin: 0;
+  color: var(--scripta-ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.template-section-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.template-optional {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.template-optional input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--scripta-teal);
+}
+
+.template-drafting textarea {
+  padding: 16px 20px;
+  font-family: var(--scripta-font-display);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.template-empty {
+  max-width: 560px;
+  margin: 0 0 20px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.template-add-section {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.template-add-section .scripta-form-field {
+  flex: 1;
+}
+
+.template-add-section .px-btn {
+  min-height: 41px;
+}
+
+@container templates-library (max-width: 560px) {
+  .template-create {
+    padding: 20px;
+  }
+
+  .template-create-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .templates-library-notice {
+    padding-inline: 20px;
+  }
+}
+
+@container scripta-page (max-width: 600px) {
+  .template-metadata {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .template-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .template-add-section {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .template-add-section .px-btn {
+    align-self: flex-start;
+  }
+
+  .template-drafting textarea {
+    padding: 12px;
+  }
+}

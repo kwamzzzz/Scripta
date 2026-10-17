@@ -1,0 +1,48 @@
+<html><body><article class="news-card">
+  <a href="https://goldbod.gov.gh/news/christian-council-visits-goldbod-to-understand-operations-and-gold-sector-reforms" class="news-card-img-link">
+    <div class="news-card-img news-card-img-logo">
+      <img src="https://goldbod.sfo3.digitaloceanspaces.com/editor-images/yDb4h3bcPGj3l3Ze0uAbHpXvptZvKO7DdVxx8Tsq.jpg" alt="Christian Council Visits GoldBod to Understand Operations and Gold Sector Reforms">
+    </div>
+  </a>
+  <div class="news-card-body">
+    <span class="news-tag">News</span>
+    <h3><a href="https://goldbod.gov.gh/news/christian-council-visits-goldbod-to-understand-operations-and-gold-sector-reforms" class="news-card-title-link">Christian Council Visits GoldBod to Understand Operations and Gold Sector Reforms</a></h3>
+    <a href="https://goldbod.gov.gh/news/christian-council-visits-goldbod-to-understand-operations-and-gold-sector-reforms" class="link-gold">Read More</a>
+  </div>
+</article>
+<article class="news-card">
+  <a href="https://goldbod.gov.gh/news/ghanas-goldbod-model-emerges-as-blueprint-for-zambias-18bn-gold-ambition" class="news-card-img-link">
+    <div class="news-card-img news-card-img-logo">
+      <img src="https://goldbod.sfo3.digitaloceanspaces.com/editor-images/0cDLY9HcShNVobnESWrdqOducPjt9x0giDdHf5qn.jpg" alt="Ghana’s GoldBod Model Emerges as Blueprint for Zambia’s $1.8bn Gold Ambition">
+    </div>
+  </a>
+  <div class="news-card-body">
+    <span class="news-tag">News</span>
+    <h3><a href="https://goldbod.gov.gh/news/ghanas-goldbod-model-emerges-as-blueprint-for-zambias-18bn-gold-ambition" class="news-card-title-link">Ghana’s GoldBod Model Emerges as Blueprint for Zambia’s $1.8bn Gold Ambition</a></h3>
+    <a href="https://goldbod.gov.gh/news/ghanas-goldbod-model-emerges-as-blueprint-for-zambias-18bn-gold-ambition" class="link-gold">Read More</a>
+  </div>
+</article>
+<article class="news-card">
+  <a href="https://goldbod.gov.gh/news/goldbod-eoco-strengthen-collaboration-against-gold-smuggling-illicit-financial-flows" class="news-card-img-link">
+    <div class="news-card-img news-card-img-logo">
+      <img src="https://goldbod.sfo3.digitaloceanspaces.com/editor-images/K4oVfxKCOdS7vuodoHrYWPx64UvWdv2JH7LymEWm.jpg" alt="GoldBod, EOCO Strengthen Collaboration Against Gold Smuggling, Illicit Financial Flows">
+    </div>
+  </a>
+  <div class="news-card-body">
+    <span class="news-tag">News</span>
+    <h3><a href="https://goldbod.gov.gh/news/goldbod-eoco-strengthen-collaboration-against-gold-smuggling-illicit-financial-flows" class="news-card-title-link">GoldBod, EOCO Strengthen Collaboration Against Gold Smuggling, Illicit Financial Flows</a></h3>
+    <a href="https://goldbod.gov.gh/news/goldbod-eoco-strengthen-collaboration-against-gold-smuggling-illicit-financial-flows" class="link-gold">Read More</a>
+  </div>
+</article>
+<article class="news-card">
+  <a href="https://goldbod.gov.gh/news/goldbods-fx-support-gives-commercial-banks-critical-liquidity-boost" class="news-card-img-link">
+    <div class="news-card-img news-card-img-logo">
+      <img src="https://goldbod.sfo3.digitaloceanspaces.com/editor-images/D8V6G7zfe9TiyxhvRf1UWeNSSVRHmZE3NALsqbDG.png" alt="GoldBod’s FX Support Gives Commercial Banks Critical Liquidity Boost">
+    </div>
+  </a>
+  <div class="news-card-body">
+    <span class="news-tag">News</span>
+    <h3><a href="https://goldbod.gov.gh/news/goldbods-fx-support-gives-commercial-banks-critical-liquidity-boost" class="news-card-title-link">GoldBod’s FX Support Gives Commercial Banks Critical Liquidity Boost</a></h3>
+    <a href="https://goldbod.gov.gh/news/goldbods-fx-support-gives-commercial-banks-critical-liquidity-boost" class="link-gold">Read More</a>
+  </div>
+</article></body></html>

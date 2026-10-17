@@ -1,0 +1,50 @@
+/* Recording something before it is forgotten. */
+.qt {
+  width: 460px;
+  max-width: calc(100vw - 40px);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.qt-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--scripta-ink);
+}
+.qt-head span {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.qt input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--scripta-ink);
+}
+.qt input:focus {
+  outline: none;
+  border-color: var(--scripta-border);
+}
+.qt-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qt-foot span {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+  line-height: 1.45;
+}

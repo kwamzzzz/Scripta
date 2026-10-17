@@ -1,0 +1,247 @@
+/* The planner: a notebook, not a list. A readable column, entries as pages. */
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 880px;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.plan-card.is-archived {
+  opacity: 0.7;
+}
+
+.plan-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.plan-card-head h3 {
+  margin: 0;
+  font: 600 14px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.plan-scope,
+.plan-for,
+.plan-hint,
+.plan-bar span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+.plan-spacer {
+  flex: 1;
+}
+
+.plan-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+/* One row per line of the plan; "Make task" shows on the line you point at. */
+.plan-lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plan-lines li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  padding: 2px 6px;
+  margin: 0 -6px;
+  border-radius: 5px;
+}
+
+.plan-lines li:hover {
+  background: var(--scripta-surface);
+}
+
+.plan-lines li.plan-gap {
+  min-height: 10px;
+}
+
+.plan-line {
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+}
+
+.plan-make {
+  flex: none;
+  visibility: hidden;
+  padding: 2px 8px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 5px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 500 12px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.plan-lines li:hover .plan-make,
+.plan-make:focus-visible,
+.plan-make:disabled {
+  visibility: visible;
+}
+
+.plan-made {
+  flex: none;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font-size: 12px;
+}
+
+/* Writing a plan. */
+.plan-editor-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.plan-scopes {
+  display: inline-flex;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.plan-scopes button {
+  padding: 5px 12px;
+  border: 0;
+  border-right: 1px solid var(--scripta-border, var(--scripta-border));
+  background: var(--scripta-surface);
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 500 12.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.plan-scopes button:last-child {
+  border-right: 0;
+}
+
+.plan-scopes button.is-on {
+  background: var(--scripta-brand);
+  color: #fff;
+}
+
+.plan-editor-head input,
+.plan-editor-head select {
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.plan-card textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  font: inherit;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+}
+
+.plan-editor-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.plan-editor-foot .plan-hint {
+  margin-right: auto;
+}
+
+.plan-bar {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.plan-bar button {
+  padding: 6px 0 10px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.plan-bar button.is-on {
+  border-bottom-color: var(--scripta-teal, var(--scripta-brand));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}
+
+.plan-empty {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+}
+
+/*
+ * Plan and Handover fill the content area the way the Tasks list's pane does,
+ * so the page scrolls inside it. Without a bounded height the inner scroller
+ * grew to its content and the frame above it clipped the rest: the wheel had
+ * nothing to scroll.
+ */
+.tasks-side {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+}
+
+/* The Tasks | Plan | Handover switch at the top of the Tasks page. */
+.tasks-switch {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.tasks-switch button {
+  padding: 6px 0 10px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 500 14px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.tasks-switch button[aria-pressed="true"] {
+  border-bottom-color: var(--scripta-teal, var(--scripta-brand));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}

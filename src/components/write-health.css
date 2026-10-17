@@ -1,0 +1,60 @@
+/* Above everything, because work is being lost while it is on screen. */
+.scripta-write-health {
+  position: fixed;
+  z-index: 60;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(720px, calc(100vw - 32px));
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e6c4bf;
+  border-radius: 8px;
+  background: #fbf0ee;
+  box-shadow:  none;
+  color: #7d2f26;
+  font: 400 12.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.scripta-write-health > svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.scripta-write-health > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.scripta-write-health strong {
+  font-weight: 600;
+}
+
+.scripta-write-health span {
+  overflow-wrap: anywhere;
+}
+
+.scripta-write-health button {
+  flex: none;
+  align-self: center;
+  border: 1px solid #e6c4bf;
+  border-radius: 6px;
+  padding: 4px 10px;
+  background: var(--scripta-surface);
+  color: #7d2f26;
+  font: inherit;
+  cursor: pointer;
+}
+
+.scripta-write-health button:hover {
+  border-color: #c98d84;
+}
+
+.scripta-write-health button.is-quiet {
+  border-color: transparent;
+  background: transparent;
+}

@@ -1,0 +1,61 @@
+/* The page at the end of an invitation link. Stands alone: it is seen before
+   the person is a member of anything, so it borrows no shell. */
+
+.join-firm {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--scripta-ground, #f6f8f8);
+}
+
+.join-firm-card {
+  width: min(520px, 100%);
+  background: var(--scripta-surface, var(--scripta-surface));
+  border: 1px solid var(--scripta-border, #c9d0cf);
+  border-radius: 8px;
+  padding: 36px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.join-firm-mark {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, #647079);
+}
+
+.join-firm-card h1 {
+  margin: 0;
+  font-family: var(--scripta-serif, Georgia, serif);
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-wrap: balance;
+}
+
+.join-firm-card p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--scripta-body, #35464f);
+}
+
+.join-firm-card strong {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}
+
+.join-firm-small {
+  font-size: 13px;
+  color: var(--scripta-muted, #647079);
+}
+
+.join-firm-error {
+  font-size: 13px;
+  color: var(--scripta-error, #a3352b);
+}

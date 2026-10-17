@@ -1,0 +1,25 @@
+/* Tracked changes, wherever a clause document is drawn: in the editor while
+   typing and in every reading after saving. Without these a struck "2" beside
+   an inserted "3" looked like "2 3", as if nothing were tracked. */
+.tc-del {
+  color: var(--scripta-risk);
+  background: var(--scripta-risk-bg);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.tc-ins {
+  color: var(--scripta-ok);
+  background: var(--scripta-ok-bg);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+/* The highlighter, wherever a clause document is drawn. Word's yellow, at the
+   weight a screen can stand to read through for an hour. `mark` also carries a
+   browser default of its own, which this replaces rather than adds to. */
+.tc-hl {
+  background: #fff3a3;
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}

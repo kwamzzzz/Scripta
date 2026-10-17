@@ -1,0 +1,266 @@
+.scripta-document-tools {
+  display: grid;
+  gap: 20px;
+}
+
+.scripta-document-text-search {
+  border-top: 1px solid var(--scripta-rule);
+  border-bottom: 1px solid var(--scripta-rule);
+  color: var(--scripta-ink);
+  font-size: 13px;
+}
+
+.scripta-document-text-search summary {
+  min-height: 44px;
+  padding: 12px 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.scripta-document-text-search summary span {
+  margin-left: 12px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.scripta-document-text-search form,
+.scripta-document-upload-controls {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.scripta-document-text-search form {
+  padding: 4px 0 20px;
+}
+
+.scripta-document-text-search .scripta-form-field,
+.scripta-document-upload-controls .scripta-form-field {
+  flex: 1 1 240px;
+}
+
+.scripta-document-text-search .scripta-form-field {
+  max-width: 560px;
+}
+
+.scripta-document-upload {
+  padding: 20px 0;
+  border-top: 1px solid var(--scripta-rule);
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.scripta-document-upload h2 {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.scripta-document-note,
+.scripta-document-feedback {
+  margin: 10px 0 0;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.scripta-document-feedback {
+  flex: 1 1 100%;
+}
+
+.scripta-document-feedback.is-error {
+  color: var(--scripta-error);
+}
+
+.scripta-document-feedback.is-success {
+  color: var(--scripta-success);
+}
+
+.scripta-document-detail {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font-size: 13px;
+  line-height: 1.55;
+  container: document-detail / inline-size;
+}
+
+.scripta-document-detail > header {
+  padding-right: 28px;
+}
+
+.scripta-document-detail h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.scripta-document-detail > header p {
+  margin: 8px 0 0;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+
+.scripta-document-detail h3 {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.scripta-document-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scripta-document-section {
+  padding-top: 24px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.scripta-document-fields {
+  display: grid;
+  gap: 16px;
+}
+
+.scripta-document-fields h3 {
+  margin-bottom: 0;
+}
+
+.scripta-document-field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.scripta-document-field {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+
+.scripta-document-field input,
+.scripta-document-field select,
+.scripta-document-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: 6px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+  font: 400 13px/1.5 var(--scripta-font-ui);
+}
+
+.scripta-document-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.scripta-document-unsaved {
+  color: #805314;
+  font-size: 12px;
+}
+
+.scripta-document-processing-status {
+  margin: 0 0 12px;
+}
+
+.scripta-document-version-upload {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.scripta-document-version-upload > .wf-button {
+  justify-self: start;
+}
+
+.scripta-document-history {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scripta-document-history li {
+  padding: 16px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.scripta-document-history header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.scripta-document-history strong {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.scripta-document-history header span,
+.scripta-document-history p {
+  color: var(--scripta-muted);
+  font-size: 12px;
+}
+
+.scripta-document-history p {
+  margin: 6px 0;
+}
+
+.scripta-document-history .scripta-document-actions {
+  margin-top: 10px;
+}
+
+.scripta-document-record {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 10px 12px;
+  margin: 0 0 16px;
+  font-size: 12px;
+}
+
+.scripta-document-record dt {
+  color: var(--scripta-muted);
+}
+
+.scripta-document-record dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.scripta-document-detail input:focus-visible,
+.scripta-document-detail select:focus-visible,
+.scripta-document-detail textarea:focus-visible,
+.scripta-document-text-search summary:focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 2px;
+}
+
+@container document-detail (max-width: 370px) {
+  .scripta-document-field-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .scripta-document-field input,
+  .scripta-document-field select,
+  .scripta-document-field textarea {
+    font-size: 16px;
+  }
+}

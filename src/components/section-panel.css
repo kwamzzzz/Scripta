@@ -1,0 +1,171 @@
+/*
+ * The section panel: the second level of navigation, beside the icon rail.
+ *
+ * One token set, two tones. Light is the app; dark is Learning, which is the
+ * one area of Scripta that goes near-black. Nothing below names a colour
+ * outside the two blocks at the top, so re-toning the panel is one edit.
+ */
+
+.sp {
+  --sp-bg: var(--scripta-surface);
+  --sp-rule: var(--scripta-rule);
+  --sp-heading: var(--scripta-ink);
+  --sp-link: var(--scripta-text-2);
+  --sp-muted: var(--scripta-muted);
+  --sp-hover: var(--scripta-hover);
+  --sp-active-bg: var(--scripta-selected);
+  --sp-active-ink: var(--scripta-brand);
+  --sp-mono: var(--scripta-font-mono);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  background: var(--sp-bg);
+}
+
+/* v2: no dark tone. Kept so data-tone="dark" callers still render, in the light set. */
+.sp[data-tone="dark"] {
+  --sp-bg: var(--scripta-surface);
+  --sp-rule: var(--scripta-rule);
+  --sp-heading: var(--scripta-ink);
+  --sp-link: var(--scripta-text-2);
+  --sp-muted: var(--scripta-muted);
+  --sp-hover: var(--scripta-hover);
+  --sp-active-bg: var(--scripta-selected);
+  --sp-active-ink: var(--scripta-brand);
+}
+
+.sp-head {
+  flex: none;
+  padding: 13px 16px 11px;
+  border-bottom: 1px solid var(--sp-rule);
+}
+
+.sp-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--sp-heading);
+}
+
+.sp-meta {
+  margin-top: 3px;
+  font: 500 9px var(--sp-mono);
+  letter-spacing: 0;
+  color: var(--sp-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sp-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 10px 12px;
+}
+
+/* Where things go, rather than what you filter by: set apart at the foot. */
+.sp-group[data-aside] {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--sp-rule);
+}
+
+.sp-heading {
+  padding: 10px 8px 4px;
+  font: 500 9.5px var(--sp-mono);
+  letter-spacing: 0;
+  color: var(--sp-muted);
+}
+
+.sp-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  font-size: 12.5px;
+  color: var(--sp-link);
+  cursor: pointer;
+  transition:
+    background 130ms ease,
+    color 130ms ease;
+}
+
+.sp-link:hover:not(:disabled) {
+  background: var(--sp-hover);
+  color: var(--sp-heading);
+}
+
+/* The active row is a fill and nothing else — no accent edge bar. */
+.sp-link[aria-current="true"] {
+  background: var(--sp-active-bg);
+  color: var(--sp-active-ink);
+  font-weight: 500;
+}
+
+.sp-link:disabled {
+  color: var(--sp-muted);
+  cursor: default;
+}
+
+.sp-link:focus-visible {
+  outline: 2px solid var(--sp-active-ink);
+  outline-offset: 1px;
+}
+
+.sp-icon {
+  flex: none;
+  display: inline-flex;
+  color: var(--sp-muted);
+}
+
+.sp-tick {
+  flex: none;
+  width: 12px;
+  font-size: 11px;
+  color: var(--sp-muted);
+}
+
+.sp-tick[data-on] {
+  color: var(--sp-active-ink);
+}
+
+.sp-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sp-count {
+  flex: none;
+  font: 500 10px var(--sp-mono);
+  color: var(--sp-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sp-link[aria-current="true"] .sp-count {
+  color: var(--sp-active-ink);
+}
+
+.sp-foot {
+  flex: none;
+  border-top: 1px solid var(--sp-rule);
+  padding: 10px 16px 12px;
+  font: 500 9.5px var(--sp-mono);
+  letter-spacing: 0;
+  color: var(--sp-muted);
+}
+
+.sp-foot b {
+  color: var(--sp-heading);
+  font-weight: 600;
+}

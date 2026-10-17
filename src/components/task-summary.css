@@ -1,0 +1,80 @@
+/* What needs you, on the Dashboard. */
+.task-summary {
+  border: 1px solid var(--scripta-edge, var(--scripta-rule));
+  border-radius: var(--scripta-radius-lg);
+  background: var(--scripta-surface);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.task-summary-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.task-summary-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.task-summary-clear {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--scripta-muted);
+  line-height: 1.6;
+}
+.task-summary-clear kbd {
+  font: inherit;
+  font-size: 11px;
+  border: 1px solid var(--scripta-rule);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0 4px;
+  margin: 0 1px;
+  background: var(--scripta-surface);
+}
+.task-summary-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--scripta-divider);
+}
+.task-summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.task-summary-list li + li {
+  border-top: 1px solid var(--scripta-divider);
+}
+.task-summary-list button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  font: inherit;
+}
+.task-summary-list button:hover .task-summary-title {
+  text-decoration: underline;
+}
+.task-summary-title {
+  font-size: 13px;
+  color: var(--scripta-ink);
+  line-height: 1.45;
+}
+.task-summary-meta {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+

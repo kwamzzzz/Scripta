@@ -1,0 +1,180 @@
+/* Presets: families of reusable matter structures, and the editor for one. */
+
+.mf-preset-family {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  overflow: hidden;
+}
+.mf-preset-family-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--scripta-surface-2);
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.mf-preset-variant {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) minmax(200px, 1.3fr) 120px 110px 130px;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}
+.mf-preset-variant:last-child {
+  border-bottom: 0;
+}
+.mf-preset-variant.is-empty {
+  display: block;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  padding: 14px;
+}
+.mf-preset-empty {
+  border: 1px dashed var(--scripta-border);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.mf-preset-error {
+  border: 1px solid #e7c9c9;
+  background: #fdf4f4;
+  color: #a33a3a;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 12.5px;
+}
+
+/* ------------------------------------------------------------- editor */
+.mf-preset-editor {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mf-preset-phase {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  overflow: hidden;
+}
+.mf-preset-phase-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.mf-preset-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}
+.mf-preset-item:last-child {
+  border-bottom: 0;
+}
+.mf-preset-add {
+  display: flex;
+  gap: 8px;
+  padding: 9px 14px;
+  background: var(--scripta-surface);
+}
+.mf-preset-note {
+  border-left: 2px solid #e3c88a;
+  background: #fdfaf2;
+  color: #6f5c2e;
+  padding: 5px 9px;
+  border-radius: 0 5px 5px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.mf-preset-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px dashed var(--scripta-border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  color: #767676;
+  font-size: 11px;
+}
+.mf-preset-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 9px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+}
+.mf-preset-title {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin: 2px 0 0 -7px;
+  padding: 3px 7px;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--scripta-ink);
+  background: transparent;
+}
+.mf-preset-summary {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin: 2px 0 0 -7px;
+  padding: 3px 7px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-text-2);
+  background: transparent;
+}
+.mf-preset-title:hover,
+.mf-preset-summary:hover {
+  border-color: var(--scripta-rule);
+}
+.mf-preset-title:focus,
+.mf-preset-summary:focus {
+  outline: none;
+  border-color: var(--scripta-border);
+  background: var(--scripta-surface);
+}
+.mf-preset-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 26px;
+  padding: 8px 12px;
+  border: 1px solid #cfe0cf;
+  background: #f5faf5;
+  border-radius: 7px;
+  color: #3f6b45;
+  font-size: 12.5px;
+}
+.mf-preset-notice span {
+  flex: 1;
+  min-width: 0;
+}

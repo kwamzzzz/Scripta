@@ -1,0 +1,505 @@
+/* People, authority and questions about a client's organisation. Built on the
+   shared organisation panels; only what these screens add lives here. */
+
+/* ------------------------------------------------------------------ people */
+
+.gv-search {
+  width: 180px;
+  padding: 5px 9px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.gv-search:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.og-rows > li:has(> .gv-person) {
+  padding: 0;
+}
+
+.gv-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.gv-person:hover {
+  background: var(--scripta-selected);
+}
+
+.gv-person.is-selected {
+  border-color: var(--scripta-selected);
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.gv-person:focus-visible,
+.gv-cell-link:focus-visible,
+.gv-shelf-card:focus-visible,
+.gv-question:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.gv-cell-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gv-cell-link:hover {
+  text-decoration: underline;
+}
+
+.gv-resp td:first-child .gv-cell-link {
+  font-weight: 600;
+}
+
+.gv-flag-cell {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.gv-vacant,
+.gv-gap {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.gv-caption {
+  margin: 10px 0 0;
+}
+
+.gv-matrix > .gv-caption {
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.gv-aside-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.gv-notes {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--scripta-ink);
+  white-space: pre-wrap;
+}
+
+.gv-ctx {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.gv-ctx-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.gv-ctx-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gv-ctx-row {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.gv-ctx-row.is-past {
+  opacity: 0.7;
+}
+
+.gv-inline-chip {
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+
+/* --------------------------------------------------------------- authority */
+
+.gv-asat {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gv-asat select {
+  margin-left: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.gv-matrix {
+  overflow-x: auto;
+}
+
+.gv-matrix .og-table td {
+  min-width: 110px;
+}
+
+.gv-matter-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.gv-matter-meta:empty {
+  display: none;
+}
+
+/* Inferred rows read as provisional: hatched rather than coloured, so the
+   distinction survives a black-and-white printout. */
+.og-table tr.gv-inferred td {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 7px,
+    rgba(201, 130, 43, 0.06) 7px 8px
+  );
+}
+
+.gv-inferred-text {
+  font-style: italic;
+}
+
+.gv-line + .gv-line {
+  margin-top: 6px;
+}
+
+.gv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gv-ladder {
+  margin: 10px 0;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font:
+    12px/1.5 var(--scripta-font-mono);
+}
+
+.gv-cover > div {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+}
+
+.gv-cover dd {
+  text-align: right;
+}
+
+.gv-source {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.gv-source-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.gv-earlier {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+/* ------------------------------------------------------------ rule dialog */
+
+.gv-parties {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+}
+
+.gv-party-step + .gv-party-step {
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.gv-party-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.gv-party-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.gv-party-row > select,
+.gv-party-row > .gv-count {
+  padding: 6px 8px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.gv-party-row > select:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.gv-count {
+  width: 58px;
+}
+
+/* ----------------------------------------------------------------- answers */
+
+.gv-chips {
+  gap: 8px;
+}
+
+.gv-question {
+  padding: 5px 12px;
+  font-size: 12.5px;
+}
+
+.gv-question.is-on {
+  border-color: var(--scripta-brand);
+  background: var(--scripta-brand);
+  color: #fff;
+}
+
+.gv-lead {
+  margin: 0;
+}
+
+.gv-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gv-answer.is-compact {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.gv-sections {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gv-sections > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.gv-sections dt {
+  padding-top: 2px;
+  font:
+    500 10.5px/1.5 var(--scripta-font-mono);
+  letter-spacing: 0.05em;
+  color: var(--scripta-muted, var(--scripta-muted));
+  overflow-wrap: anywhere;
+}
+
+.gv-sections dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.gv-answer.is-compact .gv-sections > div {
+  grid-template-columns: 92px minmax(0, 1fr);
+}
+
+.gv-gaps {
+  margin: 0;
+  padding: 8px 12px 8px 26px;
+  border: 1px solid #ecd9b0;
+  border-radius: 6px;
+  background: #fdf8ee;
+  font-size: 12.5px;
+  color: #6d4f16;
+}
+
+.gv-based {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.gv-source-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.gv-answer-panel .og-panel-head h3 {
+  font-weight: 500;
+}
+
+.gv-asked {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gv-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.gv-composer-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gv-composer textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.gv-composer textarea:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------------- shelf */
+
+.gv-shelf {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gv-shelf + .gv-shelf {
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.gv-shelf-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease;
+}
+
+.gv-shelf-card:hover {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+}
+
+.gv-shelf-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gv-steps {
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: var(--scripta-ink);
+}
+
+.gv-step {
+  padding: 1px 6px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.gv-shelf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12.5px;
+}
+
+.gv-shelf-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.gv-shelf-list li:first-child {
+  border-top: 0;
+}
+
+@container ogpage (max-width: 620px) {
+  .gv-sections > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .gv-composer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,49 @@
+/* The divider a reader drags to size a column. It sits on the header cell's
+   right edge, is quiet until the header is pointed at, and marks itself
+   clearly while it is being dragged or has focus. */
+/* The header cell must be positioned (sticky or relative) to hold it. */
+.column-resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 9px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.column-resizer::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  left: 6px;
+  width: 1px;
+  background: transparent;
+  transition: background 120ms ease;
+}
+
+thead:hover .column-resizer::after {
+  background: var(--scripta-rule, var(--scripta-surface-2));
+}
+
+.column-resizer:hover::after,
+.column-resizer:focus-visible::after,
+body.is-resizing-column .column-resizer:active::after {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 5.5px;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+
+.column-resizer:focus-visible {
+  outline: none;
+}
+
+body.is-resizing-column,
+body.is-resizing-column * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}

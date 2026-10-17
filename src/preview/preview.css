@@ -1,0 +1,572 @@
+/* The document viewer: light chrome, dark stage, paper in the middle. The
+   stage is deliberately darker than the app so the document is the brightest
+   thing on the screen, the way every reading surface worth using works. */
+
+.pv {
+  width: min(1380px, 92vw);
+  height: min(90vh, 1000px);
+  display: flex;
+  flex-direction: column;
+  background: var(--scripta-surface);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+     none;
+}
+
+/* ---- top bar */
+
+.pv-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  flex: none;
+}
+
+.pv-kind {
+  flex: none;
+  font:
+    600 9.5px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  letter-spacing: 0.07em;
+  padding: 5px 7px;
+  border-radius: 5px;
+}
+
+.pv-title {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+
+.pv-title strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pv-title span {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+
+.pv-bar-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.pv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-ink);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pv-button:hover:not(:disabled) {
+  border-color: var(--scripta-brand);
+}
+
+.pv-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.pv-icon {
+  border: 0;
+  background: none;
+  color: var(--scripta-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+}
+
+.pv-icon:hover {
+  background: var(--scripta-surface-2);
+  color: var(--scripta-ink);
+}
+
+/* ---- body, filmstrip */
+
+.pv-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.pv-rail {
+  width: 152px;
+  flex: none;
+  overflow: auto;
+  background: var(--scripta-surface-2);
+  border-right: 1px solid var(--scripta-rule);
+  padding: 14px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pv-rail.is-list {
+  align-items: stretch;
+  padding: 10px 8px;
+  gap: 2px;
+}
+
+.pv-rail-sheet {
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  color: #454545;
+  padding: 7px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pv-rail-sheet:hover {
+  background: var(--scripta-surface-2);
+}
+
+.pv-rail-sheet.is-on {
+  background: var(--scripta-surface);
+  color: var(--scripta-brand);
+  font-weight: 600;
+  box-shadow:  var(--scripta-shadow-pop);
+}
+
+.pv-thumb {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font:
+    500 10px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  color: var(--scripta-muted);
+}
+
+.pv-thumb-paper {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 4px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+  line-height: 0;
+  box-shadow:  none;
+  min-height: 24px;
+}
+
+.pv-thumb-paper canvas {
+  display: block;
+  width: 116px;
+  height: auto;
+}
+
+.pv-thumb.is-on .pv-thumb-paper {
+  border-color: var(--scripta-brand);
+  box-shadow: 0 0 0 2px rgba(36, 54, 96, 0.3);
+}
+
+.pv-thumb.is-on {
+  color: var(--scripta-brand);
+  font-weight: 600;
+}
+
+/* ---- stage */
+
+.pv-stage {
+  position: relative;
+  flex: 1;
+  /* A definite width, so a page zoomed past it scrolls inside the stage
+     instead of stretching the stage — and the bar above it — to fit. */
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  /* Without this the stage grows to the height of every page at once, which
+     takes the scroll away from the pages and gives it to the screen. */
+  min-height: 0;
+  display: flex;
+  background: #2b2f34;
+}
+
+.pv-stage-inner {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: auto;
+  padding: 26px 26px 78px;
+  display: flex;
+  flex-direction: column;
+  /* Centred while it fits, and flush left once it does not: a page zoomed
+     wider than the stage is centred by overflowing BOTH sides, and its left
+     margin — where a clause's number lives — cannot be scrolled back to. */
+  align-items: safe center;
+  gap: 22px;
+}
+
+.pv-stage-inner.is-slides,
+.pv-stage-inner.is-centred {
+  justify-content: center;
+}
+
+.pv-paper {
+  flex: none;
+  position: relative;
+  background: var(--scripta-surface);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow:  none;
+}
+
+.pv-paper canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pv-paper-no {
+  display: none;
+}
+
+.pv-paper.is-text {
+  width: min(880px, 100%);
+  padding: 44px 48px;
+}
+
+.pv-paper.is-text pre {
+  margin: 0;
+  font:
+    12.5px/1.7 var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--scripta-ink);
+}
+
+.pv-image {
+  border-radius: 3px;
+  box-shadow:  none;
+  background: var(--scripta-surface);
+}
+
+.pv-state {
+  margin: auto;
+  color: #ced3da;
+  font-size: 12.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+/* ---- Word */
+
+/* Holds the room a scaled document takes up, which its transform does not. */
+.pv-word-holder {
+  flex: none;
+  position: relative;
+}
+
+.pv-word {
+  display: flex;
+  flex-direction: column;
+  align-items: safe center;
+  gap: 22px;
+}
+
+.pv-word section.docx {
+  box-shadow:  none;
+  border-radius: 3px;
+  background: var(--scripta-surface);
+}
+
+.pv-word.is-plain section.docx {
+  width: min(820px, 100%);
+  padding: 46px 54px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--scripta-ink);
+}
+
+/* ---- workbook */
+
+.pv-stage-inner.is-sheet {
+  padding: 0;
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.pv-sheet {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: var(--scripta-surface);
+  padding-bottom: 64px;
+}
+
+.pv-grid {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+  color: var(--scripta-ink);
+}
+
+.pv-grid th,
+.pv-grid td {
+  border-right: 1px solid var(--scripta-rule);
+  border-bottom: 1px solid var(--scripta-rule);
+  padding: 5px 9px;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+  max-width: 460px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pv-grid thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f3f4f5;
+  color: var(--scripta-muted);
+  text-align: center;
+  font:
+    500 10.5px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  letter-spacing: 0.04em;
+}
+
+.pv-grid-no {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #f3f4f5;
+  color: var(--scripta-muted);
+  text-align: right;
+  font:
+    500 10.5px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  min-width: 42px;
+}
+
+.pv-grid-corner {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #f3f4f5;
+  min-width: 42px;
+}
+
+.pv-grid td.is-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-note {
+  margin: 10px 12px 0;
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+
+.pv-tabs {
+  flex: none;
+  display: flex;
+  gap: 3px;
+  padding: 6px 10px;
+  background: var(--scripta-surface);
+  border-top: 1px solid var(--scripta-rule);
+  overflow: auto;
+}
+
+.pv-tabs button {
+  border: 1px solid transparent;
+  background: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 11.5px;
+  color: var(--scripta-text-2);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pv-tabs button.is-on {
+  background: var(--scripta-surface);
+  border-color: var(--scripta-border);
+  color: var(--scripta-ink);
+  font-weight: 600;
+}
+
+/* ---- the floating controls */
+
+.pv-pill {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(24, 27, 31, 0.86);
+  backdrop-filter: blur(10px);
+  box-shadow:  var(--scripta-shadow-pop);
+  color: #fff;
+  z-index: 3;
+}
+
+.pv-pill button {
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+}
+
+.pv-pill button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.pv-pill button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pv-count {
+  font:
+    500 11.5px var(--scripta-font-mono),
+    ui-monospace,
+    monospace;
+  padding: 0 7px;
+  white-space: nowrap;
+}
+
+.pv-count i {
+  font-style: normal;
+  opacity: 0.5;
+  padding: 0 2px;
+}
+
+.pv-pill-rule {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.22);
+  margin: 0 5px;
+}
+
+@media (max-width: 900px) {
+  .pv-rail {
+    display: none;
+  }
+
+  .pv-title strong {
+    max-width: 40vw;
+  }
+}
+
+/* The bar over the pages in the Final tab: paging and zoom, drawn by Scripta
+   so every browser shows the same controls. The browser's own PDF plugin
+   gave Chrome a toolbar and others a bare page. */
+.pv-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-surface);
+  /* Zoom stays reachable however far in the pages are zoomed. */
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.pv-bar-label {
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* The reading of the zoom is also the way back to it: pressed, the page
+   returns to the width of the stage. */
+.pv-bar-zoom {
+  min-width: 52px;
+  padding: 4px 2px;
+  border: 0;
+  text-align: center;
+  font:
+    500 11.5px/1 var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+  background: transparent;
+  cursor: pointer;
+}
+
+.pv-bar-zoom:hover {
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.pv-bar-gap {
+  width: 10px;
+}
+
+.pv-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+
+.pv-tool:hover:not(:disabled) {
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.pv-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+}

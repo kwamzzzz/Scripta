@@ -1,0 +1,974 @@
+/* The reviewed shared chrome. Scoped separately from legacy feature frames;
+   important declarations retire older inline and important skin treatments. */
+.scripta-shell {
+  background: var(--scripta-paper);
+  color: var(--scripta-ink);
+  font-family: var(--scripta-font-ui);
+}
+.scripta-shell .wf-main,
+.scripta-shell .wf-content,
+.scripta-shell .wf-sidebar,
+.scripta-shell .wf-topbar,
+.scripta-shell .wf-tabrow {
+  background: var(--scripta-paper) !important;
+  box-shadow: none;
+}
+.scripta-shell .wf-sidebar {
+  border-right-color: var(--scripta-rule);
+}
+.scripta-shell .wf-sidebar-identity {
+  padding: 24px 20px 20px;
+}
+.scripta-shell .wf-sidebar-logo-link .scripta-logo {
+  height: 34px;
+  max-width: 142px;
+}
+.scripta-shell .wf-sidebar-toggle,
+.scripta-shell .wf-sidebar.is-compact .wf-sidebar-toggle,
+.scripta-shell .wf-assistant-square,
+.scripta-shell .wf-focus {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper);
+  color: var(--scripta-muted);
+  box-shadow: none;
+  cursor: pointer;
+}
+.scripta-shell .wf-sidebar-toggle:hover,
+.scripta-shell .wf-assistant-square:hover,
+.scripta-shell .wf-focus:hover {
+  color: var(--scripta-ink);
+  border-color: var(--scripta-border);
+  background: var(--scripta-paper);
+  box-shadow: none;
+}
+/*
+ * Sixteen destinations and three group headings do not fit above a 780px
+ * window, and the sidebar is the one thing that should never make you hunt.
+ * These are the honest savings — a row and a heading each giving back a few
+ * pixels — rather than hiding a section to make the arithmetic work.
+ */
+.scripta-shell .scripta-nav-groups {
+  min-height: 0;
+  padding-top: 12px !important;
+  gap: 16px !important;
+}
+.scripta-shell .scripta-nav-group-label {
+  color: var(--scripta-muted) !important;
+  font: 500 10px/1.3 var(--scripta-font-ui) !important;
+  letter-spacing: 0.1em !important;
+  margin-bottom: 2px;
+}
+.scripta-shell .wf-sidebar .wf-navrow {
+  min-height: 32px;
+  padding: 6px 10px;
+  gap: 10px;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 4px;
+}
+.scripta-shell .wf-sidebar .wf-navrow-icon {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.scripta-shell .wf-sidebar .wf-navrow:hover,
+.scripta-shell .wf-sidebar .wf-railbox:hover {
+  color: var(--scripta-ink);
+  background: var(--scripta-teal-tint);
+  box-shadow: none;
+  transform: none;
+}
+.scripta-shell .wf-sidebar .wf-navrow.is-active,
+.scripta-shell .wf-sidebar .wf-railbox.is-active {
+  color: var(--scripta-ink);
+  background: var(--scripta-teal-tint);
+  box-shadow: none;
+  font-weight: 600;
+  border-color: transparent;
+}
+.scripta-shell .wf-sidebar .wf-railbox {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  flex: none;
+  border: 0;
+  color: var(--scripta-muted);
+  background: transparent;
+  box-shadow: none;
+}
+.scripta-shell .wf-railbox svg {
+  width: 18px;
+  height: 18px;
+}
+.scripta-shell .wf-sidebar.is-compact {
+  overflow-y: auto !important;
+  gap: 10px !important;
+}
+.scripta-sidebar-footer {
+  flex: none;
+  border-top: 1px solid var(--scripta-rule);
+  padding: 12px;
+}
+.scripta-shell .wf-account {
+  margin: 0;
+}
+.scripta-shell .wf-account-trigger {
+  padding: 8px;
+  background: var(--scripta-paper);
+  border-color: transparent;
+  border-radius: var(--scripta-radius);
+}
+.scripta-shell .wf-account-trigger:hover,
+.scripta-shell .wf-account-trigger[aria-expanded="true"] {
+  background: var(--scripta-paper);
+  border-color: var(--scripta-border);
+}
+.scripta-shell .wf-shell-avatar {
+  width: 30px !important;
+  height: 30px !important;
+  background: var(--scripta-brand) !important;
+  color: var(--scripta-paper) !important;
+  box-shadow: none;
+  font: 500 11px var(--scripta-font-ui) !important;
+}
+.scripta-shell .wf-account-copy strong {
+  color: var(--scripta-ink);
+  font-size: 12px;
+}
+.scripta-shell .wf-account-copy small {
+  color: var(--scripta-muted);
+  font-size: 10px;
+}
+.scripta-shell .wf-account-menu {
+  top: auto;
+  bottom: calc(100% + 8px);
+  border-color: var(--scripta-border);
+  border-radius: var(--scripta-radius);
+  box-shadow:  var(--scripta-shadow-pop);
+}
+.scripta-shell .wf-account-menu a,
+.scripta-shell .wf-account-menu button {
+  min-height: 38px;
+  font-size: 13px;
+}
+.scripta-shell .wf-account-menu a:hover,
+.scripta-shell .wf-account-menu button:hover {
+  color: var(--scripta-ink);
+  background: var(--scripta-teal-tint);
+}
+.scripta-shell .scripta-workspace-switcher {
+  margin: 0 8px;
+}
+.scripta-shell .wf-sidebar .scripta-workspace-trigger {
+  min-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px !important;
+  border: 1px solid var(--scripta-border) !important;
+  border-radius: var(--scripta-radius) !important;
+  color: var(--scripta-ink) !important;
+  background: var(--scripta-paper) !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  cursor: pointer;
+}
+.scripta-workspace-trigger > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.scripta-shell .scripta-workspace-menu {
+  max-width: calc(100vw - 40px);
+  width: 100%;
+  min-width: 0 !important;
+  border-color: var(--scripta-border) !important;
+  border-radius: var(--scripta-radius) !important;
+  overflow: hidden;
+  box-shadow:  var(--scripta-shadow-pop) !important;
+}
+.scripta-shell .scripta-workspace-option.is-selected {
+  color: var(--scripta-ink) !important;
+  background: var(--scripta-teal-tint) !important;
+}
+.scripta-shell .scripta-workspace-option:hover {
+  background: var(--scripta-teal-tint) !important;
+}
+.scripta-shell .wf-topbar {
+  height: 64px !important;
+  padding: 0 24px !important;
+  gap: 16px !important;
+  border-bottom-color: var(--scripta-rule);
+}
+.wf-topbar-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+  min-width: 0;
+  container: topbar / inline-size;
+}
+/* The trail is the only thing in the row that can give way, so it must never
+   paint under its neighbours: clip it, and let the chips hold their width. */
+.wf-topbar-content > nav[aria-label="Breadcrumb"] {
+  overflow: hidden;
+}
+.wf-topbar-content > :not(nav) {
+  flex-shrink: 0;
+}
+.fb-chip-short {
+  display: none;
+}
+/* A matter's row carries the back link, the timer and every chip at once.
+   Where that leaves the trail short of room, the chips drop their long words
+   before the matter's name is cut. Tooltips and aria-labels keep the rest. */
+@container topbar (max-width: 1080px) {
+  .wf-back .wf-back-label,
+  .wf-gemini-label,
+  .wf-gemini-readout small,
+  .fb-chip-long {
+    display: none;
+  }
+  .fb-chip-short {
+    display: inline;
+  }
+  .wf-back {
+    padding-inline: 10px !important;
+  }
+}
+.scripta-page-label {
+  color: var(--scripta-muted);
+  font-size: 13px;
+}
+.scripta-shell .wf-top-chip,
+.scripta-shell .wf-back,
+.scripta-shell .wf-top-chip:hover,
+.scripta-shell .wf-back:hover {
+  color: var(--scripta-muted) !important;
+  background: var(--scripta-paper) !important;
+  border-color: var(--scripta-rule) !important;
+  border-radius: var(--scripta-radius) !important;
+  box-shadow: none !important;
+}
+.scripta-shell .wf-top-chip {
+  padding: 8px 10px !important;
+}
+.scripta-shell .gemini-mark {
+  filter: none;
+}
+.scripta-search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 10px;
+  color: var(--scripta-muted);
+  border: 1px solid var(--scripta-border);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-paper);
+  font-size: 12px;
+  cursor: pointer;
+  flex: none;
+}
+.scripta-search-trigger kbd {
+  margin-left: 8px;
+  font: inherit;
+  color: var(--scripta-muted);
+}
+.scripta-search-trigger:hover {
+  border-color: var(--scripta-teal);
+  color: var(--scripta-ink);
+}
+.scripta-search-dialog {
+  box-shadow:  var(--scripta-shadow-modal) !important;
+  border-color: var(--scripta-border) !important;
+  border-radius: var(--scripta-radius) !important;
+  color: var(--scripta-ink);
+}
+.scripta-search-dialog :focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: -2px;
+}
+.scripta-search-input-row {
+  flex: none;
+}
+.scripta-search-input {
+  font-size: 16px !important;
+  color: var(--scripta-ink) !important;
+}
+.scripta-search-result.is-selected {
+  background: var(--scripta-teal-tint) !important;
+}
+.scripta-search-result.is-selected svg {
+  color: var(--scripta-teal);
+}
+.scripta-search-results {
+  min-height: 0;
+}
+.scripta-search-close {
+  min-height: 32px;
+  min-width: 36px;
+}
+.scripta-search-footer {
+  flex: none;
+}
+.scripta-shell .wf-assistant {
+  background: var(--scripta-paper);
+  box-shadow: none;
+  color: var(--scripta-ink);
+}
+.scripta-shell .wf-assistant-head {
+  min-height: 76px;
+  padding: 16px 24px;
+  background: var(--scripta-paper);
+  border-bottom-color: var(--scripta-rule);
+  box-shadow: none;
+}
+.scripta-shell .wf-assistant-brand .scripta-logo {
+  height: 26px;
+}
+.scripta-shell .wf-assistant-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--scripta-muted);
+}
+.scripta-shell .wf-assistant-empty {
+  justify-content: flex-start;
+  padding: 32px 24px;
+  gap: 24px;
+}
+.scripta-shell .wf-assistant-note {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--scripta-paper);
+  box-shadow: none;
+  color: var(--scripta-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.scripta-shell .wf-assistant-chip {
+  min-height: 40px;
+  padding: 10px 12px;
+  border-color: var(--scripta-border);
+  border-radius: var(--scripta-radius);
+  color: var(--scripta-ink);
+  background: var(--scripta-paper);
+  box-shadow: none;
+}
+.scripta-shell .wf-assistant-chip:hover {
+  border-color: var(--scripta-teal);
+  background: var(--scripta-paper);
+}
+.scripta-shell .wf-assistant-foot {
+  padding: 16px;
+  background: var(--scripta-paper);
+  border-top-color: var(--scripta-rule);
+  box-shadow: none;
+}
+.scripta-shell .wf-assistant-input {
+  min-height: 44px;
+  padding: 11px 12px;
+  color: var(--scripta-ink);
+  background: var(--scripta-paper);
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: var(--scripta-radius);
+  box-shadow: none;
+  font-size: 14px;
+}
+.scripta-shell .wf-assistant-input:focus {
+  border-color: var(--scripta-teal);
+  box-shadow: none;
+}
+.scripta-shell .wf-assistant-send {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--scripta-radius);
+  color: var(--scripta-paper);
+  background: var(--scripta-brand);
+  box-shadow: none;
+}
+.scripta-shell .wf-assistant-send:not(:disabled),
+.scripta-shell .wf-assistant-send:hover:not(:disabled) {
+  background: var(--scripta-brand) !important;
+  border-color: var(--scripta-brand) !important;
+  box-shadow: none !important;
+}
+.scripta-shell .wf-assistant-body .wf-scripta-you,
+.scripta-shell .wf-assistant-body .wf-scripta-card {
+  box-shadow: none;
+}
+.scripta-shell .wf-work > .wf-body > .rsp-divider {
+  background: var(--scripta-rule);
+}
+.scripta-shell .wf-work > .wf-body > .rsp-divider::after {
+  background: var(--scripta-teal);
+}
+.scripta-shell :focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 3px;
+}
+.scripta-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  border: 0;
+  padding: 0;
+  background: #12324726;
+}
+@media (max-width: 1100px) {
+  .scripta-search-trigger kbd,
+  .scripta-search-trigger > span {
+    display: none;
+  }
+  .scripta-shell .wf-topbar {
+    padding-inline: 16px !important;
+    gap: 10px !important;
+  }
+}
+@media (max-width: 760px) {
+  .scripta-shell .wf-topbar {
+    height: auto !important;
+    min-height: 64px;
+    padding: 12px !important;
+    flex-wrap: wrap;
+  }
+  .scripta-shell .wf-topbar-content {
+    flex-basis: 100%;
+    order: 2;
+    overflow-x: auto;
+    padding-block: 4px;
+  }
+  .scripta-shell .wf-topbar-content > * {
+    flex-shrink: 0;
+  }
+  .scripta-shell .scripta-search-trigger {
+    margin-left: auto;
+  }
+  .scripta-shell .scripta-search-trigger > span {
+    display: inline;
+  }
+  .scripta-shell .wf-sidebar.is-expanded {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(272px, calc(100vw - 48px)) !important;
+    z-index: 50;
+  }
+  .scripta-shell.is-mobile-nav-open > .wf-main {
+    margin-left: 64px;
+  }
+  .scripta-shell .wf-assistant-head {
+    padding: 16px;
+  }
+  .scripta-shell .wf-assistant-empty {
+    padding: 24px 16px;
+  }
+  .scripta-shell .wf-assistant-foot {
+    padding: 12px;
+  }
+  .scripta-shell .wf-assistant-input {
+    font-size: 16px;
+  }
+}
+
+.scripta-shell .scripta-workspace-option {
+  gap: 8px !important;
+  overflow-wrap: anywhere;
+}
+.scripta-shell .scripta-workspace-option > span:first-child {
+  min-width: 0;
+  flex: 1;
+}
+.scripta-shell .scripta-workspace-option > span:last-child {
+  flex: none;
+  font-size: 9px !important;
+}
+
+/* Crop the existing full lockup to its document mark in the icon rail. */
+.scripta-shell .wf-sidebar-compact-logo {
+  width: 26px;
+  justify-content: start;
+}
+.scripta-shell .wf-sidebar-compact-logo .scripta-logo {
+  width: 100px;
+  min-width: 100px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* The brief: what the panel already knows about what the lawyer is looking at.
+   It shares the panel with the thread rather than replacing it, so the answer
+   to "what does this clause do" is there before the question, and the chat is
+   still underneath for the question it did not answer. */
+.scripta-shell .wf-assistant-brief {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-paper);
+}
+/* With a brief present the empty thread stops filling the panel: the intro and
+   its chips sit under the reading instead of pushing it off the top. */
+.scripta-shell .wf-assistant.has-brief .wf-assistant-empty {
+  flex: none;
+  padding: 16px 18px;
+  gap: 12px;
+}
+.scripta-shell .wf-assistant.has-brief .wf-assistant-empty .wf-assistant-note {
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.scripta-shell .wf-assistant.has-brief .wf-assistant-body {
+  flex: 1 1 45%;
+}
+
+/*
+ * A section that is switched off.
+ *
+ * This used to read HIDDEN or GREYED in capitals on every affected row, which
+ * on an administrator's sidebar is most of them — three words of shouting next
+ * to the thing you are trying to read. Administrators get a mark and a
+ * tooltip; a member who will see the section later still gets the word, since
+ * to them it is news rather than a setting they made.
+ */
+.scripta-shell .scripta-nav-flag {
+  margin-left: auto;
+  flex: none;
+}
+
+.scripta-shell .scripta-nav-flag.is-soon {
+  font:
+    500 9px/1 var(--scripta-font-mono);
+  letter-spacing: 0.06em;
+  color: #8a857d;
+}
+
+.scripta-shell .scripta-nav-flag.is-mark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--scripta-muted, var(--scripta-border));
+  background: transparent;
+}
+
+/* Hidden is a stronger state than greyed, so it is the filled one. */
+.scripta-shell .scripta-nav-flag.is-mark.is-hidden {
+  background: var(--scripta-muted, var(--scripta-border));
+}
+
+/* When the list runs past the fold, say so: a hairline fade at the bottom
+   edge, so a destination below it is something you know to scroll for. */
+.scripta-shell .scripta-nav-groups {
+  -webkit-mask-image: linear-gradient(to bottom, var(--scripta-ink) calc(100% - 18px), transparent 100%);
+  mask-image: linear-gradient(to bottom, var(--scripta-ink) calc(100% - 18px), transparent 100%);
+}
+
+.scripta-shell .scripta-nav-groups:not(:hover) {
+  scrollbar-width: none;
+}
+
+/* The tabs of what a screen sits inside (a client's, over one of its flows or
+   matters): a quieter row above the screen's own, so both read as one place. */
+.scripta-shell .wf-tabrow.wf-tabrow-host {
+  background: var(--scripta-surface) !important;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.scripta-shell .wf-tabrow.wf-tabrow-host .wf-tab {
+  font-size: 12.5px;
+}
+
+/* Housekeeping and settings at the foot of the sidebar: set apart from the
+   places work happens, and quieter than them. */
+.scripta-shell .scripta-nav-utility {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+.scripta-shell .scripta-nav-utility .wf-navrow {
+  min-height: 30px;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.scripta-shell .scripta-nav-utility .wf-navrow.is-active {
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+/*
+ * A section's own navigation column, between the icon rail and the page: a
+ * course menu in Learning, the portal's views in Career. The shell gives it a
+ * width and a seam; what goes inside, and what colour it is, belongs to the
+ * section — Learning's is dark, Career's is not.
+ */
+.wf-panel {
+  --wf-panel-w: 232px;
+
+  width: var(--wf-panel-w);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-paper, var(--scripta-surface));
+}
+
+/*
+ * The chrome moves; the page does not.
+ *
+ * Navigation runs inside a view transition, and only these two elements are
+ * named, so the rail morphs between its two widths and the panel slides rather
+ * than the whole screen cross-fading. Naming the panel is what makes leaving a
+ * section animate at all: on the way out the element is gone, and only its
+ * snapshot is left to move.
+ */
+.wf-sidebar {
+  view-transition-name: shell-rail;
+}
+
+.wf-panel {
+  view-transition-name: shell-panel;
+}
+
+::view-transition-group(shell-rail),
+::view-transition-group(shell-panel) {
+  animation-duration: 240ms;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* The page under the chrome keeps its own pace: a short settle, not a fade. */
+::view-transition-group(root) {
+  animation-duration: 140ms;
+}
+
+::view-transition-new(shell-panel) {
+  animation: wf-panel-slide-in 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+::view-transition-old(shell-panel) {
+  animation: wf-panel-slide-out 200ms cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+
+@keyframes wf-panel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wf-panel-slide-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+/*
+ * Where the API is missing, the panel still opens on its own — the entrance is
+ * a plain CSS animation, and leaving simply cuts, as it did before.
+ */
+@supports not (view-transition-name: none) {
+  .wf-panel {
+    animation: wf-panel-open 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .wf-sidebar.is-compact {
+    animation: wf-rail-in 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}
+
+@keyframes wf-panel-open {
+  from {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    width: var(--wf-panel-w);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wf-rail-in {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* The rows inside settle a beat after the column itself. */
+.wf-panel .sp-group {
+  animation: wf-panel-settle 260ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+  animation-delay: 60ms;
+}
+
+@keyframes wf-panel-settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .wf-panel {
+    --wf-panel-w: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-panel,
+  .wf-sidebar.is-compact,
+  .wf-panel .sp-group,
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ══ Scripta Enterprise (v2): the application frame ═════════════════════
+   The sidebar and the assistant rail sit on the warm canvas; the working
+   column between them is the near-white surface. Borders carry structure;
+   nothing in the frame casts a shadow. */
+.scripta-shell,
+.scripta-shell .wf-sidebar,
+.scripta-shell .wf-panel {
+  background: var(--scripta-canvas) !important;
+}
+.scripta-shell .wf-main,
+.scripta-shell .wf-topbar,
+.scripta-shell .wf-tabrow,
+.scripta-shell .wf-content {
+  background: var(--scripta-surface) !important;
+}
+.scripta-shell .wf-sidebar,
+.scripta-shell .wf-panel {
+  border-right: 1px solid var(--scripta-rule);
+}
+
+/* Navigation: a quiet hover, a navy-tinted current row. */
+.scripta-shell .scripta-nav-group-label {
+  color: var(--scripta-muted) !important;
+  font: 500 11px/1.3 var(--scripta-font-ui) !important;
+  letter-spacing: 0 !important;
+  /* The labels are keys in app-navigation.ts (WORKSPACE, TOOLS…); they are
+     shown in sentence case without changing the data. */
+  text-transform: lowercase !important;
+  padding-left: 10px !important;
+}
+.scripta-shell .scripta-nav-group-label::first-letter {
+  text-transform: uppercase;
+}
+.scripta-shell .wf-sidebar .wf-navrow {
+  min-height: 30px;
+  padding: 5px 10px;
+  color: var(--scripta-text-2);
+  font-size: 13px;
+  border-radius: var(--scripta-radius-sm);
+}
+.scripta-shell .wf-sidebar .wf-navrow-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--scripta-muted);
+}
+.scripta-shell .wf-sidebar .wf-navrow:hover,
+.scripta-shell .wf-sidebar .wf-railbox:hover {
+  color: var(--scripta-ink);
+  background: var(--scripta-hover);
+}
+.scripta-shell .wf-sidebar .wf-navrow.is-active,
+.scripta-shell .wf-sidebar .wf-railbox.is-active {
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+  font-weight: 500;
+}
+.scripta-shell .wf-sidebar .wf-navrow.is-active .wf-navrow-icon {
+  color: var(--scripta-brand);
+}
+.scripta-shell .wf-sidebar .scripta-workspace-trigger,
+.scripta-shell .wf-account-trigger:hover,
+.scripta-shell .wf-account-trigger[aria-expanded="true"] {
+  background: var(--scripta-surface) !important;
+}
+.scripta-shell .wf-account-trigger {
+  background: transparent;
+}
+.scripta-shell .scripta-nav-utility .wf-navrow {
+  color: var(--scripta-muted);
+}
+
+/* Top bar: compact, one hairline under it. */
+.scripta-shell .wf-topbar {
+  height: 52px !important;
+  padding: 0 24px !important;
+  gap: 12px !important;
+}
+.scripta-shell .wf-top-chip,
+.scripta-shell .wf-back,
+.scripta-shell .scripta-search-trigger {
+  min-height: 32px;
+  padding: 6px 10px !important;
+  font-size: 12.5px;
+}
+.scripta-shell .scripta-search-trigger {
+  border-color: var(--scripta-rule);
+}
+.scripta-shell .scripta-search-trigger:hover {
+  border-color: var(--scripta-border);
+}
+
+/* Page header: breadcrumb, h1, lede, one primary. Geist at a working size,
+   not a display face. */
+.scripta-shell .scripta-page-heading {
+  margin-bottom: 24px;
+}
+.scripta-shell .scripta-page-title {
+  font: 600 24px/1.25 var(--scripta-font-display);
+  letter-spacing: -0.015em;
+}
+.scripta-shell .scripta-page-description {
+  margin-top: 4px;
+  color: var(--scripta-text-2);
+  line-height: 1.55;
+}
+
+/* The assistant: a persistent rail. Open, it is the resizable panel on the
+   canvas; closed, it keeps a 44px strip so it never leaves the frame. */
+.scripta-shell .wf-work {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+}
+.scripta-shell .wf-work > .wf-body {
+  flex: 1;
+  min-width: 0;
+}
+.scripta-shell .wf-assistant,
+.scripta-shell .wf-assistant-head,
+.scripta-shell .wf-assistant-foot,
+.scripta-shell .wf-assistant-note,
+.scripta-shell .wf-assistant-brief {
+  background: var(--scripta-canvas);
+}
+.scripta-shell .wf-assistant-head {
+  min-height: 52px;
+  padding: 12px 20px;
+}
+.scripta-shell .wf-assistant-empty {
+  padding: 24px 20px;
+  gap: 16px;
+}
+.scripta-shell .wf-assistant-note {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.scripta-shell .wf-assistant-chip,
+.scripta-shell .wf-assistant-input {
+  background: var(--scripta-surface);
+}
+.scripta-shell .wf-assistant-chip {
+  min-height: 32px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  border-color: var(--scripta-rule);
+}
+.scripta-shell .wf-assistant-chip:hover {
+  border-color: var(--scripta-border);
+  background: var(--scripta-surface);
+}
+.scripta-shell .wf-assistant-input {
+  min-height: 36px;
+  padding: 8px 10px;
+  border-color: var(--scripta-border);
+  font-size: 13px;
+}
+.scripta-shell .wf-assistant-send {
+  width: 32px;
+  height: 32px;
+}
+.wf-assistant-rail {
+  flex: none;
+  width: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+  border-left: 1px solid var(--scripta-rule);
+  background: var(--scripta-canvas);
+}
+.wf-assistant-rail-open {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--scripta-radius);
+  color: var(--scripta-muted);
+  background: transparent;
+  cursor: pointer;
+}
+.wf-assistant-rail-open:hover {
+  color: var(--scripta-brand);
+  background: var(--scripta-hover);
+}
+.scripta-shell .wf-work > .wf-body > .rsp-divider {
+  background: var(--scripta-rule);
+}
+.scripta-shell :focus-visible {
+  outline: 2px solid var(--scripta-brand);
+  outline-offset: 2px;
+}
+.scripta-nav-backdrop {
+  background: rgb(35 34 31 / 18%);
+}
+
+/* Every page's h1 is the same face and weight, whichever screen draws it.
+   Size is set only where the screen has not sized its own (empty states and
+   compact workspace headers keep theirs). */
+.scripta-shell .wf-content h1 {
+  font-family: var(--scripta-font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+  color: var(--scripta-ink);
+}
+.scripta-shell .wf-content h1:not([style]):not(.lr-h1) {
+  font-size: 24px;
+  line-height: 1.25;
+}

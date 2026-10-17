@@ -1,0 +1,232 @@
+.rsp-root {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.rsp-primary {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.rsp-secondary {
+  width: var(--rsp-secondary-size);
+  flex: 0 0 var(--rsp-secondary-size);
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+  will-change: width, flex-basis;
+}
+
+.rsp-secondary.is-preserved-closed {
+  display: none !important;
+}
+
+.rsp-secondary-content {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.rsp-secondary-content > * {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* The divider owns the shared seam; panels do not add a second border. */
+.rsp-secondary-end > .rsp-secondary-content > * {
+  border-left: 0 !important;
+}
+
+.rsp-secondary-start > .rsp-secondary-content > * {
+  border-right: 0 !important;
+}
+
+.rsp-divider {
+  position: relative;
+  z-index: 8;
+  width: 1px;
+  flex: 0 0 1px;
+  align-self: stretch;
+  background: var(--scripta-border);
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
+}
+
+.rsp-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0 -5px;
+  cursor: col-resize;
+}
+
+.rsp-divider::after {
+  content: "";
+  position: absolute;
+  inset: 0 -1px;
+  background: var(--scripta-brand);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.rsp-divider:hover::after,
+.rsp-divider:focus-visible::after,
+.rsp-root.is-dragging > .rsp-divider::after {
+  opacity: 0.7;
+}
+
+.rsp-divider:focus-visible {
+  box-shadow: 0 0 0 2px rgba(36, 54, 96, 0.16);
+}
+
+.rsp-divider-actions {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:  none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 120ms ease;
+}
+
+.rsp-divider:hover .rsp-divider-actions,
+.rsp-divider:focus-visible .rsp-divider-actions,
+.rsp-divider:focus-within .rsp-divider-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rsp-divider-actions button,
+.rsp-compact-actions button,
+.rsp-reopen {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  color: var(--scripta-text-2);
+  background: transparent;
+  cursor: pointer;
+}
+
+.rsp-divider-actions button:hover,
+.rsp-divider-actions button:focus-visible,
+.rsp-compact-actions button:hover,
+.rsp-compact-actions button:focus-visible,
+.rsp-reopen:hover,
+.rsp-reopen:focus-visible {
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+}
+
+.rsp-compact-actions {
+  position: absolute;
+  z-index: 24;
+  top: 11px;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:  none;
+}
+
+.rsp-compact-actions-start {
+  right: 8px;
+}
+
+.rsp-compact-actions-end {
+  left: 8px;
+}
+
+.rsp-reopen {
+  position: absolute;
+  z-index: 9;
+  top: 12px;
+  border: 1px solid var(--scripta-border);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow:  none;
+}
+
+.rsp-reopen-start {
+  left: 0;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.rsp-reopen-end {
+  right: 0;
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+html.is-resizing-split-pane,
+html.is-resizing-split-pane * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+.rsp-root.is-compact > .rsp-primary {
+  width: 100%;
+}
+
+.rsp-root.is-compact > .rsp-secondary {
+  position: absolute;
+  z-index: 20;
+  inset-block: 0;
+  width: min(100%, var(--rsp-compact-size));
+  max-width: 100%;
+  flex-basis: auto;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+}
+
+.rsp-root.is-compact > .rsp-secondary-end {
+  inset-inline-end: 0;
+}
+
+.rsp-root.is-compact > .rsp-secondary-start {
+  inset-inline-start: 0;
+}
+
+.rsp-root.is-compact.rsp-compact-hidden > .rsp-secondary {
+  display: none;
+}
+
+.rsp-root.is-compact.rsp-compact-hidden.is-compact-revealed > .rsp-secondary {
+  display: flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rsp-divider::after,
+  .rsp-divider-actions {
+    transition: none;
+  }
+}

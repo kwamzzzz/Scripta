@@ -1,0 +1,99 @@
+/* Announcements and platform notices, above every screen's content. */
+
+.pn-stack {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+}
+
+.pn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font: 400 12.5px/1.5 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.pn > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.pn strong {
+  font-weight: 600;
+}
+
+.pn a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.pn-info {
+  background: #eef3f6;
+}
+
+.pn-warning {
+  background: #fbf5e6;
+  color: #6b5416;
+}
+
+.pn-success {
+  background: var(--scripta-selected);
+  color: var(--scripta-brand);
+}
+
+.pn-admin {
+  background: var(--scripta-brand);
+  color: #fff;
+}
+
+.pn-admin button {
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 5px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.pn-close {
+  display: inline-flex;
+  padding: 2px;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.pn-close:hover {
+  opacity: 1;
+}
+
+.pn-maintenance {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 14px/1.6 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+
+.pn-maintenance h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pn-maintenance p {
+  margin: 0;
+  max-width: 460px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}

@@ -1,0 +1,56 @@
+/* Stands alone: it is shown in place of a matter, so it borrows no shell that
+   might carry a breadcrumb naming the thing it is declining to show. */
+
+.matter-unavailable {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--scripta-ground, #f6f8f8);
+}
+
+.matter-unavailable-card {
+  width: min(460px, 100%);
+  background: var(--scripta-surface, var(--scripta-surface));
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 8px;
+  padding: 34px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: flex-start;
+}
+
+.matter-unavailable-mark {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-unavailable-card h1 {
+  margin: 0;
+  font-family: var(--scripta-serif, Georgia, serif);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.matter-unavailable-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--scripta-body, #35464f);
+  max-width: 46ch;
+}
+
+.matter-unavailable-back {
+  font-size: 13px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  text-decoration: none;
+  margin-top: 4px;
+}
+.matter-unavailable-back:hover {
+  text-decoration: underline;
+}

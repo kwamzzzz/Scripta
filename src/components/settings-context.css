@@ -1,0 +1,61 @@
+/* The line that says which settings you are on. Two tabs, or one tab and a
+   sentence explaining why there is only one. */
+
+.settings-context {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  padding-bottom: 14px;
+  margin-bottom: 4px;
+}
+
+.settings-context-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13.5px;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.settings-context-tab small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--scripta-muted, var(--scripta-muted));
+  opacity: 0.85;
+}
+
+.settings-context-tab:hover {
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.settings-context-tab.is-on {
+  background: var(--scripta-selected, var(--scripta-selected));
+  border-color: var(--scripta-border, var(--scripta-border));
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.settings-context-tab.is-on small {
+  color: var(--scripta-teal, var(--scripta-brand));
+  opacity: 1;
+}
+
+.settings-context-tab:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.settings-context-note {
+  align-self: center;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted, var(--scripta-muted));
+  max-width: 46ch;
+}

@@ -1,0 +1,167 @@
+/* Opt-in controls. Values come from scriptaTheme in lib/tokens.ts. */
+.scripta-ui {
+  color: var(--scripta-ink);
+  font-family: var(--scripta-font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+.scripta-ui :focus-visible {
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 4px;
+}
+
+.scripta-ui .scripta-field {
+  display: grid;
+  gap: var(--scripta-space-sm);
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.scripta-ui .scripta-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font: 400 16px/1.5 var(--scripta-font-ui);
+  box-shadow: none;
+  transition:
+    border-color var(--scripta-transition),
+    box-shadow var(--scripta-transition),
+    background-color var(--scripta-transition);
+}
+
+.scripta-ui .scripta-field input::placeholder {
+  color: var(--scripta-placeholder);
+  opacity: 1;
+}
+
+.scripta-ui .scripta-field input:hover:not(:disabled) {
+  border-color: var(--scripta-muted);
+}
+
+.scripta-ui .scripta-field input:focus {
+  outline: none;
+  border-color: var(--scripta-teal);
+  box-shadow: 0 0 0 3px rgb(36 54 96 / 12%);
+}
+
+.scripta-ui .scripta-field input:disabled {
+  color: var(--scripta-muted);
+  background: var(--scripta-paper);
+  cursor: wait;
+}
+
+.scripta-ui .scripta-field small {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.scripta-ui .scripta-button {
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--scripta-radius);
+  color: #fff;
+  background: var(--scripta-brand);
+  font: 500 14px/1.5 var(--scripta-font-ui);
+  cursor: pointer;
+  transition:
+    background-color var(--scripta-transition),
+    box-shadow var(--scripta-transition);
+}
+
+.scripta-ui .scripta-button:hover:not(:disabled) {
+  background: var(--scripta-brand-hover);
+}
+
+.scripta-ui .scripta-button:active:not(:disabled) {
+  background: var(--scripta-brand);
+  box-shadow:  none;
+}
+
+.scripta-ui .scripta-button:disabled {
+  color: #f7f8f8;
+  background: #687b84;
+  cursor: wait;
+}
+
+.scripta-ui .scripta-text-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--scripta-ink);
+  font: 500 13px/1.5 var(--scripta-font-ui);
+  text-decoration: underline;
+  text-decoration-color: var(--scripta-border);
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition:
+    color var(--scripta-transition),
+    text-decoration-color var(--scripta-transition);
+}
+
+.scripta-ui .scripta-text-button:hover:not(:disabled) {
+  color: var(--scripta-teal);
+  text-decoration-color: currentColor;
+}
+
+.scripta-ui .scripta-text-button:disabled {
+  color: var(--scripta-muted);
+  cursor: wait;
+  text-decoration: none;
+}
+
+.scripta-ui .scripta-feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: var(--scripta-radius);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.scripta-ui .scripta-feedback svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.scripta-ui .scripta-feedback.is-error {
+  border-color: #e3c8c3;
+  color: var(--scripta-error);
+  background: #fff5f2;
+}
+
+.scripta-ui .scripta-feedback.is-success {
+  border-color: #c5dbcb;
+  color: var(--scripta-success);
+  background: #f1f8f2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scripta-ui *,
+  .scripta-ui *::before,
+  .scripta-ui *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

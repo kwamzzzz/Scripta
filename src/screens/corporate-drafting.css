@@ -1,0 +1,52 @@
+/* Extend the Contract Review detail/card patterns without changing the shared library. */
+.corporate-library-detail {
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.corporate-library-preview {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.corporate-library-preview li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.corporate-library-preview p {
+  min-width: 0;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.corporate-library-preview-number {
+  flex: none;
+  min-width: 24px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-family: var(--scripta-font-mono, monospace);
+  font-size: 12px;
+}
+
+.corporate-library-placeholder,
+.corporate-library-preview-note {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.corporate-library-preview-note {
+  margin: 12px 0 0;
+}
+
+.corporate-library-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

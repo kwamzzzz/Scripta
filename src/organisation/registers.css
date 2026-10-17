@@ -1,0 +1,567 @@
+/* The registers: entities, licences & registrations, the compliance calendar,
+   and adding a licence. Built on organisation.css; rg- is this file's prefix. */
+
+.rg-note {
+  margin: 0;
+  font-size: 12.5px;
+}
+
+.rg-filter select {
+  min-width: 150px;
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.rg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.rg-flag {
+  margin: 4px 0 0;
+  padding: 8px 10px;
+  border: 1px solid #ecd9b0;
+  border-radius: 6px;
+  background: #fdf8ee;
+  font-size: 12.5px;
+  color: #6b4e1a;
+}
+
+.rg-plain {
+  list-style: none;
+  margin: 4px 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+}
+
+.rg-row-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-align: left;
+  cursor: pointer;
+}
+
+.rg-row-link.is-plain {
+  font-weight: 400;
+}
+
+.rg-row-link:hover {
+  text-decoration: underline;
+}
+
+.rg-row-link:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.og-dot:not(.is-danger):not(.is-warning):not(.is-good) {
+  background: #b7bdb9;
+}
+
+/* ------------------------------------------------------------------ entities */
+
+.rg-table-wrap {
+  overflow-x: auto;
+}
+
+.rg-inline-eyebrow {
+  display: inline;
+  margin-left: 6px;
+}
+
+.rg-detail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+}
+
+.rg-detail p {
+  margin: 4px 0 10px;
+  font-size: 13px;
+}
+
+@container ogpage (max-width: 900px) {
+  .rg-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rg-matter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule);
+  font-size: 12px;
+}
+
+.rg-reasons {
+  margin-top: 10px;
+  color: var(--scripta-error, var(--scripta-risk));
+  font-size: 12.5px;
+}
+
+.og-table tr.rg-ceased td {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* ----------------------------------------------------- reading from a filing */
+
+.rg-read {
+  padding: 10px 12px;
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 8px;
+}
+
+.rg-read-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rg-chooser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.rg-chooser .org-field {
+  flex: 1 1 240px;
+}
+
+.rg-proposals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rg-proposals-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rg-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.rg-badge.is-read,
+.rg-badge.is-matched {
+  border-color: #cbdfd3;
+  background: #e9f1ec;
+  color: #2c6a4a;
+}
+
+.rg-badge.is-check {
+  border-color: #e5d8b4;
+  background: #f6f0df;
+  color: var(--scripta-warn);
+}
+
+.rg-badge.is-conflict {
+  border-color: #e6cfc9;
+  background: var(--scripta-risk-bg);
+  color: #9a3a2e;
+}
+
+.rg-badge.is-accepted {
+  border-color: var(--scripta-selected);
+  background: var(--scripta-selected, var(--scripta-selected));
+  color: #1d5e5c;
+}
+
+/* ------------------------------------------------------------------ licences */
+
+.rg-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+@container ogpage (max-width: 980px) {
+  .rg-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rg-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rg-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rg-lic {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.rg-lic.is-danger {
+  border-color: #e6cfc9;
+}
+
+.rg-lic > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rg-lic-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+}
+
+.rg-lic-name {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.rg-lic-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.rg-lic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px 14px;
+}
+
+.rg-task-open {
+  font-size: 12px;
+  color: #1d5e5c;
+}
+
+.rg-lic-check {
+  padding-top: 6px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.rg-prereq {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rg-prereq-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.rg-prereq-row input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.rg-months {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.rg-month {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  font-size: 12px;
+}
+
+.rg-month strong {
+  font-size: 13px;
+}
+
+.rg-entry {
+  line-height: 1.35;
+}
+
+.rg-entry.is-overdue {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.rg-entry.is-done,
+.rg-entry.is-waived {
+  color: var(--scripta-muted, var(--scripta-muted));
+  text-decoration: line-through;
+}
+
+.rg-entry.is-expiry {
+  color: var(--scripta-warn);
+}
+
+.rg-suggest {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------ licence intake */
+
+.rg-intake {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  container: ogpage / inline-size;
+}
+
+.rg-crumb {
+  margin: 0 0 2px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.rg-intake .og-page-title h2 {
+  margin: 0;
+}
+
+.rg-intake-body {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 20px;
+  padding: 16px 24px 32px;
+  max-width: 1180px;
+}
+
+@container ogpage (max-width: 820px) {
+  .rg-intake-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.rg-types {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rg-types > button {
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-align: left;
+  cursor: pointer;
+}
+
+.rg-types > button:hover {
+  background: #f0f3f2;
+}
+
+.rg-types > button[aria-pressed="true"] {
+  border-color: var(--scripta-selected);
+  background: var(--scripta-selected, var(--scripta-selected));
+  font-weight: 600;
+}
+
+.rg-template {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.rg-template p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.rg-intake-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.rg-drop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rg-fields td {
+  vertical-align: middle;
+}
+
+.rg-fields tr.is-check td {
+  background: #fdf8ee;
+}
+
+.rg-field-input {
+  width: 100%;
+  padding: 6px 9px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.rg-fields tr.is-check .rg-field-input {
+  border-color: #d9b56b;
+}
+
+.rg-fields-foot {
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+/* ------------------------------------------------------------------ calendar */
+
+.rg-cal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.rg-cal-month {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.rg-cal-month h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rg-cal-month ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rg-cal-item {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-align: left;
+}
+
+button.rg-cal-item {
+  cursor: pointer;
+}
+
+button.rg-cal-item:hover {
+  background: #f3f6f5;
+}
+
+.rg-cal-day {
+  font:
+    500 11.5px var(--scripta-font-mono);
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.rg-cal-item.is-overdue .rg-cal-day,
+.rg-cal-item.is-overdue .rg-cal-state {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.rg-cal-item.is-done .rg-cal-text,
+.rg-cal-item.is-waived .rg-cal-text {
+  color: var(--scripta-muted, var(--scripta-muted));
+  text-decoration: line-through;
+}
+
+.rg-cal-item.is-expiry .rg-cal-text {
+  color: var(--scripta-warn);
+}
+
+.rg-cal-state {
+  font-size: 11px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.rg-occ {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.rg-occ-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

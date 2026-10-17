@@ -1,0 +1,801 @@
+/* Book Review: the manuscripts list and one manuscript. Built on the review
+   screens' rv-* pieces; ms-* is only what a manuscript needs beyond them. */
+
+.ms-muted {
+  color: var(--scripta-muted);
+}
+.ms-small {
+  font-size: 11.5px;
+}
+.ms-quiet {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+}
+.ms-error {
+  color: var(--scripta-risk);
+  font-size: 12.5px;
+}
+.ms-plain {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------- the list -- */
+
+.ms-cell-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ms-cell-title strong {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ms-cell-title em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.ms-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.ms-card strong {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.ms-card-kind {
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+.ms-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+/* Clear of the panel's close button, which sits top-right over the title. */
+.ms-detail h3 {
+  margin: 0 32px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.ms-detail > button {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+.ms-detail p {
+  margin: 0;
+}
+.ms-empty {
+  max-width: 560px;
+  padding: 24px 0;
+}
+.ms-empty h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+.ms-empty p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+
+/* The New manuscript dialog. */
+.ms-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ms-hint {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+  line-height: 1.5;
+}
+.ms-check {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-ink);
+}
+.ms-busy {
+  margin-right: auto;
+  font-size: 12px;
+  color: var(--scripta-muted);
+}
+
+/* ------------------------------------------------------ one manuscript -- */
+
+.ms-screen {
+  padding: 18px 22px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ms-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: space-between;
+}
+.ms-head h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ms-head p {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+}
+.ms-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.ms-runbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #c7dcef;
+  background: #f3f8fc;
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+.ms-notice {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid #bdd9c5;
+  background: #eaf4ed;
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+
+.ms-integrity {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.ms-integrity th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--scripta-ink);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  width: 55%;
+}
+.ms-integrity td {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.ms-scopes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.ms-scope {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12.5px;
+}
+.ms-scope input {
+  grid-row: span 2;
+  margin-top: 2px;
+}
+.ms-scope.is-on {
+  border-color: var(--scripta-brand);
+}
+.ms-pick {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px 14px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.ms-mini-chapters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ms-mini-chapters li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+/* A link to a place in the manuscript. */
+.ms-place {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-brand);
+  cursor: pointer;
+  text-align: left;
+}
+.ms-place:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------ findings -- */
+
+.ms-findings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ms-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ms-filters select,
+.ms-search {
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+}
+.ms-search {
+  min-width: 200px;
+}
+.ms-findings-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.ms-finding {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 11px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ms-finding.is-decided {
+  background: var(--scripta-surface);
+}
+.ms-finding.is-decided .ms-finding-title {
+  color: var(--scripta-muted);
+}
+.ms-finding-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.ms-ref {
+  font-family: var(--scripta-font-mono);
+  font-size: 10.5px;
+  color: var(--scripta-muted);
+}
+.ms-cat {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.ms-finding-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.ms-finding-body {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink);
+}
+.ms-change {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.ms-change del {
+  color: var(--scripta-risk);
+  background: var(--scripta-risk-bg);
+  text-decoration: line-through;
+}
+.ms-change ins {
+  color: #0e700e;
+  background: #eaf4ed;
+  text-decoration: none;
+}
+.ms-evidence {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ms-evidence li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 10px;
+  border-left: 2px solid var(--scripta-rule);
+}
+.ms-snippet {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--scripta-ink);
+}
+.ms-snippet mark {
+  background: #fff4ce;
+  color: inherit;
+}
+.ms-note {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.ms-finding-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* ------------------------------------------------------------ chapters -- */
+
+.ms-chapters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+.ms-chapter-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.ms-chapter-row:last-child {
+  border-bottom: 0;
+}
+.ms-chapter-open {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.ms-chapter-open .ms-small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ms-chapter-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+.ms-chapter-open:hover .ms-chapter-name {
+  text-decoration: underline;
+}
+.ms-chapter-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.ms-count {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: #f4f3f2;
+  color: var(--scripta-ink);
+}
+
+.ms-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ms-chapter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ms-chapter-bar h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.ms-chapter-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .ms-chapter-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ms-chapter-main,
+.ms-chapter-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+/* The findings column stays beside the text as it scrolls. A sticky column
+   taller than the screen can never be scrolled to its end, so it is capped
+   at the visible height (less the app header and tab row) and scrolls on
+   its own. */
+.ms-chapter-side {
+  position: sticky;
+  top: 0;
+  max-height: calc(100dvh - 150px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+}
+/* Cards clip their overflow, and a clipping flex item may shrink below its
+   content; keep them whole so the column, not the card, does the scrolling. */
+.ms-chapter-side > * {
+  flex-shrink: 0;
+}
+/* Stacked under the text (narrow screens), the findings are part of the page again. */
+@media (max-width: 1100px) {
+  .ms-chapter-side {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+.ms-chapter-main .rv-card-body p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+.ms-sum-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ms-sum-block ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.ms-concepts,
+.ms-assess {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.ms-concepts dt,
+.ms-assess dt {
+  font-weight: 600;
+}
+.ms-concepts dd,
+.ms-assess dd {
+  margin: 0;
+  color: var(--scripta-ink);
+}
+
+/* The chapter's text as containers — the contract editor's clause grammar
+   (rounded box, chevron, mono reference, nesting by depth) applied to
+   chapter › section › paragraph › sentence. */
+.ms-node {
+  width: 100%;
+  border: 1px solid var(--scripta-border);
+  border-radius: 9px;
+  background: var(--scripta-surface-2);
+  scroll-margin-block: 32px;
+}
+.ms-node.depth-1,
+.ms-node.depth-2 {
+  border-color: var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+.ms-node.is-selected {
+  border-color: var(--scripta-brand);
+  box-shadow: 0 0 0 1px #0f6cbd;
+}
+.ms-node-header {
+  min-height: 40px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.ms-node-header.is-static {
+  cursor: default;
+}
+.ms-node-chevron {
+  width: 14px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--scripta-text-2);
+}
+.ms-node-ref {
+  flex: none;
+  color: var(--scripta-text-2);
+  font:
+    500 11px/1.4 var(--scripta-font-mono);
+}
+.ms-node-header > strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--scripta-ink);
+  font-size: 14px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ms-node-header > strong.is-chapter {
+  font-size: 15.5px;
+  font-weight: 600;
+}
+.ms-node-line {
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--scripta-ink);
+  font-style: italic;
+}
+.ms-node-meta {
+  font:
+    500 9px/1 var(--scripta-font-mono);
+  letter-spacing: 0.06em;
+  color: var(--scripta-muted);
+  white-space: nowrap;
+}
+.ms-node-space {
+  flex: 1;
+}
+.ms-node-count {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #c19c00;
+  color: #fff;
+  font-size: 10.5px;
+  line-height: 18px;
+  text-align: center;
+  flex: none;
+}
+.ms-node-children {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.ms-node.depth-1 > .ms-node-children,
+.ms-node.depth-2 > .ms-node-children {
+  border-top-color: var(--scripta-rule);
+}
+.ms-node-content {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--scripta-rule);
+}
+.ms-table {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.ms-table td {
+  border: 1px solid var(--scripta-rule);
+  padding: 3px 7px;
+  vertical-align: top;
+}
+
+/* A paragraph's text inside its container, the finding's words marked. */
+.ms-node-text {
+  margin: 0;
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--scripta-rule);
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--scripta-ink);
+}
+.ms-mark {
+  background: #fff1c2;
+  color: inherit;
+  border-bottom: 1.5px solid #c19c00;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* --------------------------------------------------------- style sheet -- */
+
+.ms-style {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 980px;
+}
+.ms-rules {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ms-rules li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}
+.ms-rules li.is-off {
+  opacity: 0.6;
+}
+.ms-rule-group h3 {
+  margin: 10px 0 2px;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  font-weight: 500;
+}
+.ms-rule-form {
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr 1fr;
+  gap: 6px;
+  align-items: center;
+}
+.ms-rule-form select,
+.ms-rule-form input {
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+}
+.ms-rule-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 6px;
+}
+
+/* ----------------------------------------------------------------- map -- */
+
+.ms-map {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 1100px;
+}
+.ms-map p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.ms-rq {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.ms-rq th,
+.ms-rq td {
+  text-align: left;
+  vertical-align: top;
+  padding: 7px 8px 7px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.ms-rq th {
+  font-family: var(--scripta-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  width: 48px;
+}
+.ms-rq td:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ms-rq tr.is-gap td {
+  background: #fffaf0;
+}
+.ms-flow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: flow;
+}
+.ms-flow li {
+  position: relative;
+  padding: 0 0 16px 22px;
+  border-left: 2px solid var(--scripta-rule);
+  margin-left: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ms-flow li::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--scripta-brand);
+}
+.ms-flow li:last-child {
+  border-left-color: transparent;
+}
+.ms-flow-name {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------ versions -- */
+
+.ms-versions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ms-versions li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 12.5px;
+}

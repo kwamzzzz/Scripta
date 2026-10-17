@@ -1,0 +1,203 @@
+/* The precedent record screen, and the library's detail and empty panes. */
+.precedent-wording textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font: 400 14px/1.5 var(--scripta-font-ui);
+  box-shadow: none;
+}
+
+.precedent-wording textarea::placeholder {
+  color: var(--scripta-placeholder);
+  opacity: 1;
+}
+
+.precedent-wording textarea:focus {
+  border-color: var(--scripta-teal);
+  outline: 2px solid var(--scripta-teal);
+  outline-offset: 2px;
+}
+
+.knowledge-clause {
+  margin: 20px 0;
+  font: 400 16px/1.85 var(--scripta-font-display);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.precedent-detail {
+  container: scripta-page precedent / inline-size;
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  background: var(--scripta-surface);
+}
+
+.precedent-loading {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.precedent-approval {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 20px 0;
+  border-block: 1px solid var(--scripta-rule);
+  color: var(--scripta-ink);
+  font-size: 14px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.precedent-approval input {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin: 3px 0 0;
+  accent-color: var(--scripta-teal);
+}
+
+.precedent-record,
+.precedent-wording {
+  margin-top: 32px;
+}
+
+.precedent-record h2,
+.precedent-wording h2 {
+  margin: 0 0 16px;
+  color: var(--scripta-ink);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.precedent-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.precedent-wording textarea {
+  display: block;
+  min-height: 360px;
+  padding: 20px 24px;
+  font: 400 16px/1.85 var(--scripta-font-display);
+  resize: vertical;
+}
+
+.precedent-save-note {
+  margin-top: 12px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@container precedent (max-width: 500px) {
+  .precedent-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .precedent-wording textarea {
+    padding: 16px;
+  }
+
+  .scripta-form-field input {
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------ library detail and empty */
+
+/* The first thing on an empty library: where precedents come from, since the
+   answer is never "type one in here". */
+.knowledge-first {
+  max-width: 620px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #454545;
+}
+.knowledge-first h2 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--scripta-ink);
+}
+.knowledge-first p {
+  margin: 0;
+}
+.knowledge-first ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.knowledge-first strong {
+  color: var(--scripta-ink);
+}
+.knowledge-first button {
+  align-self: flex-start;
+}
+
+.knowledge-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font-size: 12.5px;
+  color: #3c3c3c;
+  min-width: 0;
+}
+.knowledge-summary h2 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--scripta-ink);
+}
+.knowledge-why {
+  margin: 0;
+  color: var(--scripta-text-2);
+  line-height: 1.6;
+}
+.knowledge-superseded {
+  margin: 0;
+  border-left: 2px solid #e0cfa0;
+  background: #fdfaf2;
+  padding: 7px 10px;
+  color: #6f5c2e;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.knowledge-summary dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 12px;
+}
+.knowledge-summary dl > div {
+  display: contents;
+}
+.knowledge-summary dt {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+}
+.knowledge-summary dd {
+  margin: 0;
+  min-width: 0;
+}
+.knowledge-summary-actions {
+  display: flex;
+  gap: 8px;
+}

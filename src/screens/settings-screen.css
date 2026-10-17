@@ -1,0 +1,123 @@
+.settings-page {
+  max-width: 1120px;
+  width: 100%;
+}
+.settings-section {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.75fr) minmax(0, 1.6fr);
+  gap: 40px;
+  padding: 28px 0;
+  border-top: 1px solid var(--scripta-rule);
+}
+.settings-section h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.settings-section h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.settings-section p {
+  margin: 8px 0 0;
+  max-width: 56ch;
+  color: var(--scripta-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.settings-section-content {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+}
+.settings-section-content > p {
+  margin: 0;
+}
+.settings-section-content .scripta-form-field {
+  max-width: 420px;
+}
+.settings-readonly {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.settings-readonly > span {
+  font-size: 12px;
+  color: var(--scripta-muted);
+}
+.settings-readonly small {
+  margin-left: 8px;
+  color: var(--scripta-muted);
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.settings-preference {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+.settings-switch {
+  width: 44px;
+  height: 26px;
+  margin-top: 2px;
+  flex: none;
+  padding: 3px;
+  border: 1px solid var(--scripta-input-edge);
+  border-radius: 20px;
+  background: var(--scripta-paper);
+  cursor: pointer;
+}
+.settings-switch > span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--scripta-muted);
+  transition: transform var(--scripta-transition);
+}
+.settings-switch.is-on {
+  background: var(--scripta-teal);
+  border-color: var(--scripta-teal);
+}
+.settings-switch.is-on > span {
+  background: var(--scripta-paper);
+  transform: translateX(18px);
+}
+.settings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.settings-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--scripta-rule);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.settings-list small {
+  color: var(--scripta-muted);
+  text-transform: capitalize;
+  font-size: 12px;
+}
+.settings-notice {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--scripta-success);
+}
+.settings-notice.is-error {
+  color: var(--scripta-error);
+}
+@container scripta-page (max-width: 640px) {
+  .settings-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+}

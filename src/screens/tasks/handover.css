@@ -1,0 +1,471 @@
+/* Handover: your handovers on the left, one of them open as an email. */
+
+.ho {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  min-height: 0;
+}
+
+.ho-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+}
+
+.ho-shelves {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-shelves button {
+  display: flex;
+  gap: 6px;
+  padding: 4px 0 8px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.ho-shelves button[aria-pressed="true"] {
+  border-bottom-color: var(--scripta-teal, var(--scripta-brand));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+}
+
+.ho-shelves span,
+.ho-list span,
+.ho-state,
+.ho-none {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+.ho-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ho-list button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ho-list button:hover {
+  background: var(--scripta-surface);
+}
+
+.ho-list button[aria-current="true"] {
+  background: var(--scripta-selected);
+}
+
+.ho-list strong {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 600 13px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ho-list span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ho-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ho-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 32px;
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 10px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+}
+
+.ho-empty strong {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 15px;
+}
+
+.ho-empty p {
+  margin: 0;
+  max-width: 520px;
+}
+
+/* The email window. */
+.ho-mail {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+  max-width: 980px;
+}
+
+.ho-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-surface);
+  border-radius: 10px 10px 0 0;
+}
+
+.ho-state.is-sent {
+  color: var(--scripta-teal, var(--scripta-brand));
+  font-weight: 600;
+}
+
+.ho-spacer {
+  flex: 1;
+}
+
+.ho-word {
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 500 13px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.ho-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.ho-fields label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-fields label > span {
+  flex: none;
+  width: 58px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+}
+
+.ho-fields input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--scripta-ink);
+  font: inherit;
+  font-size: 13.5px;
+}
+
+.ho-fields input[readonly] {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.ho-link {
+  border: 0;
+  background: none;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.ho-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  min-height: 40px;
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  min-width: 30px;
+  justify-content: center;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 500 12.5px/1 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.ho-toolbar button:hover {
+  background: #f0f2ef;
+}
+
+.ho-toolbar button[aria-pressed="true"] {
+  background: #e3ebe9;
+}
+
+.ho-sep {
+  width: 1px;
+  height: 18px;
+  margin: 0 6px;
+  background: var(--scripta-rule, var(--scripta-surface-2));
+}
+
+.ho-table-tools {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 6px;
+  padding-left: 6px;
+  border-left: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-toolbar .ho-tool-text {
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+
+/* The body reads like an email and prints its tables with rules. */
+.ho-editor .ho-body {
+  min-height: 380px;
+  padding: 16px 18px 24px;
+  outline: none;
+  color: var(--scripta-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ho-body p {
+  margin: 0 0 8px;
+}
+
+.ho-body h1,
+.ho-body h2,
+.ho-body h3 {
+  margin: 18px 0 6px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ho-body ul,
+.ho-body ol {
+  margin: 0 0 8px;
+  padding-left: 22px;
+}
+
+.ho-body table {
+  width: 100%;
+  margin: 4px 0 14px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.ho-body th,
+.ho-body td {
+  padding: 6px 8px;
+  border: 1px solid #a8b0ac;
+  vertical-align: top;
+  text-align: left;
+}
+
+.ho-body th {
+  background: #edefec;
+  font-weight: 600;
+}
+
+.ho-body th p,
+.ho-body td p {
+  margin: 0;
+}
+
+.ho-body .selectedCell {
+  background: #e3ebe9;
+}
+
+.ho-body p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #9aa3a0;
+  pointer-events: none;
+}
+
+/* Attachments sit where a mail client puts them: under the message. */
+.ho-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-file {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+}
+
+.ho-file button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 0;
+  background: none;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.ho-file em {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-style: normal;
+}
+
+.ho-file button + button {
+  padding: 5px 6px;
+  border-left: 1px solid var(--scripta-border, var(--scripta-border));
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.ho-drop {
+  padding: 5px 12px;
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+/* Insert tasks. */
+.ho-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(640px, 90vw);
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-pop);
+}
+
+.ho-picker h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.ho-picker p {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+}
+
+.ho-picker-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ho-picker-bar input[type="search"] {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.ho-picker-bar label,
+.ho-picker-all {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.ho-picker-list {
+  max-height: 340px;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+}
+
+.ho-picker-list li + li {
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.ho-picker-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.ho-picker-list span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ho-picker-list strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ho-picker-list em {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  font-style: normal;
+}
+
+.ho-picker .ho-none {
+  padding: 12px;
+}
+
+.ho-picker footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

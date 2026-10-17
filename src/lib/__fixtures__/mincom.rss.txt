@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Minerals Commission</title>
+	<atom:link href="https://www.mincom.gov.gh/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.mincom.gov.gh/</link>
+	<description>Government agency responsible for regulating and management of mineral resource in Ghana</description>
+	<lastBuildDate>Wed, 12 Aug 2026 15:55:03 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+<image>
+	<url>https://www.mincom.gov.gh/wp-content/uploads/2020/05/cropped-logo-32x32.png</url>
+	<title>Minerals Commission</title>
+	<link>https://www.mincom.gov.gh/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Minister Engages Paramount Chief of Ellembelle on Governme
+<item>
+		<title>Minister Engages Paramount Chief of Ellembelle on Government&#8217;s Decision to Revoke Adamus Resources&#8217; Mining Leases</title>
+		<link>https://www.mincom.gov.gh/minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases</link>
+					<comments>https://www.mincom.gov.gh/minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases/#respond</comments>
+		
+		<dc:creator><![CDATA[Mincom Webmaster]]></dc:creator>
+		<pubDate>Wed, 12 Aug 2026 15:52:18 +0000</pubDate>
+				<category><![CDATA[Mincom News]]></category>
+		<guid isPermaLink="false">https://www.mincom.gov.gh/?p=18535</guid>
+
+					<description><![CDATA[<p>Minister Engages Paramount Chief of Ellembelle on Government&#8217;s Decision to Revoke Adamus Resources&#8217; Mining Leases The Minister for Lands and Natural Resources, *Hon. Emmanuel Armah-Kofi Buah, accompanied by the Chief Executive Officer of the Minerals Commission, **Mr. Isaac Andrews Tandoh, the Western Regional Minister, senior officials from the Ministry and Management of the Minerals Commission, [&#8230;]</p>
+<p>The post <a href="https://www.mincom.gov.gh/minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases/">Minister Engages Paramount Chief of Ellembelle on Government&#8217;s Decision to Revoke Adamus Resources&#8217; Mining Leases</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h1 class="wp-block-heading">Minister Engages Paramount Chief of Ellembelle on Government&#8217;s Decision to Revoke Adamus Resources&#8217; Mining Leases</h1>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p class="wp-block-paragraph">The Minister for Lands and Natural Resources, *Hon. Emmanuel Armah-Kofi Buah, accompanied by the Chief Executive Officer of the Minerals Commission, **Mr. Isaac Andrews Tandoh, the Western Regional Minister, senior officials from the Ministry and Management of the Minerals Commission, paid a courtesy call on the *<em>Paramount Chief of the Ellembelle Traditional Area</em> to formally brief him on Government&#8217;s decision to revoke the mining leases of <em>Adamus Resources Limited</em>. The visit formed part of Government&#8217;s commitment to transparency, stakeholder engagement and ensuring that traditional authorities remain informed on key policy decisions affecting their communities and the mining sector.</p>
+
+
+
+<p class="wp-block-paragraph">Addressing the Paramount Chief and his traditional council, Hon. Buah explained that the decision to revoke the leases followed a comprehensive regulatory process and was based on findings of material breaches of Ghana&#8217;s mining laws and regulations. He emphasised that Government remains committed to protecting the integrity of Ghana&#8217;s mineral resources while ensuring that all mining companies operate responsibly and in strict compliance with the country&#8217;s legal and regulatory framework. The Minister assured the traditional authorities that the action was not intended to discourage responsible investment but rather to uphold accountability, protect community interests and reinforce investor confidence through a fair and transparent regulatory regime.</p>
+
+
+
+<p class="wp-block-paragraph">Speaking during the engagement, Mr. Isaac Andrews Tandoh reaffirmed the Minerals Commission&#8217;s unwavering commitment to effective mineral resource governance and sustainable mining. He noted that the Commission would continue to work closely with Government, traditional authorities and local communities to ensure that mining activities contribute meaningfully to socio-economic development while safeguarding the environment and preserving the rights and interests of host communities. He further stressed that the Commission remains committed to maintaining an open dialogue with all stakeholders as Ghana continues to build a responsible, transparent and globally competitive mining industry.</p>
+
+
+
+<p class="wp-block-paragraph">The Paramount Chief of the Ellembelle Traditional Area welcomed the delegation and expressed his appreciation to Government and the Minerals Commission for the respect shown to traditional authorities through the consultative engagement. He commended the decision to directly engage the traditional leadership on matters affecting the area and reaffirmed the Traditional Council&#8217;s commitment to partnering with Government in promoting responsible mining, preserving peace within the mining communities and ensuring that the country&#8217;s mineral resources continue to serve the best interests of present and future generations.</p>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="647" data-id="18540" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-1024x647.jpg" alt="" class="wp-image-18540" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-1024x647.jpg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-300x190.jpg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-768x485.jpg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-1536x970.jpg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-2-2048x1294.jpg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="657" data-id="18539" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-1024x657.jpg" alt="" class="wp-image-18539" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-1024x657.jpg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-300x193.jpg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-768x493.jpg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-1536x986.jpg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-1-2048x1314.jpg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="683" data-id="18538" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-1024x683.jpeg" alt="" class="wp-image-18538" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-1024x683.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-1536x1024.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-5-2048x1365.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="667" data-id="18537" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-1024x667.jpeg" alt="" class="wp-image-18537" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-1024x667.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-300x195.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-768x500.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-1536x1000.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-4-2048x1334.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="683" data-id="18536" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-1024x683.jpeg" alt="" class="wp-image-18536" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-1024x683.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-1536x1024.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minister-Engages-Paramount-Chief-of-Ellembelle-3-2048x1365.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+<p>The post <a href="https://www.mincom.gov.gh/minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases/">Minister Engages Paramount Chief of Ellembelle on Government&#8217;s Decision to Revoke Adamus Resources&#8217; Mining Leases</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.mincom.gov.gh/minister-engages-paramount-chief-of-ellembelle-on-governments-decision-to-revoke-adamus-resources-mining-leases/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+<item>
+		<title>Minerals Commission Strengthens Ghana-China Mining Partnership Through High-Level Courtesy Call</title>
+		<link>https://www.mincom.gov.gh/minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call</link>
+					<comments>https://www.mincom.gov.gh/minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call/#respond</comments>
+		
+		<dc:creator><![CDATA[Mincom Webmaster]]></dc:creator>
+		<pubDate>Mon, 03 Aug 2026 10:08:06 +0000</pubDate>
+				<category><![CDATA[Mincom News]]></category>
+		<guid isPermaLink="false">https://www.mincom.gov.gh/?p=18525</guid>
+
+					<description><![CDATA[<p>Minerals Commission Strengthens Ghana-China Mining Partnership Through High-Level Courtesy Call The Chief Executive Officer of the Minerals Commission, Mr. Isaac Andrews Tandoh, has paid a courtesy call on the Ambassador of the People&#8217;s Republic of China to Ghana, H.E. Cong Song, as part of efforts to deepen the longstanding bilateral relationship between Ghana and China [&#8230;]</p>
+<p>The post <a href="https://www.mincom.gov.gh/minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call/">Minerals Commission Strengthens Ghana-China Mining Partnership Through High-Level Courtesy Call</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h1 class="wp-block-heading"><strong>Minerals Commission Strengthens Ghana-China Mining Partnership Through High-Level Courtesy Call</strong></h1>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p class="wp-block-paragraph">The Chief Executive Officer of the Minerals Commission, <strong>Mr. Isaac Andrews Tandoh</strong>, has paid a courtesy call on the Ambassador of the People&#8217;s Republic of China to Ghana, <strong>H.E. Cong Song</strong>, as part of efforts to deepen the longstanding bilateral relationship between Ghana and China in the mining sector. The meeting provided an opportunity for the Commission&#8217;s Management to formally engage the Ambassador on strategic issues aimed at advancing responsible mineral development, promoting sustainable investment and strengthening institutional cooperation between the two countries.</p>
+
+
+
+<p class="wp-block-paragraph">Discussions focused on enhancing bilateral trade and investment in Ghana&#8217;s mining sector, expanding opportunities for Chinese investment across the minerals value chain, promoting technology transfer, strengthening local content development and increasing cross-border trade in mining-related goods and services. The two sides also explored avenues for capacity building, innovation and collaboration in modern mining technologies to support the sustainable growth and transformation of Ghana&#8217;s mineral industry. The CEO reaffirmed the Minerals Commission&#8217;s commitment to maintaining a transparent, predictable and investor-friendly regulatory environment that encourages responsible investment while safeguarding Ghana&#8217;s mineral resources for national development.</p>
+
+
+
+<p class="wp-block-paragraph">A major highlight of the engagement was the shared commitment to tackling illegal mining. Ambassador <strong>Cong Song</strong> disclosed that one of his key priorities upon assuming office is to support Ghana&#8217;s efforts to combat illegal mining, recognising its adverse impact on the environment, legitimate investment and sustainable mineral resource development. Mr. Tandoh welcomed the Ambassador&#8217;s commitment and emphasised that the Minerals Commission remains fully committed to collaborating with the Chinese Embassy, relevant institutions and responsible stakeholders to eliminate illegal mining while promoting lawful, responsible and sustainable mining practices. The meeting concluded with both parties reaffirming their commitment to strengthening Ghana–China cooperation in support of a resilient, investment-driven and environmentally responsible mining sector that delivers lasting socio-economic benefits for both nations.</p>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="667" data-id="18526" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-1024x667.jpeg" alt="" class="wp-image-18526" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-1024x667.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-300x195.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-768x500.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-1536x1000.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-1-2048x1334.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="665" data-id="18527" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-1024x665.jpeg" alt="" class="wp-image-18527" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-1024x665.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-300x195.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-768x499.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-1536x997.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-2-2048x1329.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="769" data-id="18528" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-1024x769.jpeg" alt="" class="wp-image-18528" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-1024x769.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-300x225.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-768x577.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-1536x1153.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-3-2048x1538.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="663" data-id="18529" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-1024x663.jpeg" alt="" class="wp-image-18529" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-1024x663.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-300x194.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-768x497.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-1536x994.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-5-2048x1325.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="948" data-id="18530" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-1024x948.jpeg" alt="" class="wp-image-18530" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-1024x948.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-300x278.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-768x711.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-1536x1422.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-6-2048x1896.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="649" data-id="18531" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-1024x649.jpeg" alt="" class="wp-image-18531" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-1024x649.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-300x190.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-768x487.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-1536x974.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-7-2048x1298.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="657" data-id="18532" src="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-1024x657.jpeg" alt="" class="wp-image-18532" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-1024x657.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-300x193.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-768x493.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-1536x986.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/08/Minerals-Commission-Ghana-China-8-2048x1314.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+<p>The post <a href="https://www.mincom.gov.gh/minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call/">Minerals Commission Strengthens Ghana-China Mining Partnership Through High-Level Courtesy Call</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.mincom.gov.gh/minerals-commission-strengthens-ghana-china-mining-partnership-through-high-level-courtesy-call/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+<item>
+		<title>Value Retention, Not Just Export Volumes, Must Define Ghana’s Mining Success</title>
+		<link>https://www.mincom.gov.gh/value-retention-not-just-export-volumes-must-define-ghanas-mining-success/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=value-retention-not-just-export-volumes-must-define-ghanas-mining-success</link>
+					<comments>https://www.mincom.gov.gh/value-retention-not-just-export-volumes-must-define-ghanas-mining-success/#respond</comments>
+		
+		<dc:creator><![CDATA[Mincom Webmaster]]></dc:creator>
+		<pubDate>Wed, 01 Jul 2026 15:11:41 +0000</pubDate>
+				<category><![CDATA[Mincom News]]></category>
+		<guid isPermaLink="false">https://www.mincom.gov.gh/?p=18475</guid>
+
+					<description><![CDATA[<p>Value Retention, Not Just Export Volumes, Must Define Ghana’s Mining Success Ghana’s mining sector must redefine success beyond production volumes and export earnings, focusing instead on value creation, retention, and reinvestment within the national economy. This was the central message delivered by Mr. Emmanuel Kwamena Anyimah, Deputy CEO in charge of Support Services at the [&#8230;]</p>
+<p>The post <a href="https://www.mincom.gov.gh/value-retention-not-just-export-volumes-must-define-ghanas-mining-success/">Value Retention, Not Just Export Volumes, Must Define Ghana’s Mining Success</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<h1 class="wp-block-heading"><strong>Value Retention, Not Just Export Volumes, Must Define Ghana’s Mining Success</strong></h1>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p class="wp-block-paragraph">Ghana’s mining sector must redefine success beyond production volumes and export earnings, focusing instead on value creation, retention, and reinvestment within the national economy. This was the central message delivered by Mr. Emmanuel Kwamena Anyimah, Deputy CEO in charge of Support Services at the Minerals Commission. Speaking on behalf of the CEO, Mr. Isaac Tandoh, he addressed the Mining for Development Forum held at the Alisa Hotel on June 30, 2026.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Mr. Anyimah emphasized that while mining remains a cornerstone of Ghana’s macroeconomic framework through foreign exchange earnings and employment, the nation’s ultimate opportunity lies in industrializing around its natural resources. He pointed to the dividends of the Local Content and Local Participation Policies, which have enabled indigenous firms to expand operations, generate skilled jobs, and compete internationally.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Despite these gains, he cautioned that Ghana continues to face structural deficits, with high-value mining inputs, including heavy machinery, chemicals, and advanced technologies, still heavily reliant on imports, resulting in significant capital flight.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Outlining a transformative vision, Mr. Anyimah urged stakeholders to position Ghana as a regional hub for mineral processing, refining, mining technology, and equipment manufacturing. He called for targeted reinvestment in local research, innovation, and entrepreneurial infrastructure; leveraging national universities to pioneer mining-specific solutions; and expanding access to finance for indigenous suppliers to scale their operational competencies.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Mr. Anyimah noted that the state cannot deliver this vision in isolation. It demands robust, coordinated collaboration across government entities, regulatory bodies, financial institutions, academia, host communities, and traditional authorities.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">“The true wealth of a mining nation is not measured only by the minerals it exports. It is measured by the industries it builds, the businesses it grows, the technologies it develops, the skilled workforce it produces, and the opportunities it creates for future generations,” Mr. Anyimah stated.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">The forum, attended by leaders from the Ghana Chamber of Mines, the National House of Chiefs, government officials, and industry executives, underscored the need for such collaboration.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Concluding his remarks, Mr. Anyimah urged participants to prioritize practical, commercially viable solutions that strengthen local supplier development and mineral beneficiation. He reiterated that regulatory certainty and policy consistency are essential to safeguarding Ghana’s global competitiveness while laying a sustainable, multi-generational foundation for inclusive economic transformation.</p>
+
+
+
+<p class="wp-block-paragraph">End.</p>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18476" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2-1024x682.jpeg" alt="" class="wp-image-18476" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-2.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="691" data-id="18477" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3-1024x691.jpeg" alt="" class="wp-image-18477" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3-1024x691.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3-300x203.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3-768x518.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3-1536x1037.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-3.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="840" data-id="18478" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4-1024x840.jpeg" alt="" class="wp-image-18478" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4-1024x840.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4-300x246.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4-768x630.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4-1536x1260.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-4.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="965" data-id="18479" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5-1024x965.jpeg" alt="" class="wp-image-18479" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5-1024x965.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5-300x283.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5-768x724.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5-1536x1448.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-5.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18480" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6-1024x682.jpeg" alt="" class="wp-image-18480" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-6.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18481" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7-1024x682.jpeg" alt="" class="wp-image-18481" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-7.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18482" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8-1024x682.jpeg" alt="" class="wp-image-18482" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-8.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="892" data-id="18483" src="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-1024x892.jpeg" alt="" class="wp-image-18483" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-1024x892.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-300x261.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-768x669.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success-1536x1338.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/07/Value-Retention-Not-Just-Export-Volumes-Must-Define-Ghanas-Mining-Success.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+<p>The post <a href="https://www.mincom.gov.gh/value-retention-not-just-export-volumes-must-define-ghanas-mining-success/">Value Retention, Not Just Export Volumes, Must Define Ghana’s Mining Success</a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.mincom.gov.gh/value-retention-not-just-export-volumes-must-define-ghanas-mining-success/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+<item>
+		<title>President Mahama Cuts Sod for Sentuo Oil Refinery Phase 2 Project </title>
+		<link>https://www.mincom.gov.gh/president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project</link>
+					<comments>https://www.mincom.gov.gh/president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project/#respond</comments>
+		
+		<dc:creator><![CDATA[Mincom Webmaster]]></dc:creator>
+		<pubDate>Fri, 26 Jun 2026 14:12:05 +0000</pubDate>
+				<category><![CDATA[Mincom News]]></category>
+		<guid isPermaLink="false">https://www.mincom.gov.gh/?p=18465</guid>
+
+					<description><![CDATA[<p>June 25, 2026 &#8211; Ghana’s downstream petroleum sector witnessed a major boost today with the official sod-cutting ceremony for Phase 2 of the Sentuo Oil Refinery Project in the Tema Industrial Area.&#160; The landmark event was graced by H.E. President John Dramani Mahama, who performed the sod-cutting as Guest of Honour, signaling the commencement of [&#8230;]</p>
+<p>The post <a href="https://www.mincom.gov.gh/president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project/">President Mahama Cuts Sod for Sentuo Oil Refinery Phase 2 Project </a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">June 25, 2026 &#8211; Ghana’s downstream petroleum sector witnessed a major boost today with the official sod-cutting ceremony for Phase 2 of the Sentuo Oil Refinery Project in the Tema Industrial Area.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The landmark event was graced by H.E. President John Dramani Mahama, who performed the sod-cutting as Guest of Honour, signaling the commencement of the next stage of the refinery’s expansion.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The ceremony also highlighted strong institutional collaboration, with the Chief Executive Officer of the Minerals Commission ably represented by Mr. Isaac Kuuwan Mwinbelle, Director, Industrial Minerals. His presence underscored the vital regulatory synergy driving Ghana’s ambitious industrial transformation agenda.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Celebrated under the theme “From Ghana’s Oil Fields to Ghana’s Industries, Powering National Transformation”, the project marks a pivotal milestone in Ghana’s quest for economic self-reliance and industrial growth.&nbsp;</p>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-4 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18466" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1-1024x819.jpeg" alt="" class="wp-image-18466" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1-1536x1228.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-1.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18467" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2-1024x819.jpeg" alt="" class="wp-image-18467" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2-1536x1229.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-2.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18468" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3-1024x819.jpeg" alt="" class="wp-image-18468" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3-1536x1229.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-3.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18469" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4-1024x819.jpeg" alt="" class="wp-image-18469" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4-1536x1229.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-4.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18470" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5-1024x819.jpeg" alt="" class="wp-image-18470" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5-1536x1229.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-5.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="819" data-id="18471" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6-1024x819.jpeg" alt="" class="wp-image-18471" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6-1024x819.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6-300x240.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6-768x614.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6-1536x1229.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-6.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18472" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7-1024x682.jpeg" alt="" class="wp-image-18472" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-7.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="682" data-id="18473" src="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8-1024x682.jpeg" alt="" class="wp-image-18473" srcset="https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8-1024x682.jpeg 1024w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8-300x200.jpeg 300w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8-768x512.jpeg 768w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8-1536x1023.jpeg 1536w, https://www.mincom.gov.gh/wp-content/uploads/2026/06/Sentuo-Refinery-Phase-2-8.jpeg 1600w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+<p>The post <a href="https://www.mincom.gov.gh/president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project/">President Mahama Cuts Sod for Sentuo Oil Refinery Phase 2 Project </a> appeared first on <a href="https://www.mincom.gov.gh">Minerals Commission</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.mincom.gov.gh/president-mahama-cuts-sod-for-sentuo-oil-refinery-phase-2-project/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+</feed></channel></rss>

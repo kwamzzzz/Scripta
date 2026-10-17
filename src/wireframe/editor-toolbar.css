@@ -1,0 +1,128 @@
+/* The toolbar a document editor is driven by.
+   Shared by the contract editor and the memo composer so that the same tool is
+   the same button in both: one size, one icon weight, one pressed state. */
+.ce-toolbar {
+  min-height: 46px;
+  padding: 7px 12px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+  scrollbar-width: thin;
+}
+.ce-tool {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  cursor: pointer;
+}
+.ce-tool:hover {
+  background: var(--scripta-surface-2);
+}
+.ce-text-tool {
+  font:
+    500 15px/1 Georgia,
+    serif;
+}
+.ce-toolbar > i {
+  width: 1px;
+  height: 18px;
+  margin: 0 5px;
+  flex: none;
+  background: var(--scripta-surface-2);
+}
+.ce-tool svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+.ce-tool:disabled {
+  color: #b8b8b8;
+  cursor: default;
+}
+.ce-tool:disabled:hover {
+  background: transparent;
+}
+.ce-tool.is-active {
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+}
+
+/* A dropdown on the toolbar, for a choice too wide for a button. */
+.ce-toolbar-select {
+  height: 28px;
+  padding: 0 8px;
+  flex: none;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ce-toolbar-select:hover:not(:disabled) {
+  background: var(--scripta-surface-2);
+}
+.ce-toolbar-select:disabled {
+  color: #b8b8b8;
+  cursor: default;
+}
+
+/* Compound controls: an icon with a label, and a count where one applies. */
+.ce-toolbar-action,
+.ce-redraft {
+  height: 28px;
+  padding: 0 10px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  color: var(--scripta-text-2);
+  background: transparent;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ce-toolbar-action:hover,
+.ce-toolbar-action.is-active {
+  background: var(--scripta-surface-2);
+}
+.ce-toolbar-action b {
+  min-width: 17px;
+  height: 17px;
+  padding-inline: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: var(--scripta-brand);
+  background: var(--scripta-selected);
+  font-size: 10px;
+  font-weight: 500;
+}
+.ce-toolbar-action svg,
+.ce-redraft svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+
+.ce-toolbar-action:disabled {
+  color: #b8b8b8;
+  cursor: default;
+}
+.ce-toolbar-action:disabled:hover {
+  background: transparent;
+}

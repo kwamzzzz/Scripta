@@ -1,0 +1,2057 @@
+/*
+ * Learning's chrome tokens.
+ *
+ * v2: Learning uses the same light shell as every other area; no area gets
+ * its own dark theme. The .lr-dark token set is kept (every surface in the
+ * area reads its colour from it) but now holds the light values.
+ */
+
+.lr-dark {
+  --lr-rail: var(--scripta-surface);
+  --lr-menu: var(--scripta-surface);
+  --lr-active: var(--scripta-selected);
+  --lr-rule: var(--scripta-rule);
+  --lr-heading: var(--scripta-ink);
+  --lr-link: var(--scripta-text-2);
+  --lr-muted: var(--scripta-muted);
+  --lr-accent: var(--scripta-brand);
+}
+
+/* The light side, from the handoff's palette. Scoped to the area so it cannot
+   leak into the rest of the app. */
+.lr {
+  --lr-action: var(--scripta-brand);
+  --lr-action-tint: var(--scripta-selected);
+  --lr-action-wash: var(--scripta-brand-tint);
+  --lr-action-border: #c9d0e0;
+  --lr-action-border-strong: #aab5cf;
+  --lr-warn: var(--scripta-warn);
+  --lr-warn-tint: var(--scripta-warn-bg);
+  --lr-warn-ink: var(--scripta-warn);
+  --lr-warn-border: #e6d8b8;
+  --lr-good: var(--scripta-ok);
+  --lr-good-tint: var(--scripta-ok-bg);
+  --lr-good-border: #cfddd2;
+  --lr-late: var(--scripta-risk);
+  --lr-late-tint: var(--scripta-risk-bg);
+  --lr-late-border: #e6cfc9;
+  --lr-clause-rule: #8a6a2f;
+  --lr-mono: var(--scripta-font-mono);
+
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------------ the menu -- */
+
+/* The menu fills the shell's panel column rather than setting its own width. */
+.lr-menu {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--lr-menu);
+}
+
+/* The seam between the panel and the page, on the dark side. */
+.wf-section-learning .wf-panel {
+  border-right-color: #303030;
+  background: var(--lr-menu, #1f1f1f);
+}
+
+.lr-menu-head {
+  padding: 13px 16px 11px;
+}
+
+.lr-menu-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--lr-heading);
+}
+
+.lr-menu-meta {
+  margin-top: 3px;
+  font: 500 9px var(--lr-mono);
+  letter-spacing: 0.06em;
+  color: var(--lr-muted);
+}
+
+.lr-menu-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 10px 10px;
+  font-size: 12.5px;
+}
+
+/* An authored heading. Bold, white, and not a link. */
+.lr-menu-heading {
+  padding: 5px 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--lr-heading);
+}
+
+.lr-menu-divider {
+  height: 1px;
+  margin: 9px 8px;
+  background: var(--lr-rule);
+}
+
+.lr-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  text-align: left;
+  color: var(--lr-link);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.lr-menu-link:hover {
+  background: rgb(255 255 255 / 6%);
+}
+
+/* The active row is a fill and nothing else: no accent edge bar. */
+.lr-menu-link[aria-current="true"] {
+  background: var(--lr-active);
+  color: var(--lr-heading);
+}
+
+.lr-menu-link[data-locked="true"] {
+  color: var(--lr-muted);
+  cursor: default;
+}
+
+.lr-menu-tick {
+  flex: none;
+  width: 12px;
+  font-size: 11px;
+  color: var(--lr-muted);
+}
+
+.lr-menu-link[data-complete="true"] .lr-menu-tick {
+  color: var(--lr-accent);
+}
+
+.lr-menu-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pinned, so the CPD standing is readable from any scroll position. */
+.lr-menu-foot {
+  flex: none;
+  border-top: 1px solid var(--lr-rule);
+  padding: 10px 16px 12px;
+  font: 500 9.5px var(--lr-mono);
+  letter-spacing: 0.06em;
+  color: var(--lr-muted);
+}
+
+.lr-menu-foot b {
+  color: var(--lr-heading);
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------- the pages -- */
+
+.lr-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.lr-page {
+  padding: 22px 26px 56px;
+}
+
+.lr-h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.lr-sub {
+  margin: 4px 0 0;
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+
+.lr-label {
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+
+.lr-card {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 16px 18px;
+}
+
+/* The single Continue card: the common case is resuming one item. */
+.lr-continue {
+  border: 1px solid var(--lr-action-border-strong);
+  background: var(--lr-action-wash);
+}
+
+.lr-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+}
+
+.lr-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--scripta-surface-2);
+  overflow: hidden;
+}
+
+.lr-bar > i {
+  display: block;
+  height: 100%;
+  background: var(--lr-action);
+}
+
+.lr-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+}
+
+.lr-badge[data-tone="self"] {
+  background: var(--scripta-surface-2);
+  color: var(--scripta-text-2);
+}
+
+.lr-badge[data-tone="soon"] {
+  background: var(--lr-warn-tint);
+  color: var(--lr-warn-ink);
+  border: 1px solid var(--lr-warn-border);
+}
+
+.lr-badge[data-tone="late"] {
+  background: var(--lr-late-tint);
+  color: var(--lr-late);
+  border: 1px solid var(--lr-late-border);
+}
+
+.lr-badge[data-tone="done"] {
+  background: var(--lr-good-tint);
+  color: var(--lr-good);
+  border: 1px solid var(--lr-good-border);
+}
+
+/* -------------------------------------------------------- module page -- */
+
+/* The outline is the first thing in a module, and it says so. */
+.lr-outline {
+  border: 1px solid var(--lr-action-border);
+  background: var(--lr-action-tint);
+  border-radius: 8px;
+  padding: 14px 18px 16px;
+}
+
+.lr-outline-line {
+  display: flex;
+  gap: 10px;
+  padding: 3px 0;
+  line-height: 1.5;
+}
+
+.lr-outline-line > b {
+  flex: none;
+  min-width: 26px;
+  font: 500 11px var(--lr-mono);
+  color: var(--lr-action);
+  padding-top: 2px;
+}
+
+.lr-outline-line[data-unbound="true"] > b {
+  color: var(--lr-warn-ink);
+}
+
+.lr-rows {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--scripta-surface);
+}
+
+.lr-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.lr-row:first-child {
+  border-top: 0;
+}
+
+.lr-row[data-depth="1"] {
+  padding-left: 40px;
+  background: var(--scripta-surface);
+}
+
+.lr-row-number {
+  flex: none;
+  min-width: 28px;
+  font: 500 11px var(--lr-mono);
+  color: var(--scripta-muted);
+  padding-top: 2px;
+}
+
+.lr-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.lr-row-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--scripta-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lr-row-title:hover {
+  color: var(--lr-action);
+}
+
+.lr-row-meta {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+
+.lr-warn {
+  border: 1px solid var(--lr-warn-border);
+  background: var(--lr-warn-tint);
+  color: var(--lr-warn-ink);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+}
+
+/* ------------------------------------------------------- learner view -- */
+
+/*
+ * One measured column and nothing competing with it. 640px is the reading
+ * width from the handoff and the reason the right panel never reflows it.
+ */
+.lr-read {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 26px 0 64px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--scripta-ink);
+}
+
+.lr-read h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.lr-read p {
+  margin: 0 0 16px;
+}
+
+/* A clause block is a real block type, not styled text. */
+.lr-clause {
+  border-left: 2px solid var(--lr-clause-rule);
+  padding: 2px 0 2px 16px;
+  margin: 0 0 16px;
+  font-family: var(--lr-mono);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.lr-authority {
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  color: var(--scripta-text-2);
+}
+
+.lr-authority b {
+  color: var(--scripta-ink);
+  font-weight: 600;
+}
+
+/* Ungraded, and it says so where the learner can see it. */
+.lr-check {
+  border: 1px solid var(--lr-action-border);
+  background: var(--lr-action-wash);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+}
+
+.lr-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--scripta-rule);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.lr-btn {
+  border: 1px solid var(--scripta-border);
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  padding: 6px 12px;
+  font-size: 12.5px;
+  color: var(--scripta-ink);
+  cursor: pointer;
+}
+
+.lr-btn:hover {
+  border-color: #b9b9b9;
+}
+
+/* Fallbacks: dialogs render outside the area, where the tokens are not set. */
+.lr-btn[data-primary="true"] {
+  background: var(--lr-action, var(--scripta-brand));
+  border-color: var(--lr-action, var(--scripta-brand));
+  color: #fff;
+}
+
+.lr-btn[data-primary="true"][data-on="true"] {
+  background: var(--lr-good);
+  border-color: var(--lr-good);
+}
+
+.lr-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.lr-empty {
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  padding: 28px;
+  text-align: center;
+  color: var(--scripta-muted);
+  font-size: 12.5px;
+}
+
+/* ------------------------------------------------------------- the rail -- */
+
+/*
+ * The shell already stamps wf-section-<section> on its root, so the rail is
+ * re-themed by scoping a token set to this section rather than by changing the
+ * shell. Every other area keeps its navy rail; Learning alone goes near-black.
+ *
+ * The rail's own colours were chosen against that navy — a blue-grey label on
+ * #202c49 is legible, and the same label on #141414 is not — so the whole
+ * foreground set is restated here against the darker ground rather than only
+ * the background being swapped.
+ */
+.wf-section-learning {
+  --lr-rail: var(--scripta-surface);
+  --lr-rail-raised: var(--scripta-surface-2);
+  --lr-active: var(--scripta-selected);
+  --lr-rule: var(--scripta-rule);
+  --lr-edge: var(--scripta-border);
+  --lr-heading: var(--scripta-ink);
+  --lr-link: var(--scripta-text-2);
+  --lr-muted: var(--scripta-muted);
+  --lr-accent: var(--scripta-brand);
+}
+
+.wf-section-learning .wf-sidebar {
+  background: var(--lr-rail) !important;
+  border-color: #303030;
+  box-shadow: none;
+}
+
+/* The workspace name, and the account line under it. */
+.wf-section-learning
+  .wf-sidebar.is-expanded
+  > div:first-of-type
+  > div:last-child
+  > div:first-child {
+  color: var(--lr-heading);
+}
+
+.wf-section-learning .wf-sidebar.is-expanded > div:first-of-type > div:last-child > div:last-child {
+  color: var(--lr-muted) !important;
+}
+
+/* The workspace switcher. */
+.wf-section-learning .wf-sidebar.is-expanded > div:nth-of-type(2) .px-tab {
+  border-color: var(--lr-rule) !important;
+  background: var(--lr-rail-raised) !important;
+  color: var(--lr-link) !important;
+  box-shadow: none;
+}
+
+/* WORKSPACE · TOOLS · KNOWLEDGE · ADMIN. */
+.wf-section-learning .wf-sidebar.is-expanded > div:nth-of-type(3) [style*="IBM Plex Mono"] {
+  color: var(--lr-muted) !important;
+}
+
+.wf-section-learning .wf-sidebar.is-compact > div[style*="height: 1px"],
+.wf-section-learning .wf-sidebar hr {
+  background: var(--lr-rule) !important;
+}
+
+.wf-section-learning .wf-sidebar .wf-navrow {
+  color: var(--lr-link);
+}
+
+.wf-section-learning .wf-sidebar .wf-navrow-icon {
+  border-color: rgb(255 255 255 / 14%);
+}
+
+.wf-section-learning .wf-sidebar .wf-navrow:hover {
+  color: var(--lr-heading);
+  background: rgb(255 255 255 / 6%);
+}
+
+/*
+ * The active row is a fill and nothing else. The app-wide rail marks it with
+ * an accent edge bar; in here that bar is deliberately removed, because the
+ * dark chrome is already saying where you are.
+ */
+.wf-section-learning .wf-sidebar .wf-navrow.is-active {
+  color: var(--lr-heading);
+  background: var(--lr-active);
+  box-shadow: none;
+}
+
+.wf-section-learning .wf-sidebar .wf-railbox {
+  color: var(--lr-link);
+  border-color: var(--lr-rule);
+  background: rgb(255 255 255 / 3%);
+  box-shadow: none;
+}
+
+.wf-section-learning .wf-sidebar .wf-railbox:hover {
+  color: var(--lr-heading);
+  border-color: var(--lr-edge);
+  background: var(--lr-rail-raised);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.wf-section-learning .wf-sidebar .wf-railbox.is-active {
+  color: var(--lr-heading);
+  border-color: var(--lr-edge);
+  background: var(--lr-active);
+  box-shadow: none;
+}
+
+/* The avatar is the one place the accent is allowed to appear in the rail. */
+.wf-section-learning .wf-shell-avatar {
+  border-color: rgb(255 255 255 / 20%) !important;
+  background: var(--lr-active) !important;
+  color: var(--lr-heading) !important;
+  box-shadow: none;
+}
+
+.wf-section-learning .wf-sidebar :focus-visible {
+  outline: 2px solid var(--lr-accent);
+  outline-offset: 1px;
+}
+
+/*
+ * The parts of the rail that were drawn for a light or navy ground and do not
+ * survive #141414: two hairlines at rgb(222,224,217), which read as bright
+ * white scratches, and the account card, whose name is #123247 — navy text on
+ * near-black, which is the least readable thing on the screen.
+ */
+.wf-section-learning .scripta-nav-utility,
+.wf-section-learning .scripta-sidebar-footer {
+  border-top-color: var(--lr-rule) !important;
+}
+
+.wf-section-learning .wf-account {
+  border-color: var(--lr-rule) !important;
+}
+
+.wf-section-learning .wf-account-trigger {
+  color: var(--lr-link) !important;
+  background: var(--lr-rail-raised);
+  border-color: var(--lr-rule);
+}
+
+.wf-section-learning .wf-account-trigger:hover {
+  background: var(--lr-active);
+}
+
+.wf-section-learning .wf-account-copy {
+  color: var(--lr-link) !important;
+}
+
+/* The name, then the address under it. */
+.wf-section-learning .wf-account-copy > :first-child {
+  color: var(--lr-heading) !important;
+}
+
+.wf-section-learning .wf-account-copy > :last-child {
+  color: var(--lr-muted) !important;
+}
+
+/* The account menu, when it opens over the dark rail. */
+.wf-section-learning .wf-account-menu {
+  background: var(--lr-rail-raised);
+  border-color: var(--lr-rule);
+  color: var(--lr-link);
+}
+
+/*
+ * The lockup is a navy PNG, so it cannot be recoloured properly from here —
+ * it is lifted until it reads on black rather than flattened to white, which
+ * would lose the two tones in the mark. A light artwork would be the real fix.
+ */
+.wf-section-learning .scripta-logo {
+  filter: brightness(1.55) saturate(1.08);
+}
+
+/* ------------------------------------------------- authoring additions -- */
+
+.lr-menu-back {
+  color: var(--lr-muted);
+}
+
+.lr-menu-empty {
+  padding: 5px 8px;
+  color: var(--lr-muted);
+  font-size: 12px;
+}
+
+.lr-menu-module {
+  margin-bottom: 4px;
+}
+
+/* An item sits under its module, indented past the module's number. */
+.lr-menu-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 22px;
+  font-size: 12px;
+}
+
+.lr-menu-item[data-depth="1"] {
+  padding-left: 36px;
+}
+
+.lr-menu-item[data-hidden="true"] .lr-menu-label {
+  font-style: italic;
+  color: var(--lr-muted);
+}
+
+.lr-menu-num {
+  flex: none;
+  font: 500 10px var(--lr-mono);
+  color: var(--lr-muted);
+}
+
+.lr-btn[data-danger="true"] {
+  color: var(--lr-late, var(--scripta-risk));
+}
+
+.lr-tile {
+  cursor: pointer;
+  text-align: left;
+}
+
+.lr-tile-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--scripta-text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.lr-stats {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.lr-stat-value {
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.lr-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--scripta-surface);
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+
+.lr-table th {
+  text-align: left;
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.lr-table td {
+  padding: 9px 12px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.lr-table tbody tr {
+  cursor: pointer;
+}
+
+.lr-table tbody tr:hover {
+  background: var(--scripta-surface-2);
+}
+
+.lr-inline-add {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lr-inline-add input,
+.lr-input,
+.lr-textarea {
+  box-sizing: border-box;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  padding: 6px 9px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+}
+
+.lr-inline-add input {
+  flex: 1;
+  min-width: 0;
+}
+
+.lr-textarea {
+  width: 100%;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.lr-input:focus-visible,
+.lr-textarea:focus-visible,
+.lr-inline-add input:focus-visible {
+  outline: 2px solid var(--lr-action, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.lr-choice {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.lr-choice label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.lr-choice label:has(input:checked) {
+  border-color: var(--lr-action-border-strong, #a8c7fa);
+  background: var(--lr-action-wash, var(--scripta-selected));
+}
+
+.lr-choice span {
+  display: grid;
+  gap: 2px;
+}
+
+.lr-choice small {
+  font-size: 12px;
+  color: var(--scripta-text-2);
+}
+
+/* The author's details strip on a course or module. */
+.lr-details {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  align-items: end;
+}
+
+.lr-details label {
+  display: grid;
+  gap: 4px;
+}
+
+/* An outline line being edited. */
+.lr-outline-edit {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.lr-outline-edit > b {
+  flex: none;
+  min-width: 26px;
+  font: 500 11px var(--lr-mono);
+  color: var(--lr-action);
+}
+
+.lr-outline-edit > .lr-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.lr-outline-edit select {
+  max-width: 14rem;
+}
+
+/* A block in the item editor. */
+.lr-block {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 10px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.lr-block[data-type="heading"] .lr-textarea {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.lr-block[data-type="clause"] {
+  border-left: 3px solid var(--lr-clause-rule);
+}
+
+.lr-block[data-type="check"] {
+  background: var(--lr-action-wash);
+}
+
+.lr-block-bar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.lr-block-bar select {
+  font: 500 10.5px var(--lr-mono);
+  letter-spacing: 0;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 5px;
+  padding: 3px 6px;
+  background: var(--scripta-surface);
+}
+
+.lr-saved {
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+}
+
+.lr-read a {
+  color: var(--lr-action);
+  word-break: break-word;
+}
+
+.lr-lede {
+  margin: 10px 0 0;
+  max-width: 46rem;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--scripta-text-2);
+}
+
+.lr-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* A long course, module or item title wraps rather than widening the page
+   or being cut short; the field that renames it takes the full width. */
+.lr-h1 .scripta-editable-name-text,
+.lr-read h2 .scripta-editable-name-text {
+  white-space: normal;
+  overflow: visible;
+}
+
+.lr-h1 .scripta-editable-name,
+.lr-read h2 .scripta-editable-name {
+  display: flex;
+  align-items: flex-start;
+}
+
+.lr-h1 .scripta-editable-name-input,
+.lr-read h2 .scripta-editable-name-input {
+  width: 100%;
+  font-size: inherit;
+}
+
+/* Course titles are long ("Article 1 of the Civil Transactions Law…"); two
+   lines tell them apart where one truncated line cannot. */
+.lr-menu-module .lr-menu-label {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.35;
+}
+
+.lr-menu-module .lr-menu-link {
+  align-items: flex-start;
+}
+
+/* --------------------------------------------------- beyond reading -- */
+
+/* Media sits wider than the text column where it can, so a diagram or a video
+   is not squeezed to the measure of a paragraph. */
+.lr-media {
+  margin: 8px 0 22px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+
+.lr-media figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--scripta-rule);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--scripta-text-2);
+}
+
+.lr-media figcaption a {
+  flex: none;
+  color: var(--lr-action);
+}
+
+.lr-media[data-kind="audio"] {
+  background: var(--lr-action-wash);
+  border-color: var(--lr-action-border);
+}
+
+.lr-audio {
+  display: block;
+  width: calc(100% - 24px);
+  margin: 12px;
+}
+
+.lr-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--scripta-brand);
+}
+
+.lr-pdf {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 0;
+  background: var(--scripta-surface-2);
+}
+
+.lr-image {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--scripta-surface);
+  cursor: zoom-in;
+}
+
+.lr-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Full size scrolls inside the frame rather than widening the page. */
+.lr-image[data-zoom="true"] {
+  max-height: 80vh;
+  overflow: auto;
+  cursor: zoom-out;
+}
+
+.lr-image[data-zoom="true"] img {
+  width: auto;
+  max-width: none;
+}
+
+.lr-media-wait {
+  padding: 26px 14px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--scripta-muted);
+}
+
+.lr-quiz,
+.lr-deck {
+  margin: 8px 0 22px;
+  border: 1px solid var(--lr-action-border);
+  border-radius: 10px;
+  background: var(--lr-action-wash);
+  padding: 14px 16px;
+}
+
+.lr-quiz-q {
+  margin: 6px 0 10px !important;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.lr-quiz-hint {
+  margin: -4px 0 8px;
+  font-size: 12px;
+  color: var(--scripta-text-2);
+}
+
+.lr-quiz-options {
+  display: grid;
+  gap: 6px;
+}
+
+.lr-quiz-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  text-align: left;
+  font: inherit;
+  font-size: 13.5px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.lr-quiz-option > b {
+  flex: none;
+  font: 500 11px var(--lr-mono);
+  color: var(--scripta-muted);
+  padding-top: 3px;
+}
+
+.lr-quiz-option[data-state="picked"] {
+  border-color: var(--lr-action);
+  box-shadow: 0 0 0 1px var(--lr-action);
+}
+
+.lr-quiz-option[data-state="right"] {
+  border-color: var(--lr-good-border);
+  background: var(--lr-good-tint);
+}
+
+.lr-quiz-option[data-state="wrong"] {
+  border-color: var(--lr-late-border);
+  background: var(--lr-late-tint);
+}
+
+.lr-quiz-verdict {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lr-late);
+}
+
+.lr-quiz-verdict[data-right="true"] {
+  color: var(--lr-good);
+}
+
+.lr-quiz-why {
+  margin: 10px 0 0 !important;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.lr-deck {
+  display: grid;
+  gap: 12px;
+}
+
+.lr-card-face {
+  display: grid;
+  gap: 10px;
+  place-items: center;
+  min-height: 170px;
+  padding: 22px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: var(--scripta-surface);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow:  none;
+}
+
+.lr-card-face[data-flipped="true"] {
+  background: #fffdf5;
+  border-color: #e6d9a8;
+}
+
+.lr-card-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 34rem;
+}
+
+.lr-card-face[data-flipped="true"] .lr-card-text {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.lr-card-hint {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+
+.lr-data {
+  margin: 8px 0 22px;
+}
+
+.lr-data figcaption {
+  margin-bottom: 6px;
+}
+
+.lr-data-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.lr-data table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.lr-data th {
+  position: sticky;
+  top: 0;
+  background: var(--scripta-surface-2);
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--scripta-rule);
+  white-space: nowrap;
+}
+
+.lr-data td {
+  padding: 7px 10px;
+  border-top: 1px solid var(--scripta-rule);
+  vertical-align: top;
+}
+
+/* The drop target over the item editor while a file is dragged across it. */
+.lr-drop {
+  outline: 2px dashed var(--lr-action);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+.lr-upload {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  border: 1px dashed #cfcfcf;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--scripta-text-2);
+}
+
+/* ------------------------------------------------------- time to do -- */
+
+/* Three plain facts about how big the course is, before anything else. */
+.lr-plan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface-2);
+  overflow: hidden;
+}
+
+.lr-plan > div {
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px;
+  background: var(--scripta-surface);
+}
+
+.lr-plan b {
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.lr-plan span {
+  font-size: 12px;
+  color: var(--scripta-text-2);
+}
+
+.lr-next-time {
+  margin-top: 4px;
+  font: 500 10.5px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--lr-action);
+}
+
+/* A module's time sits under its title, so the title keeps the full width. */
+.lr-menu-stack {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.lr-menu-time {
+  font: 500 9.5px var(--lr-mono);
+  letter-spacing: 0.04em;
+  color: var(--lr-muted);
+}
+
+/* ----------------------------------------------- caveats and credits -- */
+
+.lr-caveat {
+  margin: 4px 0 20px;
+  padding: 10px 14px;
+  border: 1px solid var(--lr-warn-border);
+  border-left: 3px solid var(--lr-warn);
+  border-radius: 8px;
+  background: var(--lr-warn-tint);
+}
+
+.lr-caveat .lr-label {
+  color: var(--lr-warn-ink);
+}
+
+.lr-caveat p {
+  margin: 4px 0 0 !important;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #4a3a2a;
+}
+
+/* Credits sit side by side in the reading column. */
+.lr-credit-slot {
+  display: inline-block;
+  width: calc(50% - 8px);
+  margin: 0 8px 12px 0;
+  vertical-align: top;
+}
+
+.lr-credit {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 10px;
+  background: var(--scripta-surface);
+}
+
+.lr-credit[data-placeholder="true"] {
+  border-style: dashed;
+  background: var(--scripta-surface);
+}
+
+.lr-credit[data-placeholder="true"] b {
+  color: var(--scripta-muted);
+  font-style: italic;
+}
+
+.lr-credit-logo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 44px;
+}
+
+.lr-credit[data-compact="true"] .lr-credit-logo {
+  width: 52px;
+  height: 36px;
+}
+
+.lr-credit-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lr-credit-text {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.lr-credit-text b {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.lr-credit-text span {
+  color: var(--scripta-text-2);
+}
+
+.lr-credit-org {
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+  color: var(--scripta-muted) !important;
+}
+
+.lr-team {
+  display: grid;
+  gap: 8px;
+}
+
+.lr-team-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.lr-credit-photo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eef1f4;
+  color: #8b97a3;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.lr-credit-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lr-credit-photo[data-empty="true"] {
+  border: 1px dashed #c3ccd5;
+}
+
+.lr-credit .lr-credit-logo:last-child {
+  margin-left: auto;
+}
+
+/* Author notes: guidance in the editor, never shown to a learner. */
+.lr-block[data-type="note"] {
+  border-style: dashed;
+  border-color: #e6d28a;
+  background: #fffbea;
+}
+
+/* ------------------------------------------------------------ roadmap -- */
+
+.lr-roadmap ol {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  position: relative;
+}
+
+/* The line that joins the stops. */
+.lr-roadmap ol::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background: #dfe5ec;
+}
+
+.lr-roadmap li button {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 7px 8px 7px 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.lr-roadmap li button:hover {
+  background: #f4f6f8;
+}
+
+.lr-roadmap-dot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #c9d3dd;
+  background: var(--scripta-surface);
+  font: 600 12px var(--lr-mono);
+  color: #5f6b77;
+  z-index: 1;
+}
+
+.lr-roadmap li[data-state="started"] .lr-roadmap-dot {
+  border-color: var(--lr-action);
+  color: var(--lr-action);
+}
+
+.lr-roadmap li[data-state="done"] .lr-roadmap-dot {
+  border-color: var(--lr-good);
+  background: var(--lr-good-tint);
+  color: var(--lr-good);
+}
+
+.lr-roadmap-body {
+  display: grid;
+  gap: 3px;
+  padding-top: 5px;
+  min-width: 0;
+}
+
+.lr-roadmap-body b {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.lr-roadmap-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+
+.lr-tag {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--lr-action-tint);
+  color: var(--lr-action);
+  font: 500 10px var(--lr-mono);
+  letter-spacing: 0;
+}
+
+.lr-tag[data-tone="check"] {
+  background: var(--lr-good-tint);
+  color: var(--lr-good);
+}
+
+/* A logo under a person's name: small, left-aligned, never squeezing the text. */
+.lr-credit .lr-credit-text .lr-credit-logo {
+  justify-content: start;
+  width: 130px;
+  height: 34px;
+  margin-top: 6px;
+}
+
+.lr-credit-text .lr-credit-logo img {
+  object-position: left center;
+}
+
+/* Size logos by height: a vector logo with no intrinsic size otherwise collapses to nothing. */
+.lr-credit-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.lr-credit .lr-credit-text .lr-credit-logo {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.lr-credit .lr-credit-text .lr-credit-logo img {
+  max-height: 34px;
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Team cards on the course home: Edit sits on the card in authoring mode. */
+.lr-team-slot {
+  position: relative;
+}
+
+.lr-team-edit {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.lr-team-add {
+  min-height: 72px;
+  border: 1px dashed #b9c6d3;
+  border-radius: 10px;
+  background: #fbfcfd;
+  color: var(--lr-action);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lr-team-add:hover {
+  background: var(--lr-action-wash);
+}
+
+.lr-team-preview {
+  max-width: 22rem;
+}
+
+.lr-btn.lr-btn-danger-solid {
+  background: var(--lr-late, var(--scripta-risk));
+  border-color: var(--lr-late, var(--scripta-risk));
+  color: #fff;
+}
+
+.lr-btn.lr-btn-danger-solid:disabled {
+  opacity: 0.4;
+}
+
+.lr-back {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 12.5px;
+  color: var(--lr-action, var(--scripta-brand));
+  cursor: pointer;
+}
+
+.lr-back:hover {
+  text-decoration: underline;
+}
+
+/* Read aloud: a floating "now playing" bar. It stays in view while the page
+   follows the paragraph being read, so a jump never scrolls the controls
+   away. Frosted, softly lifted, one clear primary control. */
+.lr-reader {
+  position: sticky;
+  top: 10px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin: 14px 0 6px;
+  padding: 10px 14px 10px 10px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 16px;
+  background:
+    var(--scripta-surface);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  box-shadow:
+     0 1px 0 rgb(255 255 255 / 80%) inset, 0 0 0 1px rgb(15 23 42 / 6%), var(--scripta-shadow-pop);
+}
+
+.lr-reader-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-left: 2px;
+}
+.lr-reader-status-main {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f1f1f;
+  white-space: nowrap;
+}
+.lr-reader-status-sub {
+  font: 500 10.5px var(--lr-mono);
+  letter-spacing: 0.04em;
+  color: var(--scripta-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.lr-reader-space {
+  flex: 1;
+}
+
+/* A small live equaliser while reading. */
+.lr-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 16px;
+  height: 14px;
+}
+.lr-eq i {
+  flex: 1;
+  border-radius: 1px;
+  background: var(--lr-action, var(--scripta-brand));
+  animation: lr-eq 0.9s ease-in-out infinite;
+}
+.lr-eq i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lr-eq i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+.lr-eq i:nth-child(4) {
+  animation-delay: -0.15s;
+}
+@keyframes lr-eq {
+  0%,
+  100% {
+    height: 25%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lr-eq i {
+    animation: none;
+    height: 60%;
+  }
+}
+
+/* One quiet control for voice and speed, showing what is set. */
+.lr-reader-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  max-width: 220px;
+  padding: 0 12px;
+  border: 1px solid rgb(15 23 42 / 10%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 75%);
+  color: #3c3c3c;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.lr-reader-settings span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lr-reader-settings:hover,
+.lr-reader-settings[data-state="open"] {
+  border-color: rgb(36 54 96 / 35%);
+  background: var(--scripta-surface);
+}
+.lr-reader-settings:focus-visible {
+  outline: 2px solid var(--lr-action, var(--scripta-brand));
+  outline-offset: 2px;
+}
+.lr-reader-pop {
+  display: grid;
+  gap: 10px;
+  width: 300px;
+  padding: 12px;
+  border-radius: 14px;
+}
+.lr-reader-pop .lr-reader-field {
+  justify-content: space-between;
+  min-width: 0;
+}
+.lr-reader-pop .lr-reader-field select {
+  max-width: none;
+  min-width: 0;
+  width: 100%;
+  flex: 1;
+  text-align: right;
+}
+
+/* Speed and voice as chips; the native select stays for keyboard and screen readers. */
+.lr-reader-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 4px 0 10px;
+  border: 1px solid rgb(15 23 42 / 10%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 75%);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--scripta-muted);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.lr-reader-field:hover {
+  border-color: rgb(36 54 96 / 35%);
+  background: var(--scripta-surface);
+}
+.lr-reader-field:focus-within {
+  border-color: var(--lr-action, var(--scripta-brand));
+  box-shadow: 0 0 0 3px rgb(36 54 96 / 14%);
+}
+.lr-reader-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  max-width: 190px;
+  height: 28px;
+  padding: 0 22px 0 2px;
+  border: 0;
+  outline: none;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236f6f6f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 8px center;
+  color: #1f1f1f;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.lr-reader-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--lr-action, var(--scripta-brand));
+  cursor: pointer;
+}
+
+.lr-reader-note {
+  flex: 1 1 100%;
+  padding-left: 4px;
+  font-size: 11px;
+  color: var(--scripta-muted);
+}
+
+.lr-listening [data-block] {
+  cursor: pointer;
+}
+
+.lr-reading {
+  background: #fff6d6;
+  box-shadow: 0 0 0 6px #fff6d6;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+/* The page as a thin track that fills as it plays. */
+.lr-reader-progress {
+  display: flex;
+  align-items: center;
+  flex: 1 1 100%;
+  padding: 0 4px;
+}
+.lr-reader-progress input[type="range"] {
+  --p: 0%;
+  flex: 1;
+  height: 16px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.lr-reader-progress input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--scripta-brand);
+}
+.lr-reader-progress input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 12%);
+}
+.lr-reader-progress input[type="range"]::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--lr-action, var(--scripta-brand));
+}
+.lr-reader-progress input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--lr-action, var(--scripta-brand));
+  box-shadow:  none;
+  transition: transform 0.15s;
+}
+.lr-reader-progress input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--lr-action, var(--scripta-brand));
+  box-shadow:  none;
+}
+.lr-reader-progress input[type="range"]:hover::-webkit-slider-thumb,
+.lr-reader-progress input[type="range"]:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+
+/* Player buttons: a round primary play/pause with a soft glow, quiet round
+   icons beside it. */
+.lr-play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--scripta-brand);
+  color: #fff;
+  cursor: pointer;
+  box-shadow:
+     0 1px 0 rgb(255 255 255 / 25%) inset;
+  transition:
+    box-shadow 0.2s,
+    transform 0.1s,
+    filter 0.15s;
+}
+
+.lr-play-btn[data-label="true"] {
+  padding: 0 18px 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.lr-play-btn:hover {
+  filter: brightness(1.06);
+  box-shadow:
+     0 1px 0 rgb(255 255 255 / 25%) inset;
+}
+
+.lr-reader[data-state="playing"] .lr-play-btn {
+  box-shadow:
+     0 0 0 4px rgb(36 54 96 / 12%);
+}
+
+.lr-play-btn:active,
+.lr-icon-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.lr-play-btn:focus-visible,
+.lr-icon-btn:focus-visible {
+  outline: 2px solid var(--lr-action, var(--scripta-brand));
+  outline-offset: 2px;
+}
+
+.lr-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #3c3c3c;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.1s;
+}
+
+.lr-icon-btn:hover:not(:disabled) {
+  background: rgb(15 23 42 / 7%);
+  color: var(--scripta-ink);
+}
+
+.lr-icon-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* A triangle looks off-centre in a circle until it is nudged right. */
+.lr-play-btn:not([data-label]) .lucide-play {
+  margin-left: 2px;
+}
+
+/* ------------------------------------------------------------ covers -- */
+
+.lr-cover {
+  position: relative;
+  overflow: hidden;
+  background: var(--scripta-surface);
+}
+.lr-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.lr-cover-tile {
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+}
+/* On a shelf tile the cover runs edge to edge across the top of the card. */
+.lr-tile > .lr-cover-tile {
+  margin: -16px -18px 14px;
+  border-radius: 7px 7px 0 0;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+.lr-tile {
+  overflow: hidden;
+  /* A card is a button, and a button centres its content when the grid
+     stretches it to the row's height; keep it at the top so covers line up. */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s,
+    border-color 0.2s;
+}
+.lr-tile:hover {
+  border-color: #d6d6d6;
+  box-shadow:  none;
+  transform: translateY(-2px);
+}
+.lr-tile:hover .lr-cover img {
+  transform: scale(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lr-tile,
+  .lr-tile:hover,
+  .lr-tile:hover .lr-cover img {
+    transform: none;
+  }
+}
+.lr-cover-initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgb(36 54 96 / 45%);
+}
+.lr-cover-banner {
+  height: clamp(140px, 22vw, 240px);
+  border-radius: 12px;
+}
+.lr-cover-banner::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(0deg, rgb(0 0 0 / 35%), transparent);
+  pointer-events: none;
+}
+.lr-cover-credit {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  z-index: 1;
+  font-size: 10.5px;
+  color: rgb(255 255 255 / 88%);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 40%);
+}
+
+/* The cover control in a course's details. */
+.lr-cover-edit {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.lr-cover-edit label.lr-btn {
+  cursor: pointer;
+}
+.lr-cover-edit label.lr-btn[data-busy="true"] {
+  opacity: 0.6;
+  cursor: default;
+}
+.lr-hint {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted);
+}
+.lr-hint[data-tone="late"] {
+  color: var(--lr-late, var(--scripta-risk));
+}

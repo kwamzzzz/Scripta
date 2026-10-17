@@ -1,0 +1,1455 @@
+/*
+ * The career portal has a surface of its own.
+ *
+ * Everywhere else in Scripta the page is the firm's work: dense rows, a
+ * detail panel, a grid of documents. This is one person's record, read slowly
+ * and rarely, so it is built from cards with room to breathe and sentences
+ * that are meant to be read rather than scanned. The four statuses carry
+ * colour; nothing else does, because the status is the only thing here that
+ * should catch the eye before the words do.
+ */
+
+/* The portal's own column, inside the page padding every screen shares. */
+.cr-page {
+  container: scripta-page / inline-size;
+}
+.cr {
+  width: 100%;
+  /* The same column the admin portal reads in. */
+  max-width: 1180px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cr-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cr-head > div:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.cr-head h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+  letter-spacing: -0.01em;
+}
+.cr-head p {
+  margin: 4px 0 0;
+  /* A readable measure, set in the 13px this is actually rendered at rather
+     than in the size the number was guessed for — 62ch came out at 508px and
+     broke one sentence over three short lines. */
+  max-width: 86ch;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  line-height: 1.6;
+}
+.cr-role-pick {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-role-pick select {
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  font: 500 13px/1.3 inherit;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+
+.cr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.cr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cr-card {
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.cr-card h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-card h3 {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cr-card-head > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.cr-muted {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.cr-hint {
+  margin-top: -4px;
+}
+.cr-error {
+  margin: 0;
+  color: var(--scripta-error, var(--scripta-risk));
+  font-size: 12.5px;
+}
+.cr-empty {
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 10px;
+  padding: 32px;
+  text-align: center;
+  background: var(--scripta-surface);
+}
+.cr-empty h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-empty p {
+  margin: 0 auto 16px;
+  max-width: 56ch;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ------------------------------------------------------------- buttons */
+
+.cr button,
+.cr .cr-primary {
+  font-family: inherit;
+}
+.cr-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cr-actions-left {
+  justify-content: flex-start;
+}
+.cr-actions button,
+.cr-card-head button,
+.cr-empty button,
+.cr-extract button {
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 500 12.5px/1.2 inherit;
+  cursor: pointer;
+}
+.cr-actions button:hover,
+.cr-card-head button:hover,
+.cr-empty button:hover,
+.cr-extract button:hover {
+  border-color: var(--scripta-brand);
+}
+.cr-primary {
+  background: var(--scripta-brand) !important;
+  border-color: var(--scripta-brand) !important;
+  color: #fff !important;
+}
+.cr-primary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.cr-danger {
+  color: var(--scripta-error, var(--scripta-risk)) !important;
+}
+
+/* --------------------------------------------------------------- forms */
+
+.cr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cr-form label {
+  display: grid;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 12px;
+}
+/* Name, firm and kind are short answers; they share a line so the document
+   below them gets the screen rather than the other way round. */
+.cr-row-3 {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr);
+}
+@container scripta-page (max-width: 720px) {
+  .cr-row-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cr input,
+.cr select,
+.cr textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 13px/1.55 inherit;
+}
+.cr textarea {
+  resize: vertical;
+}
+.cr input:focus-visible,
+.cr select:focus-visible,
+.cr textarea:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+/* ---------------------------------------------------------- the roles */
+
+.cr-rolelist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cr-rolelist button {
+  width: 100%;
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-rolelist li.is-on button {
+  border-color: var(--scripta-brand);
+  box-shadow: inset 0 0 0 1px var(--scripta-ink, #123247);
+}
+.cr-rolelist span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.cr-original > summary {
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-original pre {
+  margin: 10px 0 0;
+  padding: 12px;
+  max-height: 340px;
+  overflow: auto;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-paper, #fbfbf9);
+  font:
+    400 12px/1.6 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  white-space: pre-wrap;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.cr-criteria {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.cr-criteria li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-criterion-text {
+  flex: 1;
+  min-width: 0;
+}
+.cr-remove {
+  border: 0;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cr-remove:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+.cr-add-criterion {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cr-add-criterion select {
+  width: auto;
+  min-width: 150px;
+}
+.cr-add-criterion input {
+  flex: 1;
+  min-width: 200px;
+}
+.cr-add-criterion button {
+  min-height: 36px;
+  padding: 7px 14px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  font: 500 12.5px/1.2 inherit;
+  cursor: pointer;
+}
+
+.cr-extract {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+.cr-extract span {
+  flex: 1;
+  min-width: 220px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.cr-proposed {
+  border: 1px solid var(--scripta-teal, var(--scripta-brand));
+  border-radius: 8px;
+  padding: 12px;
+  background: #f2f7f6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cr-proposed h4 {
+  margin: 0;
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-proposed ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cr-proposed label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+.cr-proposed input[type="checkbox"] {
+  width: auto;
+  min-height: 0;
+}
+
+/* ------------------------------------------------------------ the kinds */
+
+.cr-kind {
+  flex: none;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--scripta-wash, var(--scripta-surface));
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 10px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.cr-desirable {
+  flex: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 10.5px;
+  font-style: italic;
+}
+
+/* -------------------------------------------------- status: the one colour */
+
+.cr-status {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cr-status.is-none {
+  color: var(--scripta-muted);
+  border-color: var(--scripta-border);
+  background: var(--scripta-surface-2);
+}
+.cr-status.is-developing {
+  color: var(--scripta-warn);
+  border-color: #f5dda3;
+  background: var(--scripta-warn-bg);
+}
+.cr-status.is-evidenced {
+  color: var(--scripta-brand);
+  border-color: #bcd3f7;
+  background: #eef4fe;
+}
+.cr-status.is-strong {
+  color: var(--scripta-ok);
+  border-color: #cfddd2;
+  background: var(--scripta-ok-bg);
+}
+
+.cr-buckets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+}
+.cr-bucket {
+  display: grid;
+  gap: 2px;
+  padding: 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+.cr-bucket strong {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-variant-numeric: tabular-nums;
+}
+.cr-bucket span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-bucket.is-strong {
+  border-color: #cfddd2;
+}
+.cr-bucket.is-none {
+  border-color: var(--scripta-border);
+}
+.cr-bucket:hover {
+  border-color: var(--scripta-brand);
+}
+
+.cr-summary {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+/* The number is here, and it is deliberately the quietest thing on the card. */
+.cr-secondary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-pct {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-secondary em {
+  flex-basis: 100%;
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* ------------------------------------------------------ the requirements */
+
+.cr-section {
+  margin: 14px 0 6px;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-req {
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-left: 3px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.cr-req.is-strong {
+  border-left-color: #34a853;
+}
+.cr-req.is-evidenced {
+  border-left-color: var(--scripta-brand);
+}
+.cr-req.is-developing {
+  border-left-color: #e8a33d;
+}
+.cr-req.is-none {
+  border-left-color: var(--scripta-border);
+}
+.cr-req-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.cr-req-head.as-static {
+  cursor: default;
+}
+.cr-req-head:hover:not(.as-static) {
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-req-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-req-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  padding-top: 12px;
+}
+.cr-req-body h4 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-because ul,
+.cr-because-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cr-because li,
+.cr-because-list li {
+  padding-left: 14px;
+  position: relative;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-because li::before,
+.cr-because-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-ev-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cr-ev-list li {
+  display: grid;
+  gap: 1px;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-ev-list.is-discounted li strong {
+  font-weight: 500;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-gap {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: var(--scripta-wash, var(--scripta-surface));
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-next {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-warn {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid #f5dda3;
+  border-radius: 7px;
+  background: var(--scripta-warn-bg);
+  color: var(--scripta-warn);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.cr-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  padding: 6px;
+}
+.cr-pick button {
+  display: grid;
+  gap: 1px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-pick button:hover {
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-pick span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.cr-claimed {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font-size: 11.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-chip em {
+  font-style: normal;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 9.5px;
+  letter-spacing: 0;
+}
+.cr-chip button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cr-chip button:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+/* ---------------------------------------------------------- the evidence */
+
+.cr-ev {
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+.cr-ev-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.cr-ev-head:hover {
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-ev-title {
+  flex: 1;
+  min-width: 200px;
+  display: grid;
+  gap: 1px;
+}
+.cr-ev-title strong {
+  font-size: 13.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-ev-title .cr-muted {
+  font-size: 11.5px;
+}
+.cr-level {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--scripta-wash, var(--scripta-surface));
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 11px;
+  white-space: nowrap;
+}
+.cr-level.is-led,
+.cr-level.is-independent {
+  background: var(--scripta-ok-bg);
+  color: var(--scripta-ok);
+}
+.cr-level.is-exposure {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-corr {
+  flex: none;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.cr-corr.is-supported {
+  color: var(--scripta-ok);
+}
+.cr-corr.is-claimed {
+  color: var(--scripta-warn);
+}
+.cr-ev-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+.cr-ev-body h4 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 10px;
+  margin: 0;
+}
+.cr-facts dt {
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-facts dd {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-statement {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--scripta-ink, var(--scripta-ink));
+  white-space: pre-wrap;
+}
+.cr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cr-view-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-view-head p {
+  margin: 4px 0 0;
+  max-width: 68ch;
+}
+
+.cr-next-list {
+  list-style: none;
+  counter-reset: next;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cr-next-list li {
+  counter-increment: next;
+  position: relative;
+  padding: 12px 14px 12px 46px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+.cr-next-list li::before {
+  content: counter(next);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--scripta-brand);
+  color: #fff;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.cr-next-list li.is-none::before {
+  background: var(--scripta-border);
+}
+.cr-next-req {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.cr-next-list p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-next-list p + p {
+  margin-top: 4px;
+}
+
+/*
+ * A date to be ready by: a deadline nobody set but the lawyer.
+ *
+ * Quiet when it is not set, because the portal should not imply that a role
+ * without a date is a role you are not serious about.
+ */
+.cr-target {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-target.is-editing label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.cr-target input[type="date"] {
+  width: auto;
+  min-width: 160px;
+}
+.cr-target button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 500 12.5px/1.4 inherit;
+  cursor: pointer;
+}
+.cr-target button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Spans every column of the grid it sits in. */
+.cr-span {
+  grid-column: 1 / -1;
+}
+
+/*
+ * The pasted document.
+ *
+ * A job description is two screens of text and the lawyer needs to see what
+ * they pasted, so it takes the height the window can spare rather than a
+ * fixed number of rows. It sits after the rule for ordinary fields because it
+ * refines it, and at equal specificity the last one written is the one that
+ * holds.
+ */
+.cr-paste textarea {
+  min-height: min(58vh, 620px);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------- profile and people */
+
+.cr-profile-head .cr-card-head h2 {
+  font-size: 17px;
+}
+.cr-profile-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+/* One entry in Experience, Education or Licences. */
+.cr-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+.cr-card > .cr-entry:first-of-type {
+  border-top: 0;
+  padding-top: 4px;
+}
+.cr-entry-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cr-entry-main strong {
+  font-size: 13.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-entry-main > span {
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-entry-main > span.cr-muted {
+  font-size: 11.5px;
+}
+.cr-entry-main a {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+.cr-entry .cr-statement {
+  margin-top: 4px;
+  font-size: 12.5px;
+}
+
+.cr-check {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.cr-check input {
+  width: auto;
+  min-height: 0;
+}
+
+.cr-skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.cr-skills li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 13px;
+}
+.cr-skills li:last-child {
+  border-bottom: 0;
+}
+.cr-skills strong {
+  min-width: 180px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-skills .cr-muted {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+}
+
+/*
+ * The register.
+ *
+ * The question at the top, the subjects as bubbles under it. The bubbles are
+ * the one place this borrows a shape from the networks lawyers already use,
+ * because a cloud of subjects is genuinely the right way to see what a
+ * register collectively knows — and unlike those, each one here is a person
+ * you have actually worked with rather than a page you follow.
+ */
+.cr-ask {
+  font-size: 14px !important;
+  min-height: 44px !important;
+}
+.cr-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cr-bubbles button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 999px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 500 12.5px/1.2 inherit;
+  cursor: pointer;
+}
+.cr-bubbles button:hover {
+  border-color: var(--scripta-brand);
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-bubbles button > span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cr-person {
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+.cr-person-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.cr-person-head:hover {
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-person-who {
+  flex: 1;
+  min-width: 200px;
+  display: grid;
+  gap: 1px;
+}
+.cr-person-who strong {
+  font-size: 13.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-person-who .cr-muted {
+  font-size: 11.5px;
+}
+/* How well you know them, which decides what you can ask. */
+.cr-close {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  background: var(--scripta-wash, var(--scripta-surface));
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-close.is-close {
+  background: var(--scripta-ok-bg);
+  color: var(--scripta-ok);
+}
+.cr-close.is-known {
+  background: #eef4fe;
+  color: var(--scripta-brand);
+}
+.cr-chip.is-hit {
+  border-color: var(--scripta-brand);
+  background: var(--scripta-wash, var(--scripta-surface));
+  font-weight: 500;
+}
+.cr-person-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+.cr-person-body h4 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* ------------------------------------------------------------- the dashboard */
+
+.cr-dash {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.cr-dash > .cr-span {
+  grid-column: 1 / -1;
+}
+.cr-sub {
+  margin: 4px 0 0;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* The number, and the working, side by side — never the number alone. */
+.cr-headline {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.cr-headline-body {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cr-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+.cr-ring > span {
+  font-size: 11px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.cr-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cr-bars li > div,
+.cr-bars li > button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: none;
+  padding: 2px 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+}
+.cr-bars li > button {
+  cursor: pointer;
+  border-radius: 6px;
+}
+.cr-bars li > button:hover {
+  background: var(--scripta-wash, var(--scripta-surface));
+}
+.cr-bar-label {
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cr-bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--scripta-wash, #eef0ea);
+  overflow: hidden;
+}
+.cr-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--scripta-brand);
+}
+.cr-bar-value {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-bar-detail {
+  grid-column: 2 / -1;
+  font-size: 11px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+/* The movement chart. */
+.cr-chart {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cr-chart svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+.cr-chart figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+.cr-chart figcaption strong {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-variant-numeric: tabular-nums;
+}
+.cr-chart-months {
+  letter-spacing: 0;
+  font-size: 10.5px;
+}
+
+/* Share of a whole, with every slice named and counted in the legend. */
+.cr-donut {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cr-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+  flex: 1;
+}
+.cr-legend.is-inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+.cr-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-swatch {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+}
+.cr-legend-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cr-legend-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.cr-levelbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cr-levelbar-track {
+  display: flex;
+  height: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+}
+.cr-levelbar-track > span {
+  display: block;
+  height: 100%;
+}
+
+/* What would move it most: the price first, because that is the ranking. */
+.cr-levers {
+  list-style: none;
+  counter-reset: lever;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cr-levers li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.cr-lever-gain {
+  flex: none;
+  min-width: 38px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--scripta-brand);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.cr-lever-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-lever-text .cr-muted {
+  font-size: 11px;
+}
+
+/* Frameworks a lawyer can start from. */
+.cr-starters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  padding-top: 12px;
+}
+.cr-starter {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+}
+.cr-starter > div {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.cr-starter strong {
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+.cr-starter .cr-muted {
+  font-size: 11.5px;
+}
+.cr-starter button {
+  flex: none;
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+  font: 500 12.5px/1.2 inherit;
+  cursor: pointer;
+}
+.cr-starter button:hover {
+  border-color: var(--scripta-brand);
+}
+
+/* How much one piece of evidence carries. */
+.cr-meter {
+  flex: none;
+  width: 56px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--scripta-wash, #eef0ea);
+  overflow: hidden;
+}
+.cr-meter > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--scripta-brand);
+}

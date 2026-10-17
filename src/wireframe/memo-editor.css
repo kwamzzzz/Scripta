@@ -1,0 +1,68 @@
+/* The memo's editing surface: paper, not a form field.
+   The introduction and every section are editors rather than text boxes, so the
+   paper's type has to be set here instead of inline as it was on the textarea. */
+.memo-body {
+  font-family: "Century Schoolbook", "New Century Schoolbook", Georgia, "Times New Roman", serif;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--scripta-ink);
+  outline: none;
+  width: 100%;
+}
+.memo-body p {
+  margin: 0 0 10px;
+}
+.memo-body p:last-child {
+  margin-bottom: 0;
+}
+.memo-body h3,
+.memo-body h4,
+.memo-body h5 {
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.memo-body h3 {
+  font-size: 15px;
+}
+.memo-body h4 {
+  font-size: 13.5px;
+}
+.memo-body h5 {
+  font-size: 12.5px;
+}
+.memo-body ol,
+.memo-body ul {
+  margin: 0 0 10px;
+  padding-left: 26px;
+}
+/* A memo numbers its sub-paragraphs (a), (b), (c) as a lawyer would. */
+.memo-body ol {
+  list-style: lower-alpha;
+}
+.memo-body li p {
+  margin: 0 0 4px;
+}
+/* Indenting a paragraph in a memo means setting it as a quotation. */
+.memo-body blockquote {
+  margin: 0 0 10px 24px;
+  padding-left: 12px;
+  border-left: 2px solid var(--scripta-rule);
+  color: var(--scripta-text-2);
+}
+.memo-body a {
+  color: var(--scripta-brand);
+  text-decoration: underline;
+}
+.memo-body strong,
+.memo-body b {
+  font-weight: 700;
+}
+
+/* What each part of the memo is for, while it is still empty. */
+.memo-body p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  color: #a0a0a0;
+}

@@ -1,0 +1,256 @@
+/* ------------------------------------------------------ the matter file */
+
+/*
+ * A matter card reads as a file: a reference, what the work is, who it is for
+ * and against, where it stands, what is next, and roughly what is inside.
+ *
+ * The file character comes from the reference line and the rule beneath it, not
+ * from folder geometry. Scripta's identity is a clean law-firm one; a drawn
+ * manila tab would be the only skeuomorphic thing in the product.
+ */
+.matter-file {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  min-width: 0;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.matter-file:hover {
+  border-color: var(--scripta-border, var(--scripta-border));
+  box-shadow:  none;
+}
+
+/* The whole card is the control, laid over it rather than wrapping it, so the
+   text inside stays selectable and the markup stays a list of facts. */
+.matter-file-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.matter-file-open:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+}
+
+.matter-file-ref {
+  font: 400 11px/1.4 var(--scripta-font-mono, var(--scripta-font-mono));
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-variant-numeric: tabular-nums;
+}
+
+.matter-file-ref span {
+  color: var(--scripta-faint, #8b959b);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.matter-file h3 {
+  margin: 0;
+  font: 600 15.5px/1.35 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+.matter-file-parties {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 3px 12px;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.matter-file-parties dt {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-file-parties dd {
+  margin: 0;
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+.matter-file-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.matter-file-stage,
+.matter-file-sample {
+  padding: 2px 10px;
+  border-radius: 11px;
+  font: 500 11px/1.6 var(--scripta-font-ui, Inter, sans-serif);
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+  color: var(--scripta-teal, var(--scripta-brand));
+  white-space: nowrap;
+}
+
+.matter-file-sample {
+  background: transparent;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-file-next {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.matter-file-next > span {
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-file-next strong {
+  font: 500 12.5px/1.45 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+.matter-file-next em {
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-file footer {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.matter-file-lead {
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.matter-file-updated {
+  margin-left: auto;
+}
+
+/* What is inside, at the foot where a file's contents list would be. */
+.matter-file-counts {
+  padding-top: 9px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-variant-numeric: tabular-nums;
+}
+
+.matter-file.is-compact {
+  padding: 14px 15px;
+  gap: 8px;
+}
+
+.matter-file.is-compact .matter-file-parties,
+.matter-file.is-compact .matter-file-counts {
+  display: none;
+}
+
+/* ------------------------------------------- the same matter, in review */
+
+.review-matter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  min-width: 0;
+}
+
+.review-matter h3 {
+  margin: 0;
+  font: 600 15px/1.35 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.review-matter h3 button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-align: left;
+  cursor: pointer;
+}
+
+.review-matter h3 button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.review-matter-parties,
+.review-matter-updated {
+  margin: 0;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.review-matter-stage {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: 11px;
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 500 11px/1.6 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.review-matter-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-variant-numeric: tabular-nums;
+}
+
+.review-matter-counts i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.review-matter-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* The mention marker.
+   A dot, and only a dot. It says "somebody named you here since you last
+   looked" and refuses to say how many times or by whom — that would be a
+   notification centre, which Phase 4 deliberately does not have. It sits
+   against the reference line because that is the first thing read on the card. */
+.matter-file-mentioned {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 7px;
+  border-radius: 999px;
+  background: var(--accent, var(--scripta-brand));
+  vertical-align: middle;
+}

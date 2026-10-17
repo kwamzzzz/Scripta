@@ -1,0 +1,501 @@
+/* Playbook library and authoring, using the shared white workbench controls. */
+.playbook-library-page,
+.playbook-editor-page {
+  container: scripta-page playbook / inline-size;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font-size: 14px;
+}
+
+.playbook-page-heading {
+  flex: none;
+  margin: 0;
+  padding: 32px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.playbook-page-heading .scripta-page-actions {
+  flex: none;
+}
+
+.playbook-create {
+  flex: none;
+  margin: 0;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--scripta-rule);
+}
+
+.playbook-create h2,
+.playbook-rail-heading h2,
+.playbook-governance h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.playbook-create-fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.playbook-error {
+  margin: 16px 32px;
+}
+
+.playbook-rail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex: none;
+  gap: 8px;
+  padding: 24px 20px 16px;
+}
+
+.playbook-rail-heading span,
+.playbook-meta,
+.playbook-save-state {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.playbook-governance summary {
+  color: var(--scripta-ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.playbook-empty {
+  padding: 24px 0;
+  color: var(--scripta-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.playbook-empty h2 {
+  margin: 0 0 8px;
+  color: var(--scripta-ink);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.playbook-empty p {
+  margin: 0 0 16px;
+}
+
+.playbook-table-detail {
+  padding: 24px;
+}
+
+.playbook-table-detail h2 {
+  margin: 0 28px 8px 0;
+  font: 400 22px/1.4 var(--scripta-font-display);
+}
+
+.playbook-table-detail > .px-btn {
+  margin-block: 20px;
+}
+
+.playbook-table-detail dl {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+
+.playbook-table-detail dl > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--scripta-rule);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.playbook-table-detail dt {
+  color: var(--scripta-muted);
+}
+
+.playbook-table-detail dd {
+  margin: 0;
+}
+
+.playbook-editor-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.playbook-editor-nav {
+  overflow: auto;
+  min-height: 0;
+  border-right: 1px solid var(--scripta-rule);
+  background: var(--scripta-surface);
+}
+
+.playbook-editor-positions {
+  padding: 0 20px 24px;
+}
+
+.playbook-editor-position {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.playbook-editor-position-select {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px 0;
+  border: 0;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink);
+  font: 400 14px/1.6 var(--scripta-font-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.playbook-editor-position-select strong {
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.playbook-editor-position-select small {
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--scripta-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.playbook-editor-position-select[aria-pressed="true"] strong,
+.playbook-editor-position-select:hover strong {
+  color: var(--scripta-teal);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.playbook-position-delete {
+  display: grid;
+  flex: none;
+  width: 32px;
+  height: 36px;
+  margin-top: 10px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: var(--scripta-radius);
+  background: var(--scripta-surface);
+  color: var(--scripta-muted);
+  cursor: pointer;
+}
+
+.playbook-position-delete:hover {
+  color: var(--scripta-error);
+}
+
+.playbook-governance {
+  margin: 0 20px 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.playbook-governance-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.playbook-position-editor {
+  container: scripta-page playbook-position / inline-size;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 32px;
+  background: var(--scripta-surface);
+}
+
+.playbook-position-editor > div {
+  max-width: 850px;
+  margin-inline: auto;
+}
+
+.playbook-position-editor-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.playbook-rule-section {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+.playbook-rule-section h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.playbook-rule-section .scripta-form-field {
+  gap: 8px;
+}
+
+.playbook-rule-section .scripta-form-field textarea {
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.playbook-rule-section .playbook-approved-wording textarea {
+  font: 400 16px/1.85 var(--scripta-font-display);
+}
+
+.playbook-editor-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--scripta-rule);
+}
+
+@container playbook (max-width: 760px) {
+  .playbook-page-heading {
+    padding: 24px;
+  }
+
+  .playbook-create {
+    max-height: 55dvh;
+    overflow: auto;
+    padding: 24px;
+  }
+
+  .playbook-create-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .playbook-editor-layout {
+    display: block;
+    overflow: auto;
+  }
+
+  .playbook-editor-nav {
+    overflow: visible;
+    border-right: 0;
+    border-bottom: 1px solid var(--scripta-rule);
+  }
+
+  .playbook-editor-positions {
+    max-height: 240px;
+    overflow: auto;
+  }
+
+  .playbook-position-editor {
+    padding: 24px;
+    overflow: visible;
+  }
+}
+
+@container playbook-position (max-width: 440px) {
+  .playbook-position-editor-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@container playbook (max-width: 420px) {
+  .playbook-page-heading,
+  .playbook-create,
+  .playbook-position-editor {
+    padding: 20px 16px;
+  }
+}
+
+/* ------------------------------------------------- playbook overview */
+/* What the playbook contains, before any of it is edited. */
+.playbook-overview {
+  padding: 20px 22px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow: auto;
+}
+.playbook-overview > * {
+  flex: none;
+}
+.playbook-overview header h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+.playbook-overview header p {
+  margin: 4px 0 0;
+  color: var(--scripta-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.playbook-overview-purpose {
+  max-width: 70ch;
+}
+.playbook-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.playbook-stats > div {
+  flex: 1 1 130px;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.playbook-stats strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.playbook-stats span {
+  font-size: 11px;
+  color: var(--scripta-muted);
+  line-height: 1.4;
+}
+/* The action that answers the warning beside it. Inline, because it belongs to
+   that sentence rather than to the panel — "this has never been reviewed" and
+   "mark it reviewed" are one thought. */
+.playbook-gap-action {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: inherit;
+  color: #6f5c2e;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.playbook-gap-action:hover:not(:disabled) {
+  color: #4a3d19;
+}
+.playbook-gap-action:disabled {
+  cursor: default;
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+/* Taking a position, or the whole playbook, out of the app. */
+.playbook-export-choice {
+  border: 1px solid var(--wf-border, #e3e6eb);
+  border-radius: 6px;
+  background: var(--wf-panel, var(--scripta-surface));
+  color: var(--wf-text, #111827);
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 9px;
+  cursor: pointer;
+}
+.playbook-export-choice:hover:not(:disabled) {
+  border-color: var(--wf-accent, #7a5cff);
+  color: var(--wf-accent, #7a5cff);
+}
+.playbook-export-choice:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+.playbook-overview-export {
+  margin-top: 11px;
+}
+
+/* Shown when the playbook IS current, so a lawyer can see the date rather than
+   only being told off when it goes stale. */
+.playbook-reviewed-note {
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--wf-muted, var(--scripta-muted));
+}
+.playbook-reviewed-note .playbook-gap-action {
+  color: inherit;
+  font-weight: 500;
+}
+.playbook-overview-group h3 {
+  margin: 0 0 7px;
+  font-size: 10.5px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  font-weight: 600;
+}
+.playbook-overview-group > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px;
+}
+.playbook-overview-position {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 10px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+.playbook-overview-position:hover {
+  border-color: #c2c2c2;
+  background: var(--scripta-surface);
+}
+.playbook-overview-position strong {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+}
+.playbook-overview-position span {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--scripta-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.playbook-rail-group {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--scripta-muted);
+  font-weight: 600;
+  padding: 10px 12px 4px;
+}

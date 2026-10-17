@@ -1,0 +1,27 @@
+/* Save state sits beside the work, never on top of it. */
+.scripta-save-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* The mark turns while a write is in flight; everything else holds still, so
+   the line does not jump as the state changes. */
+.scripta-save-state.is-working svg {
+  animation: scripta-save-turn 1.1s linear infinite;
+}
+
+@keyframes scripta-save-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scripta-save-state.is-working svg {
+    animation: none;
+  }
+}

@@ -1,0 +1,62 @@
+/* A list you can reorder by dragging a row's handle. */
+
+.sortable {
+  display: contents;
+}
+
+.sortable-row {
+  position: relative;
+}
+
+/* Rows make room smoothly; the dragged row follows the pointer exactly. */
+.sortable.is-sorting .sortable-row {
+  transition: transform 160ms ease;
+}
+
+.sortable.is-sorting .sortable-row.is-dragging {
+  z-index: 5;
+  transition: none;
+}
+
+.sortable-row.is-dragging > * {
+  box-shadow:  var(--scripta-shadow-pop);
+}
+
+.sortable.is-sorting {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.sortable-handle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 28px;
+  margin: 0 -4px 0 -6px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: #a3aaa6;
+  cursor: grab;
+  touch-action: none;
+  opacity: 0.35;
+  transition: opacity 120ms ease;
+}
+
+.sortable-row:hover .sortable-handle,
+.sortable-handle:focus-visible,
+.sortable-row.is-dragging .sortable-handle {
+  opacity: 1;
+}
+
+.sortable-handle:hover {
+  background: #f0f2ef;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.sortable.is-sorting .sortable-handle {
+  cursor: grabbing;
+}

@@ -1,0 +1,986 @@
+/* Tasks: the work funnel. */
+
+.tasks-page {
+  display: contents;
+}
+
+/* The default view is a list, not a grid of cards: a task is a line of work. */
+.tasks-page .scripta-library-cards {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+/* ------------------------------------------------------- quick capture */
+
+.task-quick {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 20px 0;
+}
+.task-quick input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-border);
+  border-radius: 7px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--scripta-ink);
+  background: var(--scripta-surface);
+}
+.task-quick input:focus {
+  outline: none;
+  border-color: var(--scripta-border);
+}
+.task-quick input::placeholder {
+  color: var(--scripta-muted);
+}
+
+/* ------------------------------------------------------------- the list */
+
+.task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--scripta-rule);
+  min-width: 0;
+}
+.task-row input[type="checkbox"] {
+  margin-top: 2px;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+.task-row-body {
+  flex: 1;
+  min-width: 0;
+}
+.task-row-title {
+  font-size: 13.5px;
+  color: var(--scripta-ink);
+  line-height: 1.45;
+}
+.task-row.is-done .task-row-title {
+  text-decoration: line-through;
+  color: var(--scripta-muted);
+}
+.task-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+}
+.task-row-meta .is-priority {
+  color: #a3561f;
+  font-weight: 600;
+}
+.task-row-meta .is-tool {
+  color: #3d5a80;
+}
+
+.task-card {
+  border: 1px solid var(--scripta-rule);
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+.task-card-title {
+  font-size: 13px;
+  color: var(--scripta-ink);
+  line-height: 1.45;
+}
+
+/* ------------------------------------------------- what needs attention */
+
+.task-chip {
+  flex: none;
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.task-chip.is-overdue {
+  background: #fdf1f1;
+  color: #a33a3a;
+  border-color: #eccccc;
+}
+.task-chip.is-today {
+  background: #f3f7fd;
+  color: #2f5480;
+  border-color: #cfdcee;
+}
+.task-chip.is-upcoming {
+  background: var(--scripta-surface-2);
+  color: #5a5a5a;
+  border-color: var(--scripta-rule);
+}
+.task-chip.is-waiting {
+  background: #fdfaf2;
+  color: #6f5c2e;
+  border-color: #ece0c4;
+}
+.task-chip.is-someday,
+.task-chip.is-quiet {
+  background: var(--scripta-surface-2);
+  color: var(--scripta-muted);
+  border-color: var(--scripta-rule);
+  font-weight: 400;
+}
+.task-chip.is-done {
+  background: #f2f8f3;
+  color: #37683f;
+  border-color: #cde0d1;
+}
+
+/* ------------------------------------------------------- the detail pane */
+
+/*
+ * The panel is `scripta-matter-detail` — the same frame Corporate Drafting,
+ * Contract Drafting and Matters use, so the header, the 24px rhythm and the
+ * section headings need no rules here. What follows is only what a task needs
+ * beyond a document preview: a title you can correct, properties you can change
+ * without filling in a form, and a checklist.
+ *
+ * Colours are the shared tokens. The panel used to carry a private greyscale
+ * palette, which is most of why it read as a different product sitting beside
+ * the same app.
+ */
+
+/* The title is the panel's h2 and behaves like one, until you want to correct
+   it. Hover shows there is something to click; the box only appears on focus,
+   so a panel at rest is a heading, not a field. */
+.task-detail-title {
+  box-sizing: border-box;
+  width: 100%;
+  margin: -5px -9px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font: 500 18px/1.45 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-detail-title:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+
+.task-detail-title:focus {
+  outline: none;
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-surface);
+}
+
+/* Finish the work, start the work, then everything else behind the "…". */
+.task-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-detail-actions .scripta-library-icon-button {
+  margin-left: auto;
+}
+
+.task-detail-meta h3,
+.task-detail-checklist h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-detail-count {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The label column is the 90px the other panels give their `dt`, so a task's
+   properties line up with a matter's facts rather than looking like a form
+   that wandered in. */
+.task-meta-grid {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 4px 16px;
+  align-items: center;
+}
+
+.task-meta-grid label {
+  display: contents;
+}
+
+.task-meta-grid label > span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+}
+
+/* Filing rows sit in the same two columns as the fields: the flow a task came
+   from, the client it is for, and the client picker on an unfiled task. */
+.task-meta-grid .task-detail-filing,
+.task-meta-grid .task-detail-client,
+.task-meta-grid .task-detail-client .org-field {
+  display: contents;
+}
+
+.task-meta-grid .task-detail-filing > span,
+.task-meta-grid .task-detail-client .org-label {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* The panel is narrow: the client's name comes first and its actions wrap under it. */
+.task-meta-grid .task-detail-client .org-picked {
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  padding: 4px 8px;
+  border-color: transparent;
+}
+
+.task-meta-grid .task-detail-client .org-picked-name {
+  white-space: normal;
+  flex: 1 1 100%;
+}
+
+.task-meta-grid .task-detail-client .org-picked-actions {
+  margin-left: 0;
+}
+
+.task-meta-grid .task-detail-filing .org-filing {
+  min-height: 32px;
+  padding: 0 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+/* Quiet until reached for: no box at rest, an edge on hover, the teal focus
+   ring the rest of the app uses. The border is there the whole time and only
+   changes colour, so nothing moves. */
+.task-meta-grid select,
+.task-meta-grid input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  transition: border-color 160ms ease;
+}
+
+.task-meta-grid select:hover,
+.task-meta-grid input:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+
+.task-meta-grid select:focus-visible,
+.task-meta-grid input:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+  background: var(--scripta-surface);
+}
+
+.task-detail-notes textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 13px/1.6 var(--scripta-font-ui, Inter, sans-serif);
+  resize: vertical;
+}
+
+.task-detail-notes textarea::placeholder {
+  color: var(--scripta-placeholder, var(--scripta-muted));
+}
+
+.task-detail-notes textarea:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.task-check {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 4px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.task-check.is-done span {
+  text-decoration: line-through;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.task-check span {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-check button {
+  border: 0;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.task-check button:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.task-detail-checklist form input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 6px;
+  padding: 7px 10px;
+  border: 1px dashed var(--scripta-border, var(--scripta-border));
+  border-radius: 6px;
+  background: transparent;
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-detail-checklist form input::placeholder {
+  color: var(--scripta-placeholder, var(--scripta-muted));
+}
+
+.task-detail-checklist form input:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+  border-style: solid;
+  background: var(--scripta-surface);
+}
+
+/* Folded away, and quiet when folded: a disclosure, not another section. */
+.task-detail-more > summary {
+  cursor: pointer;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  font-weight: 600;
+  list-style-position: outside;
+}
+
+.task-detail-more > summary:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 2px;
+}
+
+.task-detail-more .task-meta-grid {
+  margin-top: 12px;
+}
+
+.task-detail-more > p {
+  margin: 8px 0 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.task-outgrown {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+}
+
+.task-outgrown strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-size: 13px;
+}
+
+.task-outgrown p {
+  margin: 0 0 10px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ----------------------------------------------------- correspondence */
+
+/*
+ * The draft and the replies, in a panel that is 320-560px wide. Flow can lay a
+ * compose window out in two columns; here everything stacks. Same tokens as the
+ * rest of the panel, so correspondence reads as part of the task rather than as
+ * a mail client that has been dropped into one.
+ */
+
+.task-correspondence h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-compose {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+}
+
+.task-compose-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-compose-state {
+  margin-left: auto;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+}
+
+.task-compose-row {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.task-compose-row input,
+.task-compose-body {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 6px 9px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 13px/1.55 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.task-compose-body {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.task-compose-row input:focus-visible,
+.task-compose-body:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.task-compose-note {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.task-compose-note button {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.task-compose-note button:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+/* A reply is a record of what was said. Kept plain, and kept as pasted: the
+   pre-wrap is the whole point, since the wording is never rewritten. */
+/*
+ * A message, either way round.
+ *
+ * Not chat bubbles: the panel is 320px at its narrowest and alternating
+ * alignment would leave half of every message's width unused. The difference
+ * is carried by the ground and a rule on the side the message came from —
+ * yours in the firm's own teal, theirs in the neutral it always was.
+ */
+.task-reply {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 11px 12px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-left: 3px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.task-reply.is-mine {
+  border-left-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-surface);
+}
+
+.task-reply-subject {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--scripta-ink, var(--scripta-ink));
+  overflow-wrap: anywhere;
+}
+
+.task-compose-send {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-reply > header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-reply-when {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+}
+
+.task-reply-index {
+  margin-left: auto;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 10.5px;
+  letter-spacing: 0;
+}
+
+.task-reply-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-reply-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.task-reply > footer {
+  display: flex;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.task-reply > footer button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 400 11.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.task-reply > footer button:hover {
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-reply > footer button.is-danger:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.task-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 2px 7px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 5px;
+  background: var(--scripta-surface);
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.task-attachment button {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-width: 0;
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-attachment button:last-child {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 14px;
+  line-height: 1;
+}
+
+.task-attachment button:last-child:hover {
+  color: var(--scripta-error, var(--scripta-risk));
+}
+
+.task-correspondence-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.task-correspondence-actions button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 500 12.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.task-correspondence-actions button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/*
+ * The dialog is its own card.
+ *
+ * `Modal` draws the dim backdrop and centres whatever it is given; the panel is
+ * the child's job, the way Flow's `.mf-dialog` has always done it. Without one
+ * the form rendered as bare controls floating over the dimmed page — borders
+ * and text with nothing behind them.
+ *
+ * It also portals outside the shell, so the Scripta tokens do not reach it.
+ * Every value here carries its literal fallback for that reason.
+ */
+.task-reply-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(560px, calc(100vw - 40px));
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 20px 22px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-modal);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+/* Which way the message went, chosen before anything is typed. */
+.task-reply-side {
+  display: flex;
+  gap: 0;
+  align-self: flex-start;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.task-reply-side button {
+  border: 0;
+  background: var(--scripta-surface);
+  padding: 6px 14px;
+  font: 400 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: pointer;
+}
+
+.task-reply-side button + button {
+  border-left: 1px solid var(--scripta-border, var(--scripta-border));
+}
+
+.task-reply-side button[aria-pressed="true"] {
+  background: var(--scripta-teal, var(--scripta-brand));
+  color: #fff;
+  font-weight: 500;
+}
+
+.task-reply-dialog h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.task-reply-dialog > p {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.task-reply-dialog label {
+  display: grid;
+  gap: 6px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+.task-reply-dialog input,
+.task-reply-dialog textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  color: var(--scripta-ink, var(--scripta-ink));
+  font: 400 13px/1.55 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.task-reply-dialog textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.task-reply-dialog input:focus-visible,
+.task-reply-dialog textarea:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.task-reply-files {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+}
+
+.task-reply-problem {
+  margin: 0;
+  color: var(--scripta-error, var(--scripta-risk));
+  font-size: 12px;
+}
+
+.task-reply-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tasks-first {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--scripta-text-2);
+  text-align: left;
+}
+.tasks-first h2 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--scripta-ink);
+}
+.tasks-first p {
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  .task-meta-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .task-meta-grid label > span {
+    margin-top: 8px;
+  }
+}
+
+/* The assignee picker is a shared component, and it brings its own bordered
+   treatment with a drawn chevron. In here it should look like its neighbours —
+   Status, Priority, Matter — which are quiet until hovered and let the browser
+   draw their own arrow. The host decides how its fields look. */
+.task-meta-grid .px-person-picker {
+  appearance: auto;
+  padding: 5px 8px;
+  border-color: transparent;
+  background-image: none;
+  background: transparent;
+  width: 100%;
+}
+.task-meta-grid .px-person-picker:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+
+/*
+ * What the task carries.
+ *
+ * The same chips correspondence uses, in a section of their own above it: the
+ * files on a task are read at a glance and reached for rarely, so they are a
+ * tray rather than a list with rows. The buttons borrow the correspondence
+ * actions' quiet link treatment, because attaching is the same weight of act
+ * as drafting an email, not a heavier one.
+ */
+.task-attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-attachments h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-attachment-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* A link opens rather than downloads, and says so by looking like a link. */
+.task-attachment a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.task-attachment-hint {
+  margin: -4px 0 0;
+  color: var(--scripta-faint, #8a9390);
+  font-size: 11.5px;
+}
+
+.task-correspondence-actions button:disabled {
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: default;
+  text-decoration: none;
+}
+
+/* The draft's own attachments: what goes out with the email, by hand. */
+.task-compose-attach button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 500 12.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.task-compose-attach button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.task-compose-attach button:disabled {
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: default;
+  text-decoration: none;
+}
+
+/*
+ * Dropping a file on the panel.
+ *
+ * The whole panel is the target, because aiming at a small tray while holding
+ * a file is a needless act of precision. The outline is drawn inside the
+ * panel's own padding so nothing moves when it appears.
+ */
+.task-detail.is-dropping {
+  outline: 2px dashed var(--scripta-teal, var(--scripta-brand));
+  outline-offset: -6px;
+  background: var(--scripta-teal-wash, #f2f7f6);
+}
+
+/* The dialog gives every input the full width a search box or a reply wants.
+   A tick box is not one of those, and left at 100% it took the row and left
+   the document's name no space to be read in. */
+.task-doc-list input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0;
+}
+
+/* The picker is a portalled dialog, so every value carries its fallback. */
+.task-doc-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 46vh;
+  overflow-y: auto;
+  border: 1px solid var(--scripta-rule);
+  border-radius: 6px;
+}
+
+.task-doc-list p {
+  margin: 0;
+  padding: 12px;
+  color: var(--scripta-muted);
+  font-size: 12.5px;
+}
+
+.task-doc-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eceee8;
+  font-size: 13px;
+  color: var(--scripta-ink);
+  cursor: pointer;
+}
+
+.task-doc-list label:last-child {
+  border-bottom: 0;
+}
+
+.task-doc-list label:hover {
+  background: #f6f7f4;
+}
+
+.task-doc-list label.is-taken {
+  color: #8a9390;
+  cursor: default;
+}
+
+.task-doc-list label > span:first-of-type {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-doc-note {
+  color: var(--scripta-muted);
+  font-size: 11.5px;
+  white-space: nowrap;
+}

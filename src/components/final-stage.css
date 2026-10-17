@@ -1,0 +1,52 @@
+/* The last screen before a document leaves: the check, the tick, the document. */
+.px-final {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* A flex column shrinks its children before it overflows, and every card here
+   clips what it cannot fit — so without this the pre-flight was cut in half
+   and nothing scrolled. The cards keep their height; the column scrolls. */
+.px-final > * {
+  flex: none;
+}
+.px-final-card {
+  border: 1px solid var(--px-card-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  overflow: hidden;
+}
+.px-final-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px 0;
+}
+.px-final-head h2 {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  letter-spacing: 0.01em;
+}
+.px-final-hint {
+  margin: 4px 14px 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--scripta-muted);
+}
+.px-final-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.px-final-note {
+  font-size: 11.5px;
+  color: var(--scripta-muted);
+  line-height: 1.6;
+}

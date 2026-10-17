@@ -1,0 +1,45 @@
+# Praxis — handover (for Codex, from Claude's session of 6 Sept 2026)
+
+Repo: `~/praxis` (GitHub kwamzzzz/praxis-legal-workbench, `main`; Lovable syncs from main). Preview: `http://127.0.0.1:8085/` (Vite dev server; start with `npx vite dev --port 8085` if it is down). All work below is committed and pushed; latest commit: see `git log -1` (Researcher 4k–4n + breadcrumbs).
+
+## The brief, and the working method that got it right
+- **North star:** `~/Downloads/Legal Drafting Wireframes (4).html`. Carbon copy of layout, spacing, copy and behaviour. The only deliberate deviation is typography (Inter / Century Schoolbook / IBM Plex Mono as in Wireframe (4)).
+- **One section at a time, then stop and ask Kwame to review before the next.** He wants to look at each screen and give notes; do not batch sections or move on unprompted. Say "ready for X when you are" and wait.
+- **Per section, in this order:**
+  1. Extract the frame and its guide from the reference: `python3 scripts/extract_reference.py "<wireframe>" <outdir>` gives `reference.html`; each frame carries a note plus WHAT THIS IS / HOW IT BEHAVES / IMPLEMENTATION GUIDANCE. Read all three before touching code.
+  2. Render the reference in Chrome to compare visually: `cd ~/Downloads && python3 -m http.server 8090`, open `http://127.0.0.1:8090/Legal%20Drafting%20Wireframes%20(4).html`, scroll to `#<frame id>` (file:// URLs are blocked in the browser tool).
+  3. Compare against the live screen element by element (paddings, sizes, colours, copy, controls). Fix what differs; keep what already matches.
+  4. Make the drawn controls act with real data or real calls where the backend exists; keep browser-stored state where it does not, and say so.
+  5. Verify: `npx tsc --noEmit`, `npx eslint <files>`, `npx vitest run`, `npm run build`, then click through in Chrome. Then commit with a descriptive message and push `main`; confirm Lovable listed the commit (`list_edits`, free).
+- **Lovable credits are nearly gone.** Use only free reads (`get_project`, `list_edits`, `read_file`, `query_database`). Never `send_message` to the Lovable agent. The app's own AI calls go through the user's Gemini key first; on the metered Lovable gateway the classifier waits for an explicit click.
+- **Flag judgement calls** in the report, briefly (e.g. English chip removed; Review & finalise not yet writing to clauses).
+
+## Where we ended
+Last completed: **section 4 in full (4k report builder, 4l export & approval, 4m client workspace, 4n research library)** plus **app-wide breadcrumbs** (Kwame said navigating was difficult). Awaiting his review of 4k–4n and the breadcrumbs. Not yet chosen: what comes next (4d dashboard review; sections 2, 3, 5 and 1f are unreviewed; the Lovable Documents library is outside the wireframe nav). Ask him, do not start one unprompted, and stop for his review after each.
+
+Two things Codex and Lovable did in between, which Kwame has not yet been walked through: Codex's `aa1049c` (fresh-user email auth release: `bootstrap_current_user`, personal workspace, delete account, no demo seed) had replaced the reviewed 4f–4h frames with empty "nothing here yet" placeholders — 949ae39 restores the drawn frames inside his per-workspace structure (records seeded from the wireframe example; whether fresh matters should start blank is Kwame's call). Lovable built a Documents library (`/documents`, `src/screens/DocumentsLibrary.tsx`, `document_versions` table) outside the wireframe nav; it has not been checked against the design system.
+
+## What is done (all pushed)
+- **1a Dashboard** — matches reference; date format fixed; Scripta panel opens wide (450px, left edge under the middle of "Share your feedback") with a header chevron stepping compact/default/wide.
+- **1b Loading** — breadcrumb and Scripta know the matter from cached lists before the document loads; English chip removed everywhere (only 1a/1b drew it).
+- **1c–1e Editor set** — contents tree as drawn (folder/file icons, carets, connector lines; every top-level section is a folder; 292px, airy rows, wrapping titles, 12px kept); document starts at 16px; 1c(i) popover, 1d selector, 1e redraft session (real structured `redraftTurn`, YOU/ASSISTANT cards, Back to editor / Review & finalise); Scripta thread cards as drawn.
+  - Instructions are **never shown on the document**: count badge on the clause control only; text lives in the toolbar **Instructions** panel (amend/delete/jump/redraft).
+  - **Classification bank** (`src/lib/clause-tags.ts`): AI-first — `classifyClauses` tags every clause automatically when the document opens (columns `classification`, `classification_reason`, `classification_source` on `clauses`, migration applied); reviewer can override from the tag popover (audited).
+- **4a–4c Researcher** — `src/wireframe/ResearchWorkspace.tsx`: findings (real `runResearch` call, chips as selects, citations open the reader), authority reader (continuous serif column, pins with notes, AI-summary label), memo composer (ribbon, outline, editable paper, Insert citation, generated footnotes, citation checker, DOCX export). State per research matter in browser storage (`src/wireframe/research-store.ts`).
+- **4e–4h** — drawn controls act: research type choice + Continue; AI draft Insert/Reject/Ask follow-up; Add issue; 4h title bar restored, Add fact / Add assumption, in-place editing, cycling pills.
+- **4k–4n** — 4k: deliverable toggles persist per matter (`records.deliv`), health checks are computed from the records (missing facts, unanswered issues, assumptions without consequence, risks without owner/date) and each row jumps to the tab that fixes it; AI-draft passage Accept/Reject; Export opens 4l; Send for reviewer approval. 4l: open items derived from the health checks; approve locks v1.0 (toggles frozen) and optionally publishes to `/client`. 4m: reads the first locked comprehensive report from browser storage (status + action plan from its risks); Open report / rows open the matter; request checkboxes toggle Outstanding/Received (`px.client.requests.<ws>`). 4n: live search box (the drawn results are the fixture's answer to the drawn query; a changed query filters them), filter chips toggle, Save to matter, Summarise / Extract quotation hand a request to Scripta, template Create makes a research matter of that kind.
+- **Breadcrumbs** — `Crumbs` in `src/components/AppShell.tsx` (`items: {label, to?, params?, search?, onClick?}[]`; earlier crumbs are links, last is the page). Every screen's topbar uses it: Active mandates / matter, Active mandates / New matter, Transcript distiller / …, Research / matter / (Authority | Memo), Research / New research matter / Step 2 of 4, Research / Library / Search, Playbooks / name, Precedents / All precedents. Research matter tabs are now one row for every tab (Overview … Memo … Activity) instead of a different row on Findings/Sources/Memo.
+- **4i–4j** — 4i: issue rail selects the issue and drives the header, evidence chain (missing records render as dashed gaps, per the guide), analysis parts, counterarguments, gaps, impact; format selector cycles IRAC/ILAC/CRAC/Narrative; Open authority / Insert into report / Assign / Mark complete act. 4j: Add risk; likelihood and impact cycle and recompute the rating (`src/wireframe/risk.ts`, tested), rating pill click-through override; text cells edit in place; action plan is the same risk records; status cycles. Records per matter in `px.research.records.<workspace>.<researchId>`.
+
+## Still to do (in the order Kwame is likely to ask)
+- 1f Contract summary, 2a–2c Distiller, 3a–3c Playbook, 5a–5c Precedents: review each against Wireframe (4) with the method above (they are regenerated frames; interactions are partly wired).
+- 4d: Codex rebuilt the research dashboard as a plain list; compare with the 4d drawing.
+- Instructions / Documents / Activity tabs on a research matter still fall back to the overview frame (no drawing exists for them).
+- Decide where the Lovable-built Documents library lives in the wireframe nav and restyle it to the design system.
+- Backend: research tables (matters, questions, authorities, pins, memos, facts, issues) to replace browser storage; persist editor instructions server-side; Review & finalise writing proposed wording into clauses.
+
+## Gotchas
+- Frame files are generated; edit them by hand but keep the drawn styles. When adding `onClick` to a drawn `<div>`, target the element by walking back from its exact text line to the nearest `<div` line — a regex spanning `[\s\S]*?` will land on the wrong element (it did once).
+- Prettier reformats after every write; re-grep line numbers before line-based patches.
+- Other agents' refactors can unmount a reviewed frame without touching it (Codex's aa1049c did this to 4f–4h). Before resuming a section, grep `ResearchScreens.tsx` for the `frames/F4*` imports and confirm the tab still renders the drawing.
+- `usePersisted` keys: `px.editor.<ws>.<matter>.*`, `px.redraft.<matter>`, `px.research.<id>`, `px.research.records.<id>`, `px.assistant.*`.

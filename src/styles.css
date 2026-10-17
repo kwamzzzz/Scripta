@@ -1,0 +1,447 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Scripta Enterprise (v2) typefaces, self-hosted. Variable files: one file
+   covers every weight. */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-var-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-var-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/*
+ * Scripta Enterprise (v2) palette. The single source for stylesheets; the
+ * same values live in src/lib/tokens.ts (C, identity) for inline styles.
+ * Canvas is the warm ground; surfaces sit on it near-white; navy is the one
+ * colour that means "act here"; status tints are low saturation.
+ */
+:root {
+  --scripta-canvas: #f5f4f1;
+  --scripta-surface: #fdfcfa;
+  --scripta-paper: #fdfcfa;
+  --scripta-surface-2: #f1efeb;
+  --scripta-hover: #ebe8e3;
+  --scripta-selected: #eaedf4;
+  --scripta-ink: #23221f;
+  --scripta-text-2: #5c5953;
+  --scripta-muted: #6f6b64;
+  --scripta-disabled: #a09c95;
+  --scripta-placeholder: #a09c95;
+  --scripta-divider: #edeae5;
+  --scripta-rule: #e6e3dd;
+  --scripta-border: #d6d2ca;
+  --scripta-input-edge: #c9c4bb;
+  --scripta-brand: #243660;
+  --scripta-brand-hover: #1c2b4e;
+  --scripta-brand-tint: #e9ecf4;
+  --scripta-brand-text: #2a3d6b;
+  --scripta-teal: #243660;
+  --scripta-teal-tint: #eaedf4;
+  --scripta-ok: #2e5a3b;
+  --scripta-ok-bg: #e7efe8;
+  --scripta-warn: #6a4d14;
+  --scripta-warn-bg: #f6eedc;
+  --scripta-risk: #7b2f25;
+  --scripta-risk-bg: #f5e6e2;
+  --scripta-neutral: #4e4b45;
+  --scripta-neutral-bg: #eeece8;
+  --scripta-error: #7b2f25;
+  --scripta-success: #2e5a3b;
+  --scripta-shadow-sm: 0 1px 2px rgba(35, 34, 31, 0.05);
+  --scripta-shadow-pop: 0 1px 2px rgba(35, 34, 31, 0.06), 0 8px 24px rgba(35, 34, 31, 0.1);
+  --scripta-shadow-modal: 0 2px 4px rgba(35, 34, 31, 0.06), 0 24px 56px rgba(35, 34, 31, 0.18);
+  --scripta-radius-sm: 6px;
+  --scripta-radius: 8px;
+  --scripta-radius-lg: 12px;
+  --scripta-radius-xl: 16px;
+  --scripta-font-ui: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --scripta-font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --scripta-font-mono: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --scripta-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #fdfcfa;
+  --foreground: #23221f;
+  --card: #fdfcfa;
+  --card-foreground: #23221f;
+  --popover: #fdfcfa;
+  --popover-foreground: #23221f;
+  --primary: #243660;
+  --primary-foreground: #fdfcfa;
+  --secondary: #f1efeb;
+  --secondary-foreground: #23221f;
+  --muted: #f1efeb;
+  --muted-foreground: #6f6b64;
+  --accent: #eaedf4;
+  --accent-foreground: #243660;
+  --destructive: #7b2f25;
+  --destructive-foreground: #fdfcfa;
+  --border: #e6e3dd;
+  --input: #d6d2ca;
+  --ring: #243660;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* ── Praxis workbench ─────────────────────────────────────────────── */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--scripta-canvas);
+  overflow: hidden;
+}
+body {
+  font-family: var(--scripta-font-ui);
+  color: var(--scripta-ink);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars: an overlay hairline that appears only while the pointer is over a
+   scrolling region, and never a grey bar. A thick indicator reads as furniture. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: rgba(25, 24, 21, 0.22) transparent;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(25, 24, 21, 0.22);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(25, 24, 21, 0.36) !important;
+}
+
+.px-row:hover {
+  background: #f8f7f4 !important;
+}
+.px-row-blue:hover {
+  background: #f5f5f4 !important;
+}
+.px-tab:hover {
+  background: #e9e9e8;
+}
+.px-link:hover {
+  color: #303a44 !important;
+}
+.px-chip:hover {
+  border-color: #465463 !important;
+  color: #303a44 !important;
+}
+.px-close:hover {
+  color: #1c1b19 !important;
+}
+
+/* Icon-only controls: quiet until pointed at, with a real focus ring for keyboard
+   users. Premium reads as every element responding to hover, focus and keyboard —
+   not as extra ornament. */
+.px-icon-btn {
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+.px-icon-btn:hover {
+  background: #f1efe9 !important;
+  color: #1c1b19 !important;
+}
+.px-icon-btn:focus-visible {
+  outline: 2px solid #586674;
+  outline-offset: 1px;
+}
+
+/* Sidebar resize handle: invisible until approached, then a hairline. */
+.px-rail-handle:hover {
+  background: #d4d2ca !important;
+}
+
+/* Motion: one curve, short. Confirms a change; never performs. */
+.px-pop {
+  animation: px-pop 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes px-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.px-skeleton {
+  animation: px-pulse 1.4s ease-in-out infinite;
+}
+@keyframes px-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* Buttons respond to hover, focus and keyboard — behavioural density. */
+.px-btn:focus-visible {
+  outline: 2px solid #586674;
+  outline-offset: 1px;
+}
+.px-btn-primary:hover:not(:disabled) {
+  background: #303a44 !important;
+  border-color: #303a44 !important;
+}
+.px-btn-secondary:hover:not(:disabled) {
+  background: #f5f4f1 !important;
+  border-color: #d5d1c8 !important;
+}
+.px-btn-quiet:hover:not(:disabled) {
+  background: #e7e9eb !important;
+}
+.px-btn-danger:hover:not(:disabled) {
+  background: #f7ecea !important;
+  border-color: #e8ccc7 !important;
+}
+
+/* Figures, clause numbers and dates never jitter between values. */
+.px-tabular,
+table,
+.px-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Action clusters: generous, consistent spacing between neighbouring controls, and
+   a hairline to separate groups. Crowded actions read as cheap. */
+.px-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+.px-actions-tight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.px-sep {
+  width: 1px;
+  height: 14px;
+  background: #e3e0d9;
+  flex: none;
+}
+.px-quiet-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 12px;
+}
+.px-quiet-row > * {
+  white-space: nowrap;
+}
+
+/* Chrome: quieter hover, no jumpy borders. */
+.px-chip:hover {
+  border-color: #b8c0c7 !important;
+  color: #303a44 !important;
+}
+.px-tab:hover {
+  background: #e7e9eb;
+}
+.px-row:hover {
+  background: #f8f7f4 !important;
+}
+
+/*
+ * Filter chip: narrows a list and shows its count. The one control for
+ * filtering anywhere in Scripta (list pages, the dashboard, finding lists).
+ * Never used to switch views; that is Tabs.
+ */
+.scripta-chip {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--scripta-radius-sm);
+  color: var(--scripta-text-2);
+  background: transparent;
+  font: 400 12.5px/1.4 var(--scripta-font-ui);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.scripta-chip:hover {
+  background: var(--scripta-hover);
+}
+.scripta-chip[aria-pressed="true"] {
+  color: var(--scripta-ink);
+  background: var(--scripta-neutral-bg);
+  font-weight: 500;
+}
+.scripta-chip > span {
+  color: var(--scripta-muted);
+  font-size: 12px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}

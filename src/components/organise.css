@@ -1,0 +1,364 @@
+/* Organising work: the client picker, and the small dialogs that create or file
+   a client, matter or flow. Same card, rule and control weights as Flow's own
+   dialogs, so creating a matter and adding a phase feel like one product. */
+
+.org-dialog {
+  width: 520px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  box-shadow:  var(--scripta-shadow-modal);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font: 400 13px/1.5 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.org-dialog h2 {
+  margin: 0;
+  font: 600 15px/1.4 var(--scripta-font-ui, Inter, system-ui, sans-serif);
+}
+
+.org-dialog > p,
+.org-hint {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.org-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.org-error {
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid #e6cfc9;
+  border-radius: 6px;
+  background: var(--scripta-risk-bg);
+  color: var(--scripta-error, var(--scripta-risk));
+  font-size: 12.5px;
+}
+
+.org-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.org-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.org-field input,
+.org-field select,
+.org-combo input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  background: var(--scripta-surface);
+}
+
+.org-field input:focus-visible,
+.org-field select:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+}
+
+.org-combo {
+  position: relative;
+}
+
+.org-options {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 240px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--scripta-border, var(--scripta-border));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+}
+
+.org-options button {
+  text-align: left;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+
+.org-options button:hover,
+.org-options button:focus-visible {
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+  outline: none;
+}
+
+.org-option-create {
+  color: var(--scripta-teal, var(--scripta-brand)) !important;
+  font-weight: 500 !important;
+}
+
+.org-option-none {
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule)) !important;
+  border-radius: 0 !important;
+  margin-top: 2px;
+  color: var(--scripta-muted, var(--scripta-muted)) !important;
+}
+
+.org-picked {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 6px;
+  background: var(--scripta-paper, var(--scripta-surface));
+}
+
+.org-picked-name {
+  font-weight: 500;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.org-picked-note {
+  font-size: 11.5px;
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+
+.org-picked-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.org-picked-actions button,
+.org-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: var(--scripta-teal, var(--scripta-brand));
+  cursor: pointer;
+}
+
+.org-picked-actions button:hover,
+.org-link:hover {
+  text-decoration: underline;
+}
+
+/* A choice between a few ways to begin, drawn as one row of equal options. */
+.org-starts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.org-starts label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 11px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.org-starts label:has(input:checked) {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+}
+
+.org-starts input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.org-starts strong {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.org-starts span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  line-height: 1.45;
+}
+
+.org-segment {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.org-segment button {
+  padding: 6px 12px;
+  border: 0;
+  border-right: 1px solid var(--scripta-rule, var(--scripta-rule));
+  background: var(--scripta-surface);
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--scripta-ink, var(--scripta-ink));
+  cursor: pointer;
+}
+
+.org-segment button:last-child {
+  border-right: 0;
+}
+
+.org-segment button[aria-pressed="true"] {
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+  color: var(--scripta-teal, var(--scripta-brand));
+  font-weight: 500;
+}
+
+/* The filing line on a matter or flow: whose it is, and where it sits. */
+.org-filing {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-size: 12.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.org-filing a,
+.org-filing strong {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.org-filing a:hover {
+  text-decoration: underline;
+}
+
+/* A plain list of work: title, one muted line, and when. Shared by a client's
+   page and a matter's file. */
+.org-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.org-list li {
+  border-bottom: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.org-list li > button,
+.org-list li > a,
+.org-list li > div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title when"
+    "meta when";
+  gap: 2px 16px;
+  align-items: center;
+  padding: 10px 6px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.org-list li > button,
+.org-list li > a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.org-list li > button:hover,
+.org-list li > button:focus-visible,
+.org-list li > a:hover,
+.org-list li > a:focus-visible {
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+  outline: none;
+}
+
+.org-list-title {
+  grid-area: title;
+  font-size: 13.5px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.org-list-title.is-done {
+  text-decoration: line-through;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.org-list-meta {
+  grid-area: meta;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.org-list-when {
+  grid-area: when;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  white-space: nowrap;
+}
+
+.org-quick {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.org-quick input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+}

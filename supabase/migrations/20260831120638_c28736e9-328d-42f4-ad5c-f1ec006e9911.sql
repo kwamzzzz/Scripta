@@ -1,0 +1,1 @@
+ALTER TABLE public.transcripts ADD COLUMN IF NOT EXISTS speaker_map jsonb NOT NULL DEFAULT '{}'::jsonb;

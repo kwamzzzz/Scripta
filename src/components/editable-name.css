@@ -1,0 +1,56 @@
+.scripta-editable-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.scripta-editable-name-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scripta-editable-name-button {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: pointer;
+  opacity: 0.35;
+}
+
+.scripta-editable-name:hover .scripta-editable-name-button,
+.scripta-editable-name-button:focus-visible {
+  opacity: 1;
+}
+
+.scripta-editable-name-button:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.scripta-editable-name-input {
+  min-width: 220px;
+  height: 28px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  border: 1px solid var(--scripta-teal, var(--scripta-brand));
+  border-radius: 6px;
+  box-shadow: 0 0 0 3px rgba(36, 54, 96, 0.12);
+  font: inherit;
+  font-weight: 500;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.scripta-editable-name-input:focus {
+  outline: none;
+}

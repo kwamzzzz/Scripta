@@ -1,0 +1,411 @@
+/* The matter as a file. Built from the review cards (`.rv-card`) so the file
+   and the Contract Review summary read as one product, with the page's own
+   two-column grid collapsing on the width the workbench actually has. */
+
+.mfile {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px 24px 40px;
+  container: mfile / inline-size;
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.mfile-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+  max-width: 1180px;
+}
+
+.mfile-main,
+.mfile-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+@container mfile (max-width: 820px) {
+  .mfile-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mfile-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mfile-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mfile-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mfile-flow + .mfile-flow {
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.mfile-flow-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.mfile-flow-head a {
+  color: var(--scripta-ink, var(--scripta-ink));
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mfile-flow-head a:hover {
+  text-decoration: underline;
+}
+
+.mfile-flow-head span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+}
+
+.mfile-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--scripta-rule, var(--scripta-surface-2));
+  overflow: hidden;
+}
+
+.mfile-bar i {
+  display: block;
+  height: 100%;
+  background: var(--scripta-teal, var(--scripta-brand));
+}
+
+.mfile-counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.mfile-counts > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 8px;
+  background: var(--scripta-surface);
+}
+
+.mfile-counts strong {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.mfile-counts span {
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  text-align: center;
+}
+
+.mfile-counts > .is-late strong {
+  color: var(--scripta-ink);
+}
+
+@container mfile (max-width: 520px) {
+  .mfile-counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.mfile-compact li > button,
+.mfile-compact li > a,
+.mfile-compact li > div {
+  padding: 8px 4px;
+}
+
+.mfile-facts {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.mfile-facts > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.mfile-facts dt {
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mfile-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.mfile-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 980px;
+  margin-bottom: 14px;
+}
+
+.mfile-page-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mfile > .org-list,
+.mfile > .org-quick,
+.mfile > .org-hint,
+.mfile > .org-error {
+  max-width: 980px;
+}
+
+.mfile-flows {
+  max-width: 980px;
+}
+
+.mfile-panel {
+  padding: 14px 16px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+}
+
+/* Documents: the list on the left, the one being read on the right. */
+.mfile-documents {
+  display: flex;
+  flex-direction: column;
+}
+
+.mfile-documents .mfile-page-head {
+  max-width: none;
+}
+
+.mfile-upload {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mfile-doc-split {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+@container mfile (max-width: 820px) {
+  .mfile-doc-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mfile-doc-split .org-list li.is-selected > button:first-child {
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+}
+
+/*
+ * The way to remove a document sits over the end of its row.
+ *
+ * The row itself is left exactly as it was. A first attempt made the li a flex
+ * line and gave the document button `flex: 1`, which sets flex-basis to 0 and
+ * so overrode the `width: 100%` its grid depends on — the grid collapsed to
+ * the width of one character and the file name came down the page a letter at
+ * a time. Positioning takes the button out of the flow instead, and the row
+ * keeps the layout every other list in the app uses.
+ */
+.mfile-doc-split .org-list li {
+  position: relative;
+}
+
+.mfile-doc-split .org-list li > button:first-child {
+  padding-right: 42px;
+}
+
+/*
+ * Specificity matters here. `organise.css` styles EVERY direct child button of
+ * a list row — `.org-list li > button { width: 100%; display: grid }` — and
+ * that selector outranks a lone class. So this button inherited width 100% and
+ * became an absolutely positioned overlay across the whole row with its icon
+ * centred by `place-items`: the bin appeared in the middle of the page, and
+ * every click on the row hit Delete instead of selecting the document, so no
+ * preview could ever open. Hence the same selector shape, plus the explicit
+ * resets for the grid the shared rule sets up.
+ */
+.mfile-doc-split .org-list li > button.mfile-doc-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: none;
+  grid-template-areas: none;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/*
+ * Shown rather than revealed on hover: the complaint that prompted this was
+ * not that deleting was hard but that there was no sign it was possible, and a
+ * control that appears only under the pointer is no sign at all — and none
+ * whatever on a touch screen. Every press still goes through the confirm.
+ */
+.mfile-doc-split .org-list li > button.mfile-doc-remove:hover,
+.mfile-doc-split .org-list li > button.mfile-doc-remove:focus-visible {
+  background: var(--scripta-risk-bg);
+  color: var(--scripta-risk);
+}
+
+.mfile-viewer {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 10px;
+  background: var(--scripta-surface);
+  padding: 14px 16px;
+}
+
+.mfile-viewer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mfile-viewer-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.mfile-viewer-head p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.mfile-viewer-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mfile-viewer-body {
+  min-height: 420px;
+}
+
+.mfile-viewer-pdf {
+  max-height: 72vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f2f2f0;
+  border-radius: 6px;
+}
+
+.mfile-viewer-pdf canvas {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  background: var(--scripta-surface);
+  box-shadow:  none;
+}
+
+.mfile-viewer-docx {
+  max-height: 72vh;
+  overflow: auto;
+  background: #f2f2f0;
+  border-radius: 6px;
+}
+
+.mfile-viewer-docx .docx-wrapper {
+  background: transparent;
+  padding: 16px;
+}
+
+.mfile-viewer-text {
+  max-height: 72vh;
+  overflow: auto;
+  white-space: pre-wrap;
+  font: 400 13px/1.7 var(--scripta-font-display, Georgia, serif);
+  color: var(--scripta-ink);
+  padding: 4px 2px;
+}
+
+.mfile-viewer-empty {
+  padding: 24px 0;
+}
+
+.mfile-starts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+/* Page one beside a document in the matter's list. The row is a button, so
+   the thumbnail sits outside it and peeks on its own. */
+/* Page one beside the name rather than above it. The row's own rule makes any
+   child a full-width grid (see the note above about the bin button), so the
+   row becomes a flex line and the picture takes only the width it needs. */
+.mfile-doc-split .org-list li:has(> .mfile-doc-thumb) {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 10px;
+  /* Room for the bin, which is pinned to the right of the row: without it the
+     date reads through the icon. */
+  padding-right: 34px;
+}
+.mfile-doc-split .org-list li > .mfile-doc-thumb {
+  margin-top: 9px;
+  flex: none;
+}
+/* The bin is positioned against the row, which is now a flex line; it stays
+   where it was. */
+.mfile-doc-split .org-list li:has(> .mfile-doc-thumb) > button:first-of-type {
+  flex: 1;
+  min-width: 0;
+}

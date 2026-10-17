@@ -1,0 +1,53 @@
+/* The check before a document leaves. Shared by Contract Review and Corporate Drafting. */
+.px-pre {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--scripta-rule);
+  width: 100%;
+  text-align: left;
+  background: none;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  font: inherit;
+}
+.px-pre:first-child {
+  border-top: 0;
+}
+.px-pre.is-link {
+  cursor: pointer;
+}
+.px-pre.is-link:hover .px-pre-label {
+  text-decoration: underline;
+}
+.px-pre-mark {
+  flex: none;
+  margin-top: 2px;
+}
+.px-pre-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--scripta-ink);
+  line-height: 1.45;
+}
+.px-pre-detail {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--scripta-muted);
+}
+.px-pre-signoff {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #3a3935;
+  cursor: pointer;
+  max-width: 70ch;
+}
+.px-pre-signoff input {
+  margin-top: 3px;
+  flex: none;
+}

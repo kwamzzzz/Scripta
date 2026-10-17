@@ -1,0 +1,374 @@
+/* The Daily Work Report: a day's completed work, read rather than operated. */
+
+.wr-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 32px;
+  align-items: start;
+  padding: 24px 28px 64px;
+}
+
+.wr-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  max-width: 780px;
+}
+
+.wr-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wr-head h1 {
+  margin: 0;
+  font: 500 24px/1.25 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-head p {
+  margin: 4px 0 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+}
+
+.wr-day-pick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.wr-day-pick input[type="date"] {
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font: 400 13px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Quiet: taking the day away is an ordinary thing to want, not the point of
+   the screen. */
+.wr-export {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.wr-export button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-teal, var(--scripta-brand));
+  font: 500 12px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  cursor: pointer;
+}
+
+.wr-export button:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wr-export button:disabled {
+  color: var(--scripta-muted, var(--scripta-muted));
+  cursor: default;
+}
+
+.wr-summary {
+  margin: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A matter and everything finished on it, rather than four sightings of it. */
+.wr-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.wr-group > h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  font: 600 15px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-group > h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wr-group > h2 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wr-group > h2 span {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.wr-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 11px 13px;
+  border: 1px solid var(--scripta-rule, var(--scripta-rule));
+  border-radius: 7px;
+  background: var(--scripta-surface);
+}
+
+.wr-entry-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* A line you can correct without it looking like a form field. */
+.wr-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0 -6px;
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  font: 500 13.5px/1.45 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-title:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+
+.wr-title:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+  background: var(--scripta-surface);
+}
+
+.wr-time {
+  flex: none;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wr-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-size: 11.5px;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.wr-facts .wr-output {
+  color: var(--scripta-teal, var(--scripta-brand));
+}
+
+.wr-note,
+.wr-day-note textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 9px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font: 400 12.5px/1.55 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+  resize: vertical;
+}
+
+.wr-note::placeholder,
+.wr-day-note textarea::placeholder {
+  color: var(--scripta-placeholder, var(--scripta-muted));
+}
+
+.wr-note:hover {
+  border-color: var(--scripta-rule, var(--scripta-rule));
+}
+
+.wr-note:focus-visible,
+.wr-day-note textarea:focus-visible {
+  outline: 2px solid var(--scripta-teal, var(--scripta-brand));
+  outline-offset: 1px;
+  background: var(--scripta-surface);
+}
+
+.wr-entry footer {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.wr-entry footer a,
+.wr-entry footer button,
+.wr-left-out button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font: 400 11.5px/1.5 var(--scripta-font-ui, Inter, sans-serif);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wr-entry footer a:hover,
+.wr-entry footer button:hover,
+.wr-left-out button:hover {
+  color: var(--scripta-ink, var(--scripta-ink));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wr-left-out {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-top: 16px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 12.5px;
+}
+
+.wr-left-out h2,
+.wr-day-note h2 {
+  margin: 0;
+  font: 600 13px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-left-out > div {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.wr-left-out > div span {
+  flex: 1;
+  min-width: 0;
+  text-decoration: line-through;
+}
+
+.wr-day-note {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--scripta-rule, var(--scripta-rule));
+}
+
+.wr-day-note textarea {
+  border-color: var(--scripta-input-edge, var(--scripta-border));
+  background: var(--scripta-surface);
+}
+
+.wr-empty {
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.wr-empty h2 {
+  margin: 0;
+  font: 600 15px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+/* The history: days already kept, searchable. */
+.wr-history {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.wr-history h2 {
+  margin: 0;
+  font: 600 11px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  letter-spacing: 0;
+  color: var(--scripta-muted, var(--scripta-muted));
+}
+
+.wr-history input[type="search"] {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--scripta-input-edge, var(--scripta-border));
+  border-radius: 6px;
+  background: var(--scripta-surface);
+  font: 400 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+}
+
+.wr-history-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.wr-history-row:hover {
+  background: var(--scripta-selected, var(--scripta-selected));
+}
+
+.wr-history-row.is-open {
+  border-color: var(--scripta-teal, var(--scripta-brand));
+  background: var(--scripta-teal-tint, var(--scripta-selected));
+}
+
+.wr-history-row strong {
+  font: 500 12.5px/1.4 var(--scripta-font-ui, Inter, sans-serif);
+  color: var(--scripta-ink, var(--scripta-ink));
+}
+
+.wr-history-row span,
+.wr-history-empty {
+  color: var(--scripta-muted, var(--scripta-muted));
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .wr-page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .wr-history {
+    position: static;
+  }
+}
